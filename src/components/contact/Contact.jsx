@@ -1,8 +1,11 @@
+import React from "react";
 import Button from "@components/ui/Button";
 import FormField from "@components/ui/FormField";
-import React from "react";
+import { useContactForm } from "@hooks/useContactForm";
 
 const Contact = () => {
+  const { formData, loading, handleChange, handleSubmit } = useContactForm();
+
   return (
     <section className="contact-section">
       <div className="contact-container">
@@ -14,7 +17,7 @@ const Contact = () => {
               width="100%"
               height="100%"
               style={{ border: 0 }}
-              allowFullScreen=""
+              allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google Map"
@@ -24,30 +27,46 @@ const Contact = () => {
           {/* Form liên hệ */}
           <div className="contact-form">
             <h3>Contact Us</h3>
-            <form>
-              <FormField name="name" placeholder="Your Name" required />
+            <form onSubmit={handleSubmit}>
+              <FormField
+                name="name"
+                placeholder="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
               <FormField
                 type="email"
                 name="email"
                 placeholder="Your Email"
+                value={formData.email}
+                onChange={handleChange}
                 required
               />
-              <FormField name="subject" placeholder="Subject" />
+              <FormField
+                name="subject"
+                placeholder="Subject"
+                value={formData.subject}
+                onChange={handleChange}
+              />
               <textarea
                 name="message"
                 placeholder="Message"
                 rows={5}
                 className="form-input"
+                value={formData.message}
+                onChange={handleChange}
                 required
               ></textarea>
-              <Button hover type="submit">
-                Send Message
+
+              <Button hover type="submit" disabled={loading}>
+                {loading ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
         </div>
 
-        {/* Contact Info 4 cột bằng chữ */}
+        {/* Contact Info */}
         <div className="contact-info">
           <h3>Contact Information</h3>
           <div className="contact-grid">
