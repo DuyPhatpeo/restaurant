@@ -22,5 +22,5 @@ export const getFoodById = async (id) => {
 // Lấy tất cả categories
 export const getCategories = async () => {
   const res = await api.get("/categories");
-  return res.data; // [{id: 1, name: "Breakfast"}, ...]
+  return res.data;
 };

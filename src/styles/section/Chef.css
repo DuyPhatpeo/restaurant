@@ -37,7 +37,7 @@
 .chef-card .chef-image {
   width: 100%;
   height: auto;
-  max-height: 400px;
+  max-height: 350px;
   object-fit: cover;
   border-radius: 10px;
   aspect-ratio: 9 / 16;
@@ -45,13 +45,13 @@
 
 @media (max-width: 768px) {
   .chef-card .chef-image {
-    max-height: 350px;
+    max-height: 500px;
   }
 }
 
 @media (max-width: 480px) {
   .chef-card .chef-image {
-    max-height: 280px;
+    max-height: 500px;
   }
 }
 

@@ -7,13 +7,14 @@
   flex-wrap: wrap;
 }
 
+/* Tab buttons */
 .menu-tab {
   flex: 1;
   text-align: center;
   font-size: 1.1rem;
   font-weight: 600;
   background: transparent;
-  color: #000;
+  color: var(--color-black);
   padding: 12px 20px;
   border: none;
   cursor: pointer;
@@ -42,4 +43,23 @@
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
   border-top: 10px solid var(--color-primary);
+}
+
+/* ================= Mobile ================= */
+@media (max-width: 480px) {
+  .menu-tabs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .menu-tab {
+    flex: none;
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .menu-tab.active::after {
+    display: none;
+  }
 }
