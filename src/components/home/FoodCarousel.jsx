@@ -8,7 +8,7 @@ const FoodCarousel = () => {
     const fetchFoods = async () => {
       try {
         const data = await getFoods();
-        setFoods(data.slice(-4));
+        setFoods(data.slice(0, 4));
       } catch (error) {
         console.error("Error fetching foods:", error);
       }

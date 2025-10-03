@@ -1,4 +1,4 @@
-/* Container */
+/* ================= Container ================= */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -6,11 +6,17 @@
   width: 100%;
 }
 
-/* Label */
+/* ================= Label ================= */
 .form-label {
   font-size: 17px;
   font-weight: 600;
   color: var(--color-black);
+}
+
+/* Dấu * đỏ cho field bắt buộc */
+.required-star {
+  color: red;
+  margin-left: 2px;
 }
 
 @media (max-width: 768px) {
@@ -25,7 +31,7 @@
   }
 }
 
-/* Input */
+/* ================= Input ================= */
 .form-input {
   width: 100%;
   padding: 14px 16px;
@@ -54,7 +60,7 @@
   }
 }
 
-/* Select */
+/* ================= Select ================= */
 .form-select {
   width: 100%;
   padding: 14px 16px;
@@ -80,5 +86,30 @@
   .form-select {
     padding: 10px 12px;
     font-size: var(--font-size-sm);
+  }
+}
+
+/* ================= Error Styles ================= */
+.input-error {
+  border-color: red !important;
+}
+
+.form-error {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* Responsive lỗi */
+@media (max-width: 768px) {
+  .form-error {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-error {
+    font-size: 12px;
   }
 }

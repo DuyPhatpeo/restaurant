@@ -147,6 +147,9 @@
 .food-carousel-desc {
   font-size: var(--font-size-sm);
   color: var(--color-gray-300);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (max-width: 1024px) {

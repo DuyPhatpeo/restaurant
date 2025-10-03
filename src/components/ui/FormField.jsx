@@ -7,13 +7,14 @@ const FormField = ({
   placeholder = "",
   options = [],
   required = false,
+  error = "", // prop error
   ...rest
 }) => {
   return (
     <div className="form-group">
       {label && (
         <label htmlFor={name} className="form-label">
-          {label} {required && <span style={{ color: "red" }}>*</span>}
+          {label} {required && <span className="required-star">*</span>}
         </label>
       )}
 
@@ -21,7 +22,7 @@ const FormField = ({
         <select
           id={name}
           name={name}
-          className="form-select"
+          className={`form-select ${error ? "input-error" : ""}`}
           required={required}
           {...rest}
         >
@@ -40,11 +41,20 @@ const FormField = ({
           type={type}
           name={name}
           placeholder={placeholder}
-          className="form-input"
+          className={`form-input ${error ? "input-error" : ""}`}
           required={required}
           {...rest}
         />
       )}
+
+      {error && <p className="form-error">{error}</p>}
+
+      <style jsx>{`
+        .required-star {
+          color: red;
+          margin-left: 2px;
+        }
+      `}</style>
     </div>
   );
 };
