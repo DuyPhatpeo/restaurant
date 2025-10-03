@@ -26,6 +26,13 @@
   font-weight: 600;
   color: var(--color-title);
   word-break: break-word;
+
+  /* Giới hạn 2 dòng */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .menu-price {
@@ -43,4 +50,11 @@
   color: var(--color-text);
   margin: 10px 0 20px;
   line-height: 1.6;
+
+  /* Giới hạn 3 dòng */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

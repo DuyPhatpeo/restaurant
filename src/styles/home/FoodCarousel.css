@@ -1,4 +1,4 @@
-/* FoodCarousel Wrapper */
+/* ================= FoodCarousel Wrapper ================= */
 .food-carousel-wrapper {
   position: absolute;
   bottom: -5px;
@@ -8,7 +8,8 @@
   z-index: 5;
 }
 
-@media (max-width: 768px) {
+/* Từ iPad trở xuống => relative như mobile */
+@media (max-width: 1024px) {
   .food-carousel-wrapper {
     position: relative;
     bottom: unset;
@@ -19,44 +20,68 @@
   }
 }
 
-/* FoodCarousel Container */
+@media (max-width: 480px) {
+  .food-carousel-wrapper {
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+  }
+}
+
+/* ================= FoodCarousel Container ================= */
 .food-carousel-container {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 200px;
+  align-items: stretch;
+  gap: 50px;
   padding: var(--spacing-md) 0;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* không tự động xuống dòng */
+  overflow-x: auto; /* nếu chật thì scroll ngang */
+  scrollbar-width: thin; /* Firefox */
+}
+
+.food-carousel-container::-webkit-scrollbar {
+  height: 6px;
+}
+.food-carousel-container::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+.food-carousel-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Tablet và mobile => chuyển cột */
+@media (max-width: 1024px) {
+  .food-carousel-container {
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    overflow-x: unset; /* bỏ scroll ngang */
+  }
+}
+
+/* ================= FoodCarousel Card ================= */
+.food-carousel-card {
+  flex: 1 1 200px; /* co giãn, min 200px */
+  max-width: 250px;
+  text-align: center;
+  color: var(--color-white);
 }
 
 @media (max-width: 1024px) {
-  .food-carousel-container {
-    gap: 100px;
-  }
-}
-
-@media (max-width: 768px) {
-  .food-carousel-container {
-    flex-direction: column;
-    gap: var(--spacing-lg);
-    padding: var(--spacing-lg) 0;
-  }
-}
-
-/* FoodCarousel Card */
-.food-carousel-card {
-  text-align: center;
-  color: var(--color-white);
-  max-width: 220px;
-}
-
-@media (max-width: 768px) {
   .food-carousel-card {
     color: var(--color-black);
+    max-width: 100%;
   }
 }
 
-/* FoodCarousel Image */
+@media (max-width: 480px) {
+  .food-carousel-card {
+    padding: 0 var(--spacing-sm);
+  }
+}
+
+/* ================= FoodCarousel Image ================= */
 .food-carousel-image {
   width: 100px;
   height: 100px;
@@ -71,7 +96,28 @@
   box-shadow: var(--shadow-lg);
 }
 
-/* FoodCarousel Title */
+@media (max-width: 1024px) {
+  .food-carousel-image {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 768px) {
+  .food-carousel-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .food-carousel-image {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* ================= FoodCarousel Title ================= */
 .food-carousel-title {
   font-size: var(--font-size-md);
   font-weight: 700;
@@ -82,20 +128,45 @@
   color: inherit;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .food-carousel-title {
     font-size: var(--font-size-base);
   }
 }
 
-/* FoodCarousel Desc */
+@media (max-width: 768px) {
+  .food-carousel-title {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .food-carousel-title {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* ================= FoodCarousel Desc ================= */
 .food-carousel-desc {
   font-size: var(--font-size-sm);
   color: var(--color-gray-300);
 }
 
+@media (max-width: 1024px) {
+  .food-carousel-desc {
+    font-size: var(--font-size-xs);
+    color: var(--color-black);
+  }
+}
+
 @media (max-width: 768px) {
   .food-carousel-desc {
-    color: var(--color-black);
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 480px) {
+  .food-carousel-desc {
+    font-size: var(--font-size-xs);
   }
 }
