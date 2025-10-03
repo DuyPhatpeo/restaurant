@@ -1,0 +1,86 @@
+/* ================= Reservation ================= */
+.reservation {
+  width: 100%;
+  display: flex;
+  background: var(--color-white);
+  overflow: hidden;
+  gap: 0;
+  flex-direction: row;
+}
+
+.reservation #map {
+  flex: 1;
+  min-height: 500px;
+  width: 100%;
+}
+
+.reservation-form {
+  flex: 1;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.reservation-form .section-header {
+  margin-bottom: 30px;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.reservation-form form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.reservation-form form button {
+  grid-column: span 2;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 1200px) {
+  .reservation {
+    flex-direction: column;
+  }
+
+  .reservation #map {
+    min-height: 400px;
+  }
+
+  .reservation-form {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reservation {
+    flex-direction: column;
+  }
+
+  .reservation #map {
+    min-height: 300px;
+  }
+
+  .reservation-form {
+    padding: 20px 15px; /* form cách lề */
+  }
+
+  .reservation-form form {
+    grid-template-columns: 1fr; /* form full width */
+  }
+
+  .reservation-form form button {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .reservation-form {
+    padding: 15px 10px;
+  }
+
+  .reservation #map {
+    min-height: 250px;
+  }
+}

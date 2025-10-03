@@ -1,43 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { FaQuoteLeft } from "react-icons/fa";
 import SectionHeader from "@components/ui/SectionHeader";
-
-const testimonials = [
-  {
-    id: 1,
-    name: "Ian Boner",
-    role: "Food Critic",
-    image: "/person_1.jpg",
-    text: "The atmosphere is cozy and intimate, perfect for both casual dinners and special occasions. The wine selection perfectly complements their exquisite menu.",
-  },
-  {
-    id: 2,
-    name: "Jason McClean",
-    role: "Regular Customer",
-    image: "/person_2.jpg",
-    text: "I've been dining here for years and the quality has never wavered. Their signature dishes are absolutely phenomenal. The service is always top-notch!",
-  },
-  {
-    id: 3,
-    name: "Mark Stevenson",
-    role: "Food Blogger",
-    image: "/person_3.jpg",
-    text: "The fusion of traditional and modern cuisine here is brilliant. Each dish tells a story, and the presentation is Instagram-worthy. A must-visit restaurant!",
-  },
-  {
-    id: 4,
-    name: "Laura Smith",
-    role: "Chef",
-    image: "/person_4.jpg",
-    text: "As a fellow chef, I'm impressed by their attention to detail and quality ingredients. The menu is thoughtfully crafted and the flavors are perfectly balanced.",
-  },
-];
+import { getTestimonials } from "@api/testimonialApi"; // import service
 
 export default function Testimonial() {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getTestimonials();
+      setTestimonials(data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <section className="testimonial-section">
       <SectionHeader subtitle="Testimonial" title="Happy Customers" />

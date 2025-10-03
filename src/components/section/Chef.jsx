@@ -7,7 +7,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import SectionHeader from "@components/ui/SectionHeader";
-import { getPersons } from "@api/personApi";
+import { getPersons } from "@api/chefApi";
 
 export default function Chef() {
   const [chefs, setChefs] = useState([]);
