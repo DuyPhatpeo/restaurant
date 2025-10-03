@@ -106,11 +106,26 @@
     }
   ],
   "categories": [
-    { "id": 1, "title": "Breakfast" },
-    { "id": 2, "title": "Lunch" },
-    { "id": 3, "title": "Dinner" },
-    { "id": 4, "title": "Drinks" },
-    { "id": 5, "title": "Desserts" }
+    {
+      "id": 1,
+      "title": "Breakfast"
+    },
+    {
+      "id": 2,
+      "title": "Lunch"
+    },
+    {
+      "id": 3,
+      "title": "Dinner"
+    },
+    {
+      "id": 4,
+      "title": "Drinks"
+    },
+    {
+      "id": 5,
+      "title": "Desserts"
+    }
   ],
   "foods": [
     {
@@ -153,7 +168,6 @@
       "img": "/breakfast-5.jpg",
       "categoryId": 1
     },
-
     {
       "id": 6,
       "title": "Grilled Chicken with Vegetables",
@@ -178,7 +192,6 @@
       "img": "/lunch-3.jpg",
       "categoryId": 2
     },
-
     {
       "id": 9,
       "title": "Fried Chicken with Sauce",
@@ -203,7 +216,6 @@
       "img": "/dinner-3.jpg",
       "categoryId": 3
     },
-
     {
       "id": 12,
       "title": "Mojito",
@@ -236,7 +248,6 @@
       "img": "/drink-4.jpg",
       "categoryId": 4
     },
-
     {
       "id": 16,
       "title": "Pancakes with Syrup",
@@ -268,6 +279,38 @@
       "desc": "Strawberry, Yogurt, Cream",
       "img": "/dessert-4.jpg",
       "categoryId": 5
+    }
+  ],
+  "reservations": [
+    {
+      "id": "bdc2",
+      "fullName": "Tran Duy Phat",
+      "email": "tranduyphat2810@gmail.com",
+      "phone": "0382916876",
+      "guests": "1",
+      "date": "2025-10-09",
+      "time": "18:09",
+      "datetime": "2025-10-09T11:09:00.000Z"
+    },
+    {
+      "id": "ae97",
+      "fullName": "Tran Duy Phat",
+      "email": "tranduyphat2810@gmail.com",
+      "phone": "0382916876",
+      "guests": "1",
+      "date": "2025-10-09",
+      "time": "14:56",
+      "datetime": "2025-10-09T07:56:00.000Z"
+    },
+    {
+      "id": "9275",
+      "fullName": "Tran Duy Phat",
+      "email": "tranduyphat2810@gmail.com",
+      "phone": "0382916876",
+      "guests": "1",
+      "date": "2025-10-09",
+      "time": "17:00",
+      "datetime": "2025-10-09T10:00:00.000Z"
     }
   ]
 }

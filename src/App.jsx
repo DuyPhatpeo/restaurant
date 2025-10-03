@@ -1,8 +1,9 @@
-// src/App.tsx
 import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
-import "@/GlobalStyle";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+import "@/GlobalStyle";
 import AppRoutes from "@routes/AppRoutes";
 
 const App = () => {
@@ -11,6 +12,17 @@ const App = () => {
       <Router>
         <AppRoutes />
       </Router>
+
+      {/* Toast đẹp hơn */}
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </>
   );
 };
