@@ -105,15 +105,15 @@
 
 @media (max-width: 768px) {
   .food-carousel-image {
-    width: 80px;
-    height: 80px;
+    width: 85px;
+    height: 85px;
   }
 }
 
 @media (max-width: 480px) {
   .food-carousel-image {
-    width: 70px;
-    height: 70px;
+    width: 95px; /* to hơn cho mobile */
+    height: 95px;
   }
 }
 
@@ -142,7 +142,7 @@
 
 @media (max-width: 480px) {
   .food-carousel-title {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-md); /* tăng size ở mobile */
   }
 }
 
@@ -167,6 +167,6 @@
 
 @media (max-width: 480px) {
   .food-carousel-desc {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-base); /* chữ desc to hơn mobile */
   }
 }

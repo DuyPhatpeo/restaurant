@@ -1,3 +1,4 @@
+/* ================= Hero Wrapper ================= */
 .hero-wrapper {
   position: relative;
   width: 100%;
@@ -19,6 +20,7 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
+/* ================= Hero Content ================= */
 .hero-content {
   position: relative;
   color: var(--color-white);
@@ -27,15 +29,15 @@
 }
 
 .hero-content h1 {
-  font-size: 50px;
+  font-size: 56px; /* tăng từ 50px */
   font-weight: 900;
   margin-bottom: 10px;
-  line-height: 75px;
+  line-height: 80px; /* tăng từ 75px */
   color: var(--color-white);
 }
 
 .hero-content .breadcrumb {
-  font-size: var(--font-size-sm);
+  font-size: 15px; /* to hơn var(--font-size-sm) */
   text-transform: uppercase;
   letter-spacing: 1px;
 }
@@ -48,4 +50,68 @@
 
 .hero-content .breadcrumb a:hover {
   text-decoration: underline;
+}
+
+/* ================= Responsive ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .hero-wrapper {
+    height: 420px;
+    background-attachment: scroll;
+  }
+
+  .hero-content {
+    margin-top: 220px;
+  }
+
+  .hero-content h1 {
+    font-size: 46px; /* tăng từ 40px */
+    line-height: 62px;
+  }
+
+  .hero-content .breadcrumb {
+    font-size: 14px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hero-wrapper {
+    height: 360px;
+  }
+
+  .hero-content {
+    margin-top: 160px;
+    padding: 0 15px;
+  }
+
+  .hero-content h1 {
+    font-size: 34px; /* tăng từ 28px */
+    line-height: 48px;
+  }
+
+  .hero-content .breadcrumb {
+    font-size: 13px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .hero-wrapper {
+    height: 300px;
+  }
+
+  .hero-content {
+    margin-top: 110px;
+  }
+
+  .hero-content h1 {
+    font-size: 26px; /* tăng từ 22px */
+    line-height: 36px;
+  }
+
+  .hero-content .breadcrumb {
+    font-size: 12px;
+  }
 }
