@@ -63,7 +63,7 @@
 }
 
 .blog-footer a {
-  color: #000;
+  color: var(--color-black);
   text-decoration: none;
   font-weight: 500;
 }

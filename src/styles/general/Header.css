@@ -121,12 +121,11 @@
   transition: color 0.2s ease-in-out;
 }
 
-/* Khi navbar scrolled thì link thường đổi sang đen */
+/* Khi navbar scrolled thì link đổi màu */
 .navbar.scrolled .nav-menu a {
   color: var(--color-black);
 }
 
-/* Nhưng active và hover vẫn giữ màu primary */
 .nav-menu a.active,
 .nav-menu a:hover {
   color: var(--color-primary);
@@ -231,4 +230,12 @@
 
 .mobile-menu button {
   margin: 12px 20px;
+}
+
+/* ================= Header Mobile Nền đen ================= */
+@media (max-width: 768px) {
+  .header-wrapper,
+  .navbar {
+    background-color: var(--color-black); /* nền đen */
+  }
 }
