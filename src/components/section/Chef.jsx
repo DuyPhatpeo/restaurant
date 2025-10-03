@@ -7,7 +7,7 @@ import {
   FaInstagram,
 } from "react-icons/fa";
 import SectionHeader from "@components/ui/SectionHeader";
-import { getPersons } from "@api/chefApi";
+import { getChefs } from "@api/chefApi";
 
 export default function Chef() {
   const [chefs, setChefs] = useState([]);
@@ -16,7 +16,7 @@ export default function Chef() {
   useEffect(() => {
     const fetchChefs = async () => {
       try {
-        const data = await getPersons(); // gọi API
+        const data = await getChefs(); // gọi API
         setChefs(data);
       } catch (error) {
         console.error("Error fetching chefs:", error);

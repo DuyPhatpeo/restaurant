@@ -1,4 +1,30 @@
 {
+  "blogs": [
+    {
+      "id": 1,
+      "image": "/image_1.jpg",
+      "date": "Sept. 06, 2019",
+      "author": "Admin",
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3
+    },
+    {
+      "id": 2,
+      "image": "/image_2.jpg",
+      "date": "Sept. 06, 2019",
+      "author": "Admin",
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3
+    },
+    {
+      "id": 3,
+      "image": "/image_3.jpg",
+      "date": "Sept. 06, 2019",
+      "author": "Admin",
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3
+    }
+  ],
   "testimonials": [
     {
       "id": 1,
