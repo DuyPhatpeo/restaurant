@@ -1,0 +1,113 @@
+/* ================= Chef Grid ================= */
+.chef-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .chef-grid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chef-grid {
+    gap: 15px;
+  }
+}
+
+/* ================= Chef Card ================= */
+.chef-card {
+  text-align: start;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  background: var(--color-white);
+  padding: 10px;
+}
+
+.chef-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image */
+.chef-card .chef-image {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  aspect-ratio: 9 / 16;
+}
+
+@media (max-width: 768px) {
+  .chef-card .chef-image {
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chef-card .chef-image {
+    max-height: 280px;
+  }
+}
+
+/* Name */
+.chef-card .chef-name {
+  margin: 15px 0 5px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .chef-card .chef-name {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chef-card .chef-name {
+    font-size: var(--font-size-md);
+  }
+}
+
+/* Role */
+.chef-card .chef-role {
+  font-size: var(--font-size-sm);
+  color: #888;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+  .chef-card .chef-role {
+    font-size: 13px;
+  }
+}
+
+/* Socials */
+.chef-card .chef-socials {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 15px;
+}
+
+.chef-card .chef-socials a {
+  color: var(--color-primary);
+  font-size: var(--font-size-md);
+  transition: 0.3s;
+}
+
+.chef-card .chef-socials a:hover {
+  color: var(--color-black);
+}
+
+@media (max-width: 480px) {
+  .chef-card .chef-socials a {
+    font-size: var(--font-size-sm);
+  }
+}

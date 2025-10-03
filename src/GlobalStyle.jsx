@@ -1,0 +1,9 @@
+import "@styles/base/Abstracts.css";
+import "@styles/base/General.css";
+import "@styles/base/Components.css";
+import "@styles/base/Home.css";
+import "@styles/base/Section.css";
+import "@styles/base/Reservation.css";
+import "@styles/base/NotFound.css";
+import "@styles/base/Menu.css";
+import "@styles/base/Contact.css";

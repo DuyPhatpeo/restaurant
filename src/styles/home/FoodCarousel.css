@@ -1,0 +1,101 @@
+/* FoodCarousel Wrapper */
+.food-carousel-wrapper {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 5;
+}
+
+@media (max-width: 768px) {
+  .food-carousel-wrapper {
+    position: relative;
+    bottom: unset;
+    left: unset;
+    transform: none;
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+  }
+}
+
+/* FoodCarousel Container */
+.food-carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+  padding: var(--spacing-md) 0;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .food-carousel-container {
+    gap: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .food-carousel-container {
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg) 0;
+  }
+}
+
+/* FoodCarousel Card */
+.food-carousel-card {
+  text-align: center;
+  color: var(--color-white);
+  max-width: 220px;
+}
+
+@media (max-width: 768px) {
+  .food-carousel-card {
+    color: var(--color-black);
+  }
+}
+
+/* FoodCarousel Image */
+.food-carousel-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto var(--spacing-sm) auto;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.food-carousel-image:hover {
+  transform: scale(1.1);
+  box-shadow: var(--shadow-lg);
+}
+
+/* FoodCarousel Title */
+.food-carousel-title {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  margin-bottom: var(--spacing-xs);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .food-carousel-title {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* FoodCarousel Desc */
+.food-carousel-desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-gray-300);
+}
+
+@media (max-width: 768px) {
+  .food-carousel-desc {
+    color: var(--color-black);
+  }
+}

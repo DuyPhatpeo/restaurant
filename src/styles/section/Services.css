@@ -1,0 +1,49 @@
+/* ================= Services ================= */
+.services-wrapper {
+  text-align: center;
+  padding: 80px 18px;
+  background: var(--color-white-2);
+}
+
+.services-grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    gap: 25px;
+  }
+}
+
+.service-item-wrapper {
+  max-width: 280px;
+  text-align: center;
+}
+
+.service-item-icon {
+  font-size: 54px;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.service-item-title {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-black);
+}
+
+.service-item-desc {
+  font-size: 17px;
+  color: var(--color-text);
+  line-height: 1.6;
+}

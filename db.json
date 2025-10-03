@@ -1,0 +1,217 @@
+{
+  "chefs": [
+    {
+      "id": 1,
+      "name": "John Smooth",
+      "role": "Restaurant Owner",
+      "image": "/chef-1.jpg",
+      "social": {
+        "twitter": "https://twitter.com/johnsmooth",
+        "facebook": "https://facebook.com/johnsmooth",
+        "google": "https://plus.google.com/johnsmooth",
+        "instagram": "https://instagram.com/johnsmooth"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Rebeca Welson",
+      "role": "Head Chef",
+      "image": "/chef-2.jpg",
+      "social": {
+        "twitter": "https://twitter.com/rebecawelson",
+        "facebook": "https://facebook.com/rebecawelson",
+        "google": "https://plus.google.com/rebecawelson",
+        "instagram": "https://instagram.com/rebecawelson"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Kharl Branyt",
+      "role": "Chef",
+      "image": "/chef-3.jpg",
+      "social": {
+        "twitter": "https://twitter.com/kharlbranyt",
+        "facebook": "https://facebook.com/kharlbranyt",
+        "google": "https://plus.google.com/kharlbranyt",
+        "instagram": "https://instagram.com/kharlbranyt"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Luke Simon",
+      "role": "Chef",
+      "image": "/chef-4.jpg",
+      "social": {
+        "twitter": "https://twitter.com/lukesimon",
+        "facebook": "https://facebook.com/lukesimon",
+        "google": "https://plus.google.com/lukesimon",
+        "instagram": "https://instagram.com/lukesimon"
+      }
+    }
+  ],
+  "categories": [
+    { "id": 1, "title": "Breakfast" },
+    { "id": 2, "title": "Lunch" },
+    { "id": 3, "title": "Dinner" },
+    { "id": 4, "title": "Drinks" },
+    { "id": 5, "title": "Desserts" }
+  ],
+  "foods": [
+    {
+      "id": 1,
+      "title": "Grilled Beef with Potatoes",
+      "price": 29,
+      "desc": "Meat, Potatoes, Rice, Tomatoe",
+      "img": "/breakfast-1.jpg",
+      "categoryId": 1
+    },
+    {
+      "id": 2,
+      "title": "Omelette with Vegetables",
+      "price": 25,
+      "desc": "Eggs, Mushrooms, Vegetables",
+      "img": "/breakfast-2.jpg",
+      "categoryId": 1
+    },
+    {
+      "id": 3,
+      "title": "Noodle Soup",
+      "price": 20,
+      "desc": "Noodles, Pork, Herbs",
+      "img": "/breakfast-3.jpg",
+      "categoryId": 1
+    },
+    {
+      "id": 4,
+      "title": "Avocado Toast with Egg",
+      "price": 22,
+      "desc": "Avocado, Bread, Egg, Seasoning",
+      "img": "/breakfast-4.jpg",
+      "categoryId": 1
+    },
+    {
+      "id": 5,
+      "title": "Oatmeal with Strawberries",
+      "price": 18,
+      "desc": "Oat, Milk, Strawberries",
+      "img": "/breakfast-5.jpg",
+      "categoryId": 1
+    },
+
+    {
+      "id": 6,
+      "title": "Grilled Chicken with Vegetables",
+      "price": 32,
+      "desc": "Chicken, Salad, Sauce",
+      "img": "/lunch-1.jpg",
+      "categoryId": 2
+    },
+    {
+      "id": 7,
+      "title": "Seafood Hotpot",
+      "price": 35,
+      "desc": "Fish, Clams, Noodles",
+      "img": "/lunch-2.jpg",
+      "categoryId": 2
+    },
+    {
+      "id": 8,
+      "title": "Steak with Asparagus",
+      "price": 40,
+      "desc": "Beef, Asparagus, Sauce",
+      "img": "/lunch-3.jpg",
+      "categoryId": 2
+    },
+
+    {
+      "id": 9,
+      "title": "Fried Chicken with Sauce",
+      "price": 28,
+      "desc": "Chicken, Herbs, Sauce",
+      "img": "/dinner-1.jpg",
+      "categoryId": 3
+    },
+    {
+      "id": 10,
+      "title": "Roast Duck with Vegetables",
+      "price": 38,
+      "desc": "Duck, Carrots, Salad",
+      "img": "/dinner-2.jpg",
+      "categoryId": 3
+    },
+    {
+      "id": 11,
+      "title": "Salmon with Green Sauce",
+      "price": 42,
+      "desc": "Salmon, Spinach, Sauce",
+      "img": "/dinner-3.jpg",
+      "categoryId": 3
+    },
+
+    {
+      "id": 12,
+      "title": "Mojito",
+      "price": 12,
+      "desc": "Rum, Lime, Mint, Soda",
+      "img": "/drink-1.jpg",
+      "categoryId": 4
+    },
+    {
+      "id": 13,
+      "title": "Orange Cocktail",
+      "price": 15,
+      "desc": "Orange Juice, Vodka, Ice",
+      "img": "/drink-2.jpg",
+      "categoryId": 4
+    },
+    {
+      "id": 14,
+      "title": "Beer",
+      "price": 10,
+      "desc": "Cold draft beer",
+      "img": "/drink-3.jpg",
+      "categoryId": 4
+    },
+    {
+      "id": 15,
+      "title": "Matcha",
+      "price": 9,
+      "desc": "Green Tea, Ice, Milk",
+      "img": "/drink-4.jpg",
+      "categoryId": 4
+    },
+
+    {
+      "id": 16,
+      "title": "Pancakes with Syrup",
+      "price": 18,
+      "desc": "Flour, Syrup, Fruits",
+      "img": "/dessert-1.jpg",
+      "categoryId": 5
+    },
+    {
+      "id": 17,
+      "title": "Chocolate Lava Cake",
+      "price": 20,
+      "desc": "Chocolate, Ice Cream",
+      "img": "/dessert-2.jpg",
+      "categoryId": 5
+    },
+    {
+      "id": 18,
+      "title": "Ice Cream Cone",
+      "price": 12,
+      "desc": "Vanilla Ice Cream",
+      "img": "/dessert-3.jpg",
+      "categoryId": 5
+    },
+    {
+      "id": 19,
+      "title": "Strawberry Parfait",
+      "price": 16,
+      "desc": "Strawberry, Yogurt, Cream",
+      "img": "/dessert-4.jpg",
+      "categoryId": 5
+    }
+  ]
+}

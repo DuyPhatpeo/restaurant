@@ -1,0 +1,55 @@
+/* Wrapper toàn trang */
+.notfound-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: var(--color-white);
+  text-align: center;
+  padding: 20px;
+}
+
+/* Animation bounce */
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+/* Mã lỗi */
+.notfound-code {
+  font-size: 10rem;
+  color: var(--color-primary);
+  animation: bounce 2s infinite;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .notfound-code {
+    font-size: 6rem;
+  }
+}
+
+/* Thông điệp */
+.notfound-message {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .notfound-message {
+    font-size: 1.2rem;
+  }
+}

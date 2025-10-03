@@ -1,0 +1,125 @@
+/* ==================== Reservation ==================== */
+.reservation-section {
+  position: relative;
+  width: 100%;
+  min-height: 850px;
+  background: url("/bg_3.jpg") center/cover no-repeat;
+  padding: 100px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+@media (max-width: 1024px) {
+  .reservation-section {
+    justify-content: center;
+    padding: 80px 16px;
+    min-height: 700px;
+  }
+}
+
+@media (max-width: 768px) {
+  .reservation-section {
+    padding: 60px 12px;
+    min-height: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reservation-section {
+    padding: 40px 10px;
+  }
+}
+
+/* Reservation Wrapper */
+.reservation-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 650px;
+  background: var(--color-white);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  margin-left: 400px;
+}
+
+.reservation-wrapper .reservation-header {
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.reservation-wrapper .reservation-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.reservation-wrapper .reservation-field {
+  width: 100%;
+}
+
+.reservation-wrapper .reservation-action {
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+}
+
+.reservation-wrapper .reservation-button {
+  padding: 14px 32px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .reservation-wrapper {
+    margin-left: 0;
+    max-width: 90%;
+    padding: 32px;
+  }
+
+  .reservation-wrapper .reservation-form {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .reservation-wrapper .reservation-action {
+    grid-column: span 1;
+    justify-content: center;
+  }
+
+  .reservation-wrapper .reservation-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .reservation-wrapper {
+    max-width: 100%;
+    padding: 24px;
+  }
+
+  .reservation-wrapper .reservation-header {
+    margin-bottom: 24px;
+  }
+
+  .reservation-wrapper .reservation-form {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reservation-wrapper {
+    padding: 16px;
+  }
+
+  .reservation-wrapper .reservation-header {
+    margin-bottom: 20px;
+  }
+
+  .reservation-wrapper .reservation-form {
+    gap: 12px;
+  }
+
+  .reservation-wrapper .reservation-button {
+    padding: 12px 20px;
+  }
+}

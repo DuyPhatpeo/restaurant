@@ -1,0 +1,270 @@
+.footer {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 60px 20px 30px;
+  font-size: var(--font-size-sm);
+}
+
+.footer .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-size: var(--font-size-md);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-text {
+  line-height: 1.6;
+  color: var(--color-gray-200);
+}
+
+.footer-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Social */
+.footer .social {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer .social-link {
+  width: 36px;
+  height: 36px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-white);
+  transition: 0.3s;
+}
+
+.footer .social-link:hover {
+  background: var(--color-primary);
+}
+
+/* Open Hours */
+.footer-hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-hour-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.footer-hour-day {
+  font-weight: 500;
+}
+
+.footer-hour-time {
+  color: var(--color-gray-200);
+}
+
+/* Instagram */
+.footer .insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.footer .insta-img img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Newsletter */
+.footer-newsletter .footer-text {
+  margin-bottom: 15px;
+}
+
+.footer-newsletter .newsletter-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.footer-newsletter .newsletter-btn:hover {
+  background: var(--color-primary-dark, #b48a4e);
+}
+
+/* Copyright */
+.footer .copyright {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer .container {
+    grid-template-columns: 1fr;
+  }
+}
+.footer {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: 60px 20px 30px;
+  font-size: var(--font-size-sm);
+}
+
+.footer .container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.footer-text {
+  line-height: 1.6;
+  color: var(--color-gray-200);
+}
+
+/* Social */
+.footer .social {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.footer .social-link {
+  width: 36px;
+  height: 36px;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--color-white);
+  transition: 0.3s;
+}
+
+.footer .social-link:hover {
+  background: var(--color-primary);
+}
+
+/* Open Hours */
+.footer-hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-hour-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.footer-hour-day {
+  color: var(--color-gray-200);
+}
+
+.footer-hour-time {
+  font-weight: 600;
+}
+
+/* Instagram */
+.insta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.insta-img img {
+  width: 100%;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* Newsletter */
+.footer-newsletter .footer-text {
+  margin-bottom: 15px;
+}
+
+.footer-newsletter .form-field {
+  margin-bottom: 12px; /* cách giữa input và button */
+}
+
+.footer-newsletter input {
+  width: 100%;
+  padding: 12px;
+  background: #222;
+  border: none;
+  outline: none;
+  color: var(--color-white);
+  border-radius: 4px;
+}
+
+.footer-newsletter .newsletter-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-white);
+  border-radius: 4px;
+  transition: 0.3s;
+}
+
+.footer-newsletter .newsletter-btn:hover {
+  background: var(--color-primary-dark, #b48a4e);
+}
+
+/* Copyright */
+.footer .copyright {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .footer .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer .container {
+    grid-template-columns: 1fr;
+  }
+}
