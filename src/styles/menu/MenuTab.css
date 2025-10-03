@@ -1,10 +1,11 @@
-/* Tabs */
+/* ================= Tabs ================= */
 .menu-tabs {
   max-width: 1200px;
   margin: 40px auto;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* Tab buttons */
@@ -45,8 +46,8 @@
   border-top: 10px solid var(--color-primary);
 }
 
-/* ================= Mobile ================= */
-@media (max-width: 480px) {
+/* ================= Mobile + iPad (0 - 1024px) ================= */
+@media (max-width: 1024px) {
   .menu-tabs {
     flex-direction: column;
     align-items: stretch;
@@ -58,9 +59,31 @@
     width: 100%;
     margin-bottom: 5px;
     background: #f5e6d3;
+    font-size: 1rem;
+    padding: 10px 15px;
   }
 
   .menu-tab.active::after {
     display: none;
+  }
+}
+
+/* ================= Large Desktop (1025px +) ================= */
+@media (min-width: 1025px) {
+  .menu-tabs {
+    justify-content: center;
+  }
+
+  .menu-tab {
+    flex: 1 1 auto;
+    font-size: 1.1rem;
+    padding: 12px 20px;
+  }
+
+  .menu-tab.active::after {
+    bottom: -10px;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--color-primary);
   }
 }
