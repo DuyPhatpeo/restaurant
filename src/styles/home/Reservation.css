@@ -50,7 +50,7 @@
 
 .reservation-wrapper .reservation-form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr; /* luôn 2 cột */
   gap: 18px;
 }
 
@@ -72,18 +72,17 @@
 @media (max-width: 1024px) {
   .reservation-wrapper {
     margin-left: 0;
-    max-width: 90%;
+    max-width: 95%;
     padding: 32px;
   }
 
   .reservation-wrapper .reservation-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr; /* vẫn 2 cột */
     gap: 16px;
   }
 
   .reservation-wrapper .reservation-action {
-    grid-column: span 1;
-    justify-content: center;
+    grid-column: span 2;
   }
 
   .reservation-wrapper .reservation-button {
@@ -102,7 +101,8 @@
   }
 
   .reservation-wrapper .reservation-form {
-    gap: 14px;
+    grid-template-columns: 1fr 1fr; /* vẫn 2 cột */
+    gap: 12px;
   }
 }
 
@@ -116,7 +116,8 @@
   }
 
   .reservation-wrapper .reservation-form {
-    gap: 12px;
+    grid-template-columns: 1fr 1fr; /* vẫn 2 cột */
+    gap: 10px;
   }
 
   .reservation-wrapper .reservation-button {

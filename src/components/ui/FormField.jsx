@@ -13,13 +13,13 @@ const FormField = ({
   return (
     <div className="form-group">
       {label && (
-        <div className="label-wrapper">
-          <label htmlFor={name} className="form-label">
-            {label} {required && <span className="required-star">*</span>}
-          </label>
-          {error && <span className="form-error">{error}</span>}
-        </div>
+        <label htmlFor={name} className="form-label">
+          {label} {required && <span className="required-star">*</span>}
+        </label>
       )}
+
+      {/* Error luôn tồn tại, có hoặc trống */}
+      <span className="form-error">{error || ""}</span>
 
       {type === "select" ? (
         <select

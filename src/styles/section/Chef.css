@@ -27,32 +27,17 @@
   transition: transform 0.3s ease;
   background: var(--color-white);
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
-.chef-card:hover {
-  transform: translateY(-5px);
-}
-
-/* Image */
+/* Image: luôn khung dọc */
 .chef-card .chef-image {
   width: 100%;
-  height: auto;
-  max-height: 350px;
+  aspect-ratio: 3 / 4; /* Giữ tỉ lệ dọc cho mọi màn hình */
   object-fit: cover;
   border-radius: 10px;
-  aspect-ratio: 9 / 16;
-}
-
-@media (max-width: 768px) {
-  .chef-card .chef-image {
-    max-height: 500px;
-  }
-}
-
-@media (max-width: 480px) {
-  .chef-card .chef-image {
-    max-height: 500px;
-  }
+  display: block;
 }
 
 /* Name */

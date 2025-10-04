@@ -8,12 +8,17 @@
   flex-direction: row;
 }
 
+/* Map */
 .reservation #map {
   flex: 1;
   min-height: 500px;
   width: 100%;
+  aspect-ratio: 16 / 9; /* Giữ tỉ lệ dễ nhìn */
+  border: none;
+  object-fit: cover;
 }
 
+/* Form */
 .reservation-form {
   flex: 1;
   padding: 60px 40px;
@@ -28,50 +33,60 @@
   align-self: flex-start;
 }
 
+/* Grid form layout */
 .reservation-form form {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, 1fr); /* Luôn 2 cột kể cả mobile */
   gap: 20px;
 }
 
+/* Những field dài cần full width */
+.reservation-form form .form-group.full,
+.reservation-form form textarea,
 .reservation-form form button {
   grid-column: span 2;
 }
 
 /* ================= Responsive ================= */
+@media (max-width: 1400px) {
+  .reservation #map {
+    min-height: 450px;
+  }
+  .reservation-form {
+    padding: 50px 30px;
+  }
+}
+
 @media (max-width: 1200px) {
   .reservation {
     flex-direction: column;
   }
-
   .reservation #map {
     min-height: 400px;
   }
-
   .reservation-form {
     padding: 40px 20px;
   }
 }
 
-@media (max-width: 768px) {
-  .reservation {
-    flex-direction: column;
+@media (max-width: 992px) {
+  .reservation #map {
+    min-height: 350px;
   }
+  .reservation-form {
+    padding: 30px 20px;
+  }
+}
 
+@media (max-width: 768px) {
   .reservation #map {
     min-height: 300px;
   }
-
   .reservation-form {
-    padding: 20px 15px; /* form cách lề */
+    padding: 20px 15px;
   }
-
   .reservation-form form {
-    grid-template-columns: 1fr; /* form full width */
-  }
-
-  .reservation-form form button {
-    grid-column: span 1;
+    gap: 12px; /* Giảm khoảng cách cho mobile */
   }
 }
 
@@ -79,8 +94,11 @@
   .reservation-form {
     padding: 15px 10px;
   }
-
   .reservation #map {
     min-height: 250px;
+    aspect-ratio: 4 / 3; /* Hợp lý hơn cho mobile nhỏ */
+  }
+  .reservation-form form {
+    gap: 8px; /* Thu gọn gap cho màn bé */
   }
 }

@@ -1,36 +1,24 @@
-/* ================= Container ================= */
+/* Container */
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   width: 100%;
 }
 
-/* ================= Label + Error Wrapper ================= */
-.label-wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap; /* để lỗi xuống dòng nếu label quá dài */
-  margin-bottom: 4px;
-}
-
-/* ================= Label ================= */
+/* Label */
 .form-label {
   font-size: 17px;
   font-weight: 600;
   color: var(--color-black);
-  flex: 1; /* chiếm khoảng trống còn lại */
 }
 
-/* Dấu * đỏ cho field bắt buộc */
 .required-star {
   color: red;
   margin-left: 2px;
 }
 
-/* ================= Input / Select ================= */
+/* Input / Select */
 .form-input,
 .form-select {
   width: 100%;
@@ -47,19 +35,21 @@
   border-color: var(--color-primary);
 }
 
-/* ================= Error ================= */
+/* Error text */
 .input-error {
   border-color: red !important;
 }
 
 .form-error {
-  color: red;
+  height: 18px; /* cố định chiều cao */
+  line-height: 18px; /* căn giữa chữ */
   font-size: 14px;
   font-weight: 500;
-  white-space: nowrap;
+  color: red;
+  display: block;
 }
 
-/* ================= Responsive ================= */
+/* Responsive */
 @media (max-width: 768px) {
   .form-label {
     font-size: 15px;
@@ -70,6 +60,8 @@
     font-size: 15px;
   }
   .form-error {
+    height: 16px;
+    line-height: 16px;
     font-size: 13px;
   }
 }
@@ -84,6 +76,8 @@
     font-size: var(--font-size-sm);
   }
   .form-error {
+    height: 14px;
+    line-height: 14px;
     font-size: 12px;
   }
 }
