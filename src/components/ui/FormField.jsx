@@ -18,8 +18,8 @@ const FormField = ({
         </label>
       )}
 
-      {/* Error luôn tồn tại, có hoặc trống */}
-      <span className="form-error">{error || ""}</span>
+      {/* Hiển thị lỗi */}
+      {error && <span className="form-error">{error}</span>}
 
       {type === "select" ? (
         <select
@@ -38,6 +38,15 @@ const FormField = ({
             </option>
           ))}
         </select>
+      ) : type === "textarea" ? (
+        <textarea
+          id={name}
+          name={name}
+          placeholder={placeholder}
+          className={`form-input ${error ? "input-error" : ""}`}
+          required={required}
+          {...rest}
+        />
       ) : (
         <input
           id={name}

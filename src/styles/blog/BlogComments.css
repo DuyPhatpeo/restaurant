@@ -1,0 +1,89 @@
+/* ================== Blog Comments Section ================== */
+.blog-comments {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #eee;
+}
+
+/* ====== Tiêu đề ====== */
+.comment-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 28px;
+  color: #222;
+}
+
+/* ====== Danh sách bình luận ====== */
+.comment-list {
+  list-style: none;
+  margin: 0 0 40px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.comment-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+/* ====== Thông tin bình luận ====== */
+.comment-body {
+  flex: 1;
+}
+
+.comment-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #222;
+}
+
+.comment-date {
+  font-size: 13px;
+  color: #999;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.comment-text {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ====== Form bình luận ====== */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-form-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.comment-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .comment-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comment-text {
+    font-size: 14.5px;
+  }
+}

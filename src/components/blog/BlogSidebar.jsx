@@ -6,7 +6,7 @@ const BlogSidebar = ({ blogs }) => {
 
   return (
     <aside className="detail-sidebar">
-      <h3 className="sidebar-title">Bài viết khác</h3>
+      <h3 className="sidebar-title">Related Posts</h3>
       <ul className="sidebar-list">
         {blogs.map((item) => (
           <li key={item.id} className="sidebar-item">

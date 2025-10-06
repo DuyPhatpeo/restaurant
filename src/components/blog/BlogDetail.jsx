@@ -4,6 +4,7 @@ import { getBlogById, getBlogs } from "@api/blogApi";
 import Loading from "@components/general/Loading";
 import BlogSidebar from "@components/blog/BlogSidebar";
 import BlogTags from "@components/blog/BlogTags";
+import BlogComments from "./BlogComments";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
@@ -50,8 +51,7 @@ const BlogDetailPage = () => {
             <h2 className="detail-title">{blog.title}</h2>
 
             <p className="meta">
-              <span>{blog.date}</span> • <span>{blog.author}</span> •{" "}
-              <span>{blog.comments} bình luận</span>
+              <span>{blog.date}</span> • <span>{blog.author}</span>
             </p>
 
             {blog.image && (
@@ -69,6 +69,7 @@ const BlogDetailPage = () => {
             />
 
             <BlogTags tags={blog.tags} />
+            <BlogComments />
           </div>
 
           <BlogSidebar blogs={otherBlogs} />
