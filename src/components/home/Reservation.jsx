@@ -61,7 +61,7 @@ export default function ReservationForm() {
               options={field.options}
               value={formData[field.name]}
               onChange={handleChange}
-              required
+              required={field.name != "guests"}
               error={errors[field.name]}
             />
           ))}
