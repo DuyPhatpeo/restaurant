@@ -36,9 +36,8 @@ const Header = () => {
     },
     {
       label: "Stories",
-      link: "/stories",
       submenu: [
-        { label: "Blog", link: "/stories/blog" },
+        { label: "Blog", link: "/blog" },
         { label: "Events", link: "/stories/events" },
       ],
     },
