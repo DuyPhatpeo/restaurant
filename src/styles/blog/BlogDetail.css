@@ -19,6 +19,7 @@
   order: 1;
 }
 
+/* ====== Tiêu đề & metadata ====== */
 .detail-title {
   font-size: 2rem;
   margin-bottom: 12px;
@@ -33,6 +34,7 @@
   margin-bottom: 20px;
 }
 
+/* ====== Ảnh chính ====== */
 .detail-image {
   width: 100%;
   border-radius: 12px;
@@ -40,10 +42,45 @@
   object-fit: cover;
 }
 
-.detail-body p {
+/* ====== Nội dung markdown ====== */
+.detail-body {
+  font-size: 1rem;
   line-height: 1.8;
   color: #444;
+}
+
+.detail-body p {
   margin-bottom: 16px;
+}
+
+/* ====== Hình ảnh trong nội dung markdown ====== */
+.detail-body img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 24px auto;
+}
+
+/* ====== Tiêu đề phụ trong nội dung ====== */
+.detail-body h2,
+.detail-body h3,
+.detail-body h4 {
+  margin: 32px 0 16px;
+  color: #222;
+  font-weight: 700;
+}
+
+.detail-body ul,
+.detail-body ol {
+  margin: 16px 0 16px 24px;
+}
+
+.detail-body blockquote {
+  border-left: 4px solid #ddd;
+  padding-left: 16px;
+  font-style: italic;
+  color: #555;
+  margin: 20px 0;
 }
 
 /* ====== Responsive ====== */
@@ -67,5 +104,27 @@
 
   .detail-main {
     order: 1;
+  }
+
+  .detail-title {
+    font-size: 1.6rem;
+  }
+
+  .detail-body img {
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-title {
+    font-size: 1.4rem;
+  }
+
+  .meta {
+    font-size: 0.85rem;
+  }
+
+  .detail-body {
+    font-size: 0.95rem;
   }
 }
