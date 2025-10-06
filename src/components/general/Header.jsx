@@ -33,11 +33,6 @@ const Header = () => {
     {
       label: "Menu",
       link: "/menu",
-      submenu: [
-        { label: "Breakfast", link: "/menu/breakfast" },
-        { label: "Lunch", link: "/menu/lunch" },
-        { label: "Dinner", link: "/menu/dinner" },
-      ],
     },
     {
       label: "Stories",
