@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getBlogById } from "@api/blogApi";
+import { getBlogById, getBlogs } from "@api/blogApi";
 import Loading from "@components/general/Loading";
+import BlogSidebar from "@components/blog/BlogSidebar";
+import BlogTags from "@components/blog/BlogTags";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [otherBlogs, setOtherBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -13,13 +16,17 @@ const BlogDetailPage = () => {
     const fetchBlog = async () => {
       setLoading(true);
       setError("");
-      setBlog(null);
       try {
         const data = await getBlogById(id);
+        const allBlogs = await getBlogs();
+
+        const filteredBlogs = allBlogs.filter((item) => item.id !== id);
+
         setBlog({
           ...data,
           tags: ["FOOD", "WINE", "DRINK", "DISH"],
         });
+        setOtherBlogs(filteredBlogs.slice(0, 4));
       } catch (err) {
         console.error("Lỗi khi tải bài viết:", err);
         setError("Không thể tải bài viết. Vui lòng thử lại sau!");
@@ -61,17 +68,10 @@ const BlogDetailPage = () => {
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
 
-            {/* Tag section */}
-            {blog.tags && blog.tags.length > 0 && (
-              <div className="blog-tags">
-                {blog.tags.map((tag, index) => (
-                  <span key={index} className="tag-item">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
+            <BlogTags tags={blog.tags} />
           </div>
+
+          <BlogSidebar blogs={otherBlogs} />
         </div>
       </div>
     </section>

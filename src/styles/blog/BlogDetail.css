@@ -4,7 +4,7 @@
   background: var(--color-white);
 }
 
-/* Container chính để căn giữa nội dung */
+/* ====== Layout chính ====== */
 .detail-layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -15,7 +15,10 @@
   gap: 40px;
 }
 
-/* ====== Bên trái - Nội dung bài viết ====== */
+.detail-main {
+  order: 1;
+}
+
 .detail-title {
   font-size: 2rem;
   margin-bottom: 12px;
@@ -43,23 +46,6 @@
   margin-bottom: 16px;
 }
 
-.blog-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 30px;
-}
-
-.tag-item {
-  border: 1px solid #ccc;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
 /* ====== Responsive ====== */
 @media (max-width: 1024px) {
   .detail-layout {
@@ -74,11 +60,12 @@
   }
 
   .detail-layout {
-    grid-template-columns: 1fr;
-    gap: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
   }
 
-  .detail-sidebar {
-    order: -1;
+  .detail-main {
+    order: 1;
   }
 }

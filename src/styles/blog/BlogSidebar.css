@@ -1,0 +1,81 @@
+/* ====== Sidebar ====== */
+.detail-sidebar {
+  border-left: 1px solid #eee;
+  padding-left: 30px;
+  order: 2;
+}
+
+.sidebar-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sidebar-item {
+  overflow: hidden;
+  transition: all 0.2s ease;
+  background-color: #fff;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px;
+}
+
+.sidebar-thumb {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 12px;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.sidebar-info h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #222;
+}
+
+.sidebar-info p {
+  font-size: 13px;
+  color: #888;
+  margin: 0;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .detail-sidebar {
+    order: 2;
+    border-left: none;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .sidebar-link {
+    padding: 8px;
+  }
+
+  .sidebar-thumb {
+    width: 70px;
+    height: 70px;
+  }
+
+  .sidebar-info h4 {
+    font-size: 15px;
+  }
+}
