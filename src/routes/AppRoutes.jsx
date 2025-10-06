@@ -9,6 +9,7 @@ const MenuPage = lazy(() => import("@pages/MenuPage"));
 const ContactPage = lazy(() => import("@pages/ContactPage"));
 const ReservaitonPage = lazy(() => import("@pages/ReservaitonPage"));
 const BlogPage = lazy(() => import("@pages/BlogPage"));
+const BlogDetailPage = lazy(() => import("@pages/BlogDetailPage"));
 const NotFound = lazy(() => import("@pages/NotFound"));
 
 const AppRoutes = () => {
@@ -21,6 +22,7 @@ const AppRoutes = () => {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/reservation" element={<ReservaitonPage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Suspense>

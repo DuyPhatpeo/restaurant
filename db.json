@@ -27,60 +27,67 @@
   ],
   "blogs": [
     {
-      "id": 1,
+      "id": "1",
       "image": "/image_1.jpg",
       "date": "Sept. 06, 2019",
       "author": "Admin",
-      "title": "Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia",
-      "comments": 3
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3,
+      "content": "**A SMALL RIVER NAMED DUDEN FLOWS BY THEIR PLACE** and supplies it with the necessary regelialia.\n\n**Lorem ipsum dolor sit amet, consectetur adipisicing elit.** Reiciendis, eius mollitia suscipit, quisquam doloremque distinctio perferendis et doloribus unde architecto optio laboriosam porro adipisci sapiente officiis nemo accusamus ad praesentium? Esse minima nisi et. Dolore perferendis, enim praesentium omnis, iste doloremque quia officia optio deserunt molestiae voluptates soluta architecto tempora.\n\nMolestiae cupiditate inventore animi, maxime sapiente optio, illo est nemo veritatis repellat sunt doloribus nesciunt! Minima laborum magni reiciendis qui voluptate quisquam voluptatem soluta illo eum ullam incidunt rem assumenda eveniet eaque sequi deleniti tenetur dolore amet fugit perspiciatis ipsa, odit. Nesciunt dolor minima esse vero ut ea, repudiandae suscipit!\n\n*#2. CREATIVE WORDPRESS THEMES*\nTemporibus ad error suscipit exercitationem hic molestiae totam obcaecati rerum, eius aut, in. Exercitationem atque quidem tempora maiores ex architecto voluptatum aut officia doloremque. **Error dolore voluptas**, omnis molestias odio dignissimos culpa ex earum nisi consequatur quos odit quasi repellat qui officiis reiciendis incidunt hic non? Debitis commodi aut, adipisci.\n\nQuisquam esse aliquam fuga distinctio, quidem delectus veritatis reiciendis. Nihil explicabo quod, est eos ipsum. Unde aut non tenetur tempore, nisi culpa voluptate maiores officiis quis vel ab consectetur suscipit veritatis nulla quos quia aspernatur perferendis, libero sint. **Error, velit, porro.** Deserunt minus, quibusdam iste enim veniam, modi rem maiores.\n\nOdit voluptatibus, eveniet vel nihil cum ullam dolores laborum, quo velit commodi rerum eum quidem pariatur! Quia fuga iste tenetur, ipsa vel nisi in dolorum consequatur, veritatis porro explicabo soluta commodi libero voluptatem similique id quidem? Blanditiis voluptates aperiam non magni. Reprehenderit nobis odit inventore, quia laboriosam harum excepturi ea.\n\nAdipisci vero culpa, eius nobis soluta. Dolore, maxime ullam ipsam quidem, dolor distinctio similique asperiores voluptas enim, exercitationem ratione aut adipisci modi quod quibusdam iusto, voluptates beatae iure nemo itaque laborum. Consequuntur et pariatur totam fuga eligendi vero dolorum provident. Voluptatibus, veritatis. Beatae numquam nam ab voluptatibus culpa, tenetur recusandae!\n\nVoluptas dolores dignissimos dolorum temporibus, autem aliquam ducimus at officia adipisci quasi nemo a perspiciatis provident magni laboriosam repudiandae iure iusto commodi debitis est blanditiis alias laborum sint dolore. Dolores, iure, reprehenderit. Error provident, pariatur cupiditate soluta doloremque aut ratione. Harum voluptates mollitia illo minus praesentium, rerum ipsa debitis, inventore?"
     },
     {
-      "id": 2,
+      "id": "2",
       "image": "/image_2.jpg",
-      "date": "Sept. 06, 2019",
-      "author": "Admin",
-      "title": "Taste the delicious foods in Asia",
-      "comments": 3
+      "date": "Sept. 10, 2019",
+      "author": "Chef Linh",
+      "title": "10 must-try street foods in Vietnam",
+      "comments": 5,
+      "content": "From Bánh mì to Phở, Vietnamese street food is both affordable and delicious. Here are 10 dishes you should never miss when visiting Vietnam."
     },
     {
-      "id": 3,
+      "id": "3",
       "image": "/image_3.jpg",
+      "date": "Sept. 15, 2019",
+      "author": "John Smooth",
+      "title": "Healthy ingredients for your daily meals",
+      "comments": 2,
+      "content": "Eating healthy doesn't mean boring food. Learn which ingredients boost nutrition while keeping your meals tasty."
+    },
+    {
+      "id": "4",
+      "image": "/image_1.jpg",
       "date": "Sept. 06, 2019",
       "author": "Admin",
       "title": "Taste the delicious foods in Asia",
-      "comments": 3
+      "comments": 3,
+      "content": "Discover the amazing flavors of Asian cuisine — a mix of spices, freshness, and tradition."
     },
     {
-      "id": 4,
+      "id": "5",
       "image": "/image_1.jpg",
       "date": "Sept. 06, 2019",
       "author": "Admin",
-      "title": "Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia",
-      "comments": 3
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3,
+      "content": "Discover the amazing flavors of Asian cuisine — a mix of spices, freshness, and tradition."
     },
     {
-      "id": 5,
+      "id": "6",
       "image": "/image_1.jpg",
       "date": "Sept. 06, 2019",
       "author": "Admin",
-      "title": "Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia",
-      "comments": 3
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3,
+      "content": "Discover the amazing flavors of Asian cuisine — a mix of spices, freshness, and tradition."
     },
     {
-      "id": 6,
+      "id": "7",
       "image": "/image_1.jpg",
       "date": "Sept. 06, 2019",
       "author": "Admin",
-      "title": "Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia",
-      "comments": 3
-    },
-    {
-      "id": 7,
-      "image": "/image_1.jpg",
-      "date": "Sept. 06, 2019",
-      "author": "Admin",
-      "title": "Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia Taste the delicious foods in Asia",
-      "comments": 3
+      "title": "Taste the delicious foods in Asia",
+      "comments": 3,
+      "content": "Discover the amazing flavors of Asian cuisine — a mix of spices, freshness, and tradition."
     }
   ],
   "testimonials": [
