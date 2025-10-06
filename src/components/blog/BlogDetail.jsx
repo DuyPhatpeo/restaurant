@@ -5,6 +5,7 @@ import Loading from "@components/general/Loading";
 import BlogSidebar from "@components/blog/BlogSidebar";
 import BlogTags from "@components/blog/BlogTags";
 import BlogComments from "./BlogComments";
+import ReactMarkdown from "react-markdown";
 
 const BlogDetailPage = () => {
   const { id } = useParams();
@@ -63,10 +64,9 @@ const BlogDetailPage = () => {
               />
             )}
 
-            <div
-              className="detail-body"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
-            />
+            <div className="detail-body">
+              <ReactMarkdown>{blog.content}</ReactMarkdown>
+            </div>
 
             <BlogTags tags={blog.tags} />
             <BlogComments />

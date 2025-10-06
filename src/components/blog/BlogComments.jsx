@@ -1,34 +1,36 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import FormField from "@components/ui/FormField";
 import Button from "@components/ui/Button";
+import { useBlogComments } from "@hooks/useBlogComments";
 
 const BlogComments = () => {
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      name: "John Doe",
-      date: "Oct 6, 2025",
-      content: "Great article! Very informative and well-written.",
-    },
-    {
-      id: 2,
-      name: "Sarah Smith",
-      date: "Oct 6, 2025",
-      content: "I love the part about the recipe ideas 🍷",
-    },
-  ]);
+  const { id: blogId } = useParams();
+  const { comments, loading, error, addComment } = useBlogComments(blogId);
 
-  const [newComment, setNewComment] = useState({ name: "", content: "" });
-  const [error, setError] = useState({ name: "", content: "" });
+  const [newComment, setNewComment] = useState({
+    name: "",
+    email: "",
+    content: "",
+  });
+  const [formError, setFormError] = useState({
+    name: "",
+    email: "",
+    content: "",
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     let isValid = true;
-    const newError = { name: "", content: "" };
+    const newError = { name: "", email: "", content: "" };
 
     if (!newComment.name.trim()) {
       newError.name = "Please enter your name.";
+      isValid = false;
+    }
+    if (!newComment.email.trim()) {
+      newError.email = "Please enter your email.";
       isValid = false;
     }
     if (!newComment.content.trim()) {
@@ -36,13 +38,11 @@ const BlogComments = () => {
       isValid = false;
     }
 
-    setError(newError);
+    setFormError(newError);
     if (!isValid) return;
 
-    const newItem = {
-      id: Date.now(),
-      name: newComment.name,
-      content: newComment.content,
+    const payload = {
+      ...newComment,
       date: new Date().toLocaleDateString("en-US", {
         month: "short",
         day: "numeric",
@@ -50,15 +50,21 @@ const BlogComments = () => {
       }),
     };
 
-    setComments([newItem, ...comments]);
-    setNewComment({ name: "", content: "" });
+    try {
+      await addComment(payload);
+      setNewComment({ name: "", email: "", content: "" });
+    } catch (err) {
+      console.error("Lỗi khi gửi comment:", err);
+    }
   };
+
+  if (loading) return <p>Loading comments...</p>;
+  if (error) return <p>{error}</p>;
 
   return (
     <div className="blog-comments">
       <h3 className="comment-title">Comments ({comments.length})</h3>
 
-      {/* Comment list */}
       <ul className="comment-list">
         {comments.map((cmt) => (
           <li key={cmt.id} className="comment-item">
@@ -71,7 +77,6 @@ const BlogComments = () => {
         ))}
       </ul>
 
-      {/* Comment form */}
       <form className="comment-form" onSubmit={handleSubmit}>
         <h4>Leave a Comment</h4>
 
@@ -84,7 +89,7 @@ const BlogComments = () => {
             setNewComment({ ...newComment, name: e.target.value })
           }
           required
-          error={error.name}
+          error={formError.name}
         />
         <FormField
           label="Email"
@@ -95,7 +100,7 @@ const BlogComments = () => {
             setNewComment({ ...newComment, email: e.target.value })
           }
           required
-          error={error.email}
+          error={formError.email}
         />
         <FormField
           label="Comment"
@@ -108,7 +113,7 @@ const BlogComments = () => {
             setNewComment({ ...newComment, content: e.target.value })
           }
           required
-          error={error.content}
+          error={formError.content}
         />
 
         <Button type="submit" hover>
