@@ -1,6 +1,6 @@
 // src/components/general/Header.jsx
 import React, { useState, useEffect } from "react";
-import { Phone, Mail, Menu } from "lucide-react";
+import { Phone, Mail, Menu, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "@components/ui/Button";
 
@@ -18,6 +18,7 @@ const Header = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [openSubmenu, setOpenSubmenu] = useState(null); // submenu cho mobile
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -25,11 +26,27 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // menu data
   const menuItems = [
     { label: "Home", link: "/" },
     { label: "About", link: "/about" },
-    { label: "Menu", link: "/menu" },
-    { label: "Stories", link: "/stories" },
+    {
+      label: "Menu",
+      link: "/menu",
+      submenu: [
+        { label: "Breakfast", link: "/menu/breakfast" },
+        { label: "Lunch", link: "/menu/lunch" },
+        { label: "Dinner", link: "/menu/dinner" },
+      ],
+    },
+    {
+      label: "Stories",
+      link: "/stories",
+      submenu: [
+        { label: "Blog", link: "/stories/blog" },
+        { label: "Events", link: "/stories/events" },
+      ],
+    },
     { label: "Contact", link: "/contact" },
   ];
 
@@ -38,6 +55,7 @@ const Header = () => {
     navigate(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
     setMobileOpen(false);
+    setOpenSubmenu(null);
   };
 
   return (
@@ -81,14 +99,35 @@ const Header = () => {
           <div className="nav-right">
             <div className="nav-menu">
               {menuItems.map((item, idx) => (
-                <Link
-                  key={idx}
-                  to={item.link}
-                  className={location.pathname === item.link ? "active" : ""}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
+                <div key={idx} className="nav-item">
+                  <Link
+                    to={item.link}
+                    className={location.pathname === item.link ? "active" : ""}
+                  >
+                    {item.label}
+                    {item.submenu && (
+                      <ChevronDown size={14} className="submenu-icon" />
+                    )}
+                  </Link>
+
+                  {/* submenu (desktop hover) */}
+                  {item.submenu && (
+                    <div className="submenu">
+                      {item.submenu.map((sub, sIdx) => (
+                        <Link
+                          key={sIdx}
+                          to={sub.link}
+                          className={
+                            location.pathname === sub.link ? "active" : ""
+                          }
+                          onClick={() => goTo(sub.link)}
+                        >
+                          {sub.label}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
             <Button onClick={() => goTo("/reservation")}>Book a table</Button>
@@ -98,14 +137,47 @@ const Header = () => {
         {/* Mobile Menu */}
         <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
           {menuItems.map((item, idx) => (
-            <Link
-              key={idx}
-              to={item.link}
-              className={location.pathname === item.link ? "active" : ""}
-              onClick={() => goTo(item.link)}
-            >
-              {item.label}
-            </Link>
+            <div key={idx} className="mobile-item">
+              <div
+                className="mobile-item-header"
+                onClick={() =>
+                  item.submenu
+                    ? setOpenSubmenu(openSubmenu === idx ? null : idx)
+                    : goTo(item.link)
+                }
+              >
+                <span
+                  className={location.pathname === item.link ? "active" : ""}
+                >
+                  {item.label}
+                </span>
+                {item.submenu && (
+                  <ChevronDown
+                    size={18}
+                    className={`chevron ${openSubmenu === idx ? "open" : ""}`}
+                  />
+                )}
+              </div>
+
+              {item.submenu && (
+                <div
+                  className={`mobile-submenu ${
+                    openSubmenu === idx ? "open" : ""
+                  }`}
+                >
+                  {item.submenu.map((sub, sIdx) => (
+                    <Link
+                      key={sIdx}
+                      to={sub.link}
+                      className={location.pathname === sub.link ? "active" : ""}
+                      onClick={() => goTo(sub.link)}
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           ))}
           <Button onClick={() => goTo("/reservation")}>Book a table</Button>
         </div>
