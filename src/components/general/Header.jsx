@@ -42,6 +42,17 @@ const Header = () => {
       ],
     },
     { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
+    { label: "Contact", link: "/contact" },
   ];
 
   // helper navigate + scroll
