@@ -37,7 +37,6 @@
 /* ====== Ảnh chính ====== */
 .detail-image {
   width: 100%;
-  border-radius: 12px;
   margin-bottom: 24px;
   object-fit: cover;
 }

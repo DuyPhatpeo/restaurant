@@ -3,8 +3,60 @@ import Button from "@components/ui/Button";
 import FormField from "@components/ui/FormField";
 import { useContactForm } from "@hooks/useContactForm";
 
+// Component hiển thị thông tin liên hệ
+const ContactInfo = () => {
+  const info = [
+    {
+      label: "Address",
+      value: "198 West 21th Street, Suite 721 New York NY 10016",
+    },
+    { label: "Phone", value: "+1235 2355 98", highlight: true },
+    {
+      label: "Email",
+      value: "info@yoursite.com",
+      link: "mailto:info@yoursite.com",
+    },
+    { label: "Website", value: "yoursite.com", link: "https://yoursite.com" },
+  ];
+
+  return (
+    <div className="contact-info">
+      <h3>Contact Information</h3>
+      <div className="contact-grid">
+        {info.map(({ label, value, highlight, link }, idx) => (
+          <div key={idx} className="info-item">
+            <strong>{label}:</strong>{" "}
+            {link ? (
+              <a href={link} className={highlight ? "highlight" : ""}>
+                {value}
+              </a>
+            ) : (
+              <span className={highlight ? "highlight" : ""}>{value}</span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const Contact = () => {
-  const { formData, loading, handleChange, handleSubmit } = useContactForm();
+  const { formData, errors, loading, handleChange, handleSubmit } =
+    useContactForm();
+
+  // Định nghĩa các field để render map
+  const fields = [
+    { name: "name", placeholder: "Your Name", required: true },
+    { name: "email", type: "email", placeholder: "Your Email", required: true },
+    { name: "subject", placeholder: "Subject" },
+    {
+      name: "message",
+      type: "textarea",
+      placeholder: "Message",
+      rows: 5,
+      required: true,
+    },
+  ];
 
   return (
     <section className="contact-section">
@@ -21,43 +73,23 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Google Map"
-            ></iframe>
+            />
           </div>
 
-          {/* Form liên hệ */}
+          {/* Contact Form */}
           <div className="contact-form">
             <h3>Contact Us</h3>
             <form onSubmit={handleSubmit}>
-              <FormField
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-              <FormField
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-              <FormField
-                name="subject"
-                placeholder="Subject"
-                value={formData.subject}
-                onChange={handleChange}
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                rows={5}
-                className="form-input"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              ></textarea>
+              {fields.map((field) => (
+                <FormField
+                  key={field.name}
+                  {...field}
+                  value={formData[field.name]}
+                  onChange={handleChange}
+                  required
+                  error={errors[field.name]}
+                />
+              ))}
 
               <Button hover type="submit" disabled={loading}>
                 {loading ? "Sending..." : "Send Message"}
@@ -67,27 +99,7 @@ const Contact = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="contact-info">
-          <h3>Contact Information</h3>
-          <div className="contact-grid">
-            <div className="info-item">
-              <strong>Address:</strong> 198 West 21th Street, Suite 721 New York
-              NY 10016
-            </div>
-            <div className="info-item">
-              <strong>Phone:</strong>{" "}
-              <span className="highlight">+1235 2355 98</span>
-            </div>
-            <div className="info-item">
-              <strong>Email:</strong>{" "}
-              <a href="mailto:info@yoursite.com">info@yoursite.com</a>
-            </div>
-            <div className="info-item">
-              <strong>Website:</strong>{" "}
-              <a href="https://yoursite.com">yoursite.com</a>
-            </div>
-          </div>
-        </div>
+        <ContactInfo />
       </div>
     </section>
   );
