@@ -1,0 +1,38 @@
+/* ================= TopBar ================= */
+.top-bar {
+  font-size: var(--font-size-sm, 14px);
+  background: transparent;
+  color: var(--color-white);
+  transition: all 0.3s ease-in-out;
+}
+
+.top-bar.scrolled {
+  display: none;
+}
+
+.top-bar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.top-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .top-bar {
+    display: none;
+  }
+
+  .top-bar-container {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
