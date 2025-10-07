@@ -1,6 +1,6 @@
 /* ================= Desktop Menu ================= */
-.nav-menu,
-.menu-level {
+.navmenu,
+.navmenu-level {
   display: flex;
   flex: 1 1 auto;
   gap: 0;
@@ -10,13 +10,13 @@
   justify-content: center;
 }
 
-.nav-menu > .menu-item {
+.navmenu > .navmenu-item {
   flex: 1 1 auto;
   display: flex;
   justify-content: center;
 }
 
-.menu-link {
+.navmenu-link {
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -27,24 +27,25 @@
   justify-content: center;
   transition: color 0.25s ease;
 }
-.navbar.scrolled .menu-link {
-  color: var(--color-black);
+.navbar.scrolled .navmenu-link {
+  color: var(--color-black) !important;
 }
-.menu-link.active,
-.menu-link:hover {
+.navmenu-link.active,
+.navmenu-link:hover {
   color: var(--color-primary);
+  background: transparent; /* không đổi màu nền */
 }
 
 /* ================= Desktop Submenu ================= */
-.menu-item {
+.navmenu-item {
   position: relative;
 }
-.submenu-icon {
+.navmenu-subicon {
   margin-left: 4px;
   vertical-align: middle;
 }
 
-.submenu {
+.navmenu-submenu {
   position: absolute;
   top: 100%;
   left: 0;
@@ -61,27 +62,27 @@
   z-index: 999;
   transition: all 0.25s ease;
 }
-.menu-item:hover > .submenu {
+.navmenu-item:hover > .navmenu-submenu {
   display: flex;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
-.submenu a {
+.navmenu-submenu a {
   color: var(--color-black);
   padding: 10px 16px;
   display: block;
   white-space: nowrap;
   text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: color 0.2s ease;
 }
-.submenu a:hover {
-  background: #f7f7f7;
+.navmenu-submenu a:hover {
   color: var(--color-primary);
+  background: transparent; /* chỉ đổi màu chữ */
 }
 
 /* ================= Nested submenu ================= */
-.submenu .submenu {
+.navmenu-submenu .navmenu-submenu {
   top: 100%;
   left: 0;
   background: var(--color-white);
@@ -96,7 +97,7 @@
   pointer-events: none;
   transition: all 0.25s ease;
 }
-.submenu .menu-item:hover > .submenu {
+.navmenu-submenu .navmenu-item:hover > .navmenu-submenu {
   display: flex;
   opacity: 1;
   transform: translateY(0);
@@ -104,12 +105,12 @@
 }
 
 /* ================= Mobile Items ================= */
-.mobile-item {
+.navmenu-mobile-item {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #eee;
 }
-.mobile-item-header {
+.navmenu-mobile-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -117,29 +118,29 @@
   cursor: pointer;
   transition: background 0.2s ease;
 }
-.mobile-item-header:hover {
+.navmenu-mobile-header:hover {
   background: #f9f9f9;
 }
-.mobile-item-header span {
+.navmenu-mobile-header span {
   font-weight: 600;
   font-size: 16px;
   color: #666;
 }
-.mobile-item-header span.active {
+.navmenu-mobile-header span.active {
   color: var(--color-primary);
 }
-.chevron {
+.navmenu-chevron {
   margin-left: 8px;
   color: #999;
   transition: transform 0.3s ease, color 0.3s ease;
 }
-.chevron.open {
+.navmenu-chevron.open {
   transform: rotate(180deg);
   color: var(--color-primary);
 }
 
 /* ================= Mobile Submenu ================= */
-.mobile-submenu {
+.navmenu-mobile-submenu {
   display: flex;
   flex-direction: column;
   background: #fcfcfc;
@@ -148,79 +149,79 @@
   opacity: 0;
   transition: all 0.35s ease;
 }
-.mobile-submenu.open {
+.navmenu-mobile-submenu.open {
   max-height: 500px;
   opacity: 1;
 }
-.mobile-submenu a {
+.navmenu-mobile-submenu a {
   display: block;
   font-size: 15px;
   color: #666;
   text-decoration: none;
   padding: 12px 20px;
-  transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+  transition: color 0.25s ease, padding-left 0.25s ease;
 }
-.mobile-submenu a:hover,
-.mobile-submenu a.active {
-  background: #f5f5f5;
+.navmenu-mobile-submenu a:hover,
+.navmenu-mobile-submenu a.active {
   color: var(--color-primary);
+  background: transparent; /* chỉ đổi màu chữ */
 }
 
 /* ================= Indentation & alternating background ================= */
-.mobile-menu-level.level-0 .mobile-item-header {
+.navmenu-mobile-level.level-0 .navmenu-mobile-header {
   background: #fafafa;
 }
-.mobile-menu-level.level-1 .mobile-item-header {
+.navmenu-mobile-level.level-1 .navmenu-mobile-header {
   background: #f7f7f7;
   padding-left: 28px;
 }
-.mobile-menu-level.level-2 .mobile-item-header {
+.navmenu-mobile-level.level-2 .navmenu-mobile-header {
   background: #f5f5f5;
   padding-left: 44px;
 }
-.mobile-menu-level.level-3 .mobile-item-header {
+.navmenu-mobile-level.level-3 .navmenu-mobile-header {
   background: #f2f2f2;
   padding-left: 60px;
 }
-.mobile-menu-level.level-0 .mobile-submenu a {
+.navmenu-mobile-level.level-0 .navmenu-mobile-submenu a {
   padding-left: 48px;
 }
-.mobile-menu-level.level-1 .mobile-submenu a {
+.navmenu-mobile-level.level-1 .navmenu-mobile-submenu a {
   padding-left: 72px;
 }
-.mobile-menu-level.level-2 .mobile-submenu a {
+.navmenu-mobile-level.level-2 .navmenu-mobile-submenu a {
   padding-left: 96px;
 }
-.mobile-menu-level.level-3 .mobile-submenu a {
+.navmenu-mobile-level.level-3 .navmenu-mobile-submenu a {
   padding-left: 120px;
 }
 
 /* ================= Responsive ================= */
 @media (max-width: 768px) {
-  .mobile-item-header {
+  .navmenu-mobile-header {
     padding: 12px 16px;
   }
-  .mobile-submenu a {
+  .navmenu-mobile-submenu a {
     font-size: 14px;
     padding: 10px 16px 10px 40px;
   }
 }
 
 @media (max-width: 576px) {
-  .mobile-submenu a {
+  .navmenu-mobile-submenu a {
     font-size: 13.5px;
     padding: 10px 14px 10px 36px;
   }
 }
 
 @media (max-width: 400px) {
-  .mobile-item-header span {
+  .navmenu-mobile-header span {
     font-size: 14.5px;
   }
-  .chevron {
+  .navmenu-chevron {
     transform: scale(0.9);
   }
-  .mobile-submenu a {
+  .navmenu-mobile-submenu a {
     font-size: 13px;
     padding: 9px 12px 9px 32px;
   }
