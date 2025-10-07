@@ -49,7 +49,13 @@ const Header = () => {
             { label: "Workshops", link: "/Workshops" },
             {
               label: "Meetups",
-              link: "/Meetups",
+              submenu: [
+                { label: "Workshops", link: "/Workshops" },
+                {
+                  label: "Meetups",
+                  link: "/Meetups",
+                },
+              ],
             },
           ],
         },

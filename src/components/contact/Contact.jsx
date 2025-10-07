@@ -86,7 +86,7 @@ const Contact = () => {
                   {...field}
                   value={formData[field.name]}
                   onChange={handleChange}
-                  required
+                  required={field.required}
                   error={errors[field.name]}
                 />
               ))}
