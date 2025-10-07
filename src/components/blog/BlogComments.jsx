@@ -67,7 +67,17 @@ const BlogComments = () => {
           <li key={cmt.id} className="comment-item">
             <div className="comment-body">
               <h5 className="comment-name">{cmt.name}</h5>
-              <span className="comment-date">{cmt.date}</span>
+              <span className="comment-date">
+                {new Date(cmt.datetime).toLocaleString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  hour12: true,
+                })}
+              </span>
+
               <p className="comment-text">{cmt.content}</p>
             </div>
           </li>

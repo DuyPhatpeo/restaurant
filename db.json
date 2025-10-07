@@ -1,44 +1,20 @@
 {
   "comments": [
     {
-      "id": "1",
-      "blogId": 1,
-      "name": "John Doe",
-      "email": "john@example.com",
-      "content": "Great article! Very informative and well-written.",
-      "date": "Oct 6, 2025"
-    },
-    {
-      "id": "2",
-      "blogId": 1,
-      "name": "Sarah Smith",
-      "email": "sarah@example.com",
-      "content": "I love the part about the recipe ideas 🍷",
-      "date": "Oct 6, 2025"
-    },
-    {
-      "id": "c7a0",
+      "id": "c0fe",
       "name": "Tran Duy Phat",
       "email": "tranduyphat2810@gmail.com",
       "content": "test",
-      "date": "Oct 6, 2025",
-      "blogId": 2
-    },
-    {
-      "id": "c647",
-      "name": "Tran Duy Phat",
-      "email": "tranduyphat2810@gmail.com",
-      "content": "Test\n",
-      "date": "Oct 6, 2025",
-      "blogId": 1
-    },
-    {
-      "id": "dd02",
-      "name": "Tran Duy Phat",
-      "email": "tranduyphat2810@gmail.com",
-      "content": "thử nè",
       "blogId": 1,
-      "date": "Oct 7, 2025"
+      "datetime": "2025-10-07 08:11:00"
+    },
+    {
+      "id": "9d0d",
+      "name": "Tran Duy Phat",
+      "email": "tranduyphat2810@gmail.com",
+      "content": "đjákj ;lak",
+      "blogId": 1,
+      "datetime": "2025-10-07 08:11:23"
     }
   ],
   "contacts": [

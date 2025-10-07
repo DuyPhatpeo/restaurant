@@ -10,7 +10,20 @@ export const useBlogComments = (blogId) => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(true);
 
-  // Lấy comment theo blogId
+  // Format datetime kiểu "YYYY-MM-DD HH:mm:ss"
+  const getCurrentDateTime = () => {
+    const now = new Date();
+    const pad = (n) => (n < 10 ? "0" + n : n);
+    const date = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
+      now.getDate()
+    )}`;
+    const time = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(
+      now.getSeconds()
+    )}`;
+    return `${date} ${time}`;
+  };
+
+  // Lấy comment
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -28,7 +41,7 @@ export const useBlogComments = (blogId) => {
     fetchComments();
   }, [blogId]);
 
-  // Handle change form comment
+  // Handle change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewComment((prev) => ({ ...prev, [name]: value }));
@@ -38,7 +51,7 @@ export const useBlogComments = (blogId) => {
     }
   };
 
-  // Validate form comment
+  // Validate
   const validate = () => {
     const newErrors = {};
     if (!newComment.name.trim()) newErrors.name = "Name is required.";
@@ -49,7 +62,7 @@ export const useBlogComments = (blogId) => {
     return newErrors;
   };
 
-  // Submit comment
+  // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -63,11 +76,7 @@ export const useBlogComments = (blogId) => {
     const payload = {
       ...newComment,
       blogId: parseInt(blogId),
-      date: new Date().toLocaleDateString("en-US", {
-        month: "short",
-        day: "numeric",
-        year: "numeric",
-      }),
+      datetime: getCurrentDateTime(), // chuẩn datetime
     };
 
     setLoading(true);
