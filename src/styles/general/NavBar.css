@@ -144,8 +144,8 @@
 .mobile-menu.open {
   display: flex;
   visibility: visible;
-  height: 100vh;
-  max-height: 95vh;
+  height: 95vh;
+  max-height: 93vh;
   opacity: 1;
   overflow-y: auto;
 }
