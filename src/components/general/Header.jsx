@@ -1,6 +1,6 @@
 // src/components/general/Header.jsx
 import React, { useState, useEffect } from "react";
-import { Phone, Mail, Menu, ChevronDown } from "lucide-react";
+import { Phone, Mail, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "@components/ui/Button";
 
@@ -18,7 +18,7 @@ const Header = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState(null); // submenu cho mobile
+  const [openSubmenu, setOpenSubmenu] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -26,14 +26,10 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // menu data
   const menuItems = [
     { label: "Home", link: "/" },
     { label: "About", link: "/about" },
-    {
-      label: "Menu",
-      link: "/menu",
-    },
+    { label: "Menu", link: "/menu" },
     {
       label: "Stories",
       submenu: [
@@ -42,20 +38,8 @@ const Header = () => {
       ],
     },
     { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
-    { label: "Contact", link: "/contact" },
   ];
 
-  // helper navigate + scroll
   const goTo = (path) => {
     navigate(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -92,15 +76,18 @@ const Header = () => {
             Feliciano
           </div>
 
+          {/* Toggle Menu */}
           <div
             className={`mobile-toggle ${scrolled ? "scrolled" : ""}`}
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             <div className="mobile-toggle-inner">
-              <Menu size={24} /> <span>Menu</span>
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+              <span>{mobileOpen ? "Close" : "Menu"}</span>
             </div>
           </div>
 
+          {/* Desktop Menu */}
           <div className="nav-right">
             <div className="nav-menu">
               {menuItems.map((item, idx) => (
@@ -115,7 +102,6 @@ const Header = () => {
                     )}
                   </Link>
 
-                  {/* submenu (desktop hover) */}
                   {item.submenu && (
                     <div className="submenu">
                       {item.submenu.map((sub, sIdx) => (
