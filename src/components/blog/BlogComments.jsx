@@ -6,55 +6,59 @@ import { useBlogComments } from "@hooks/useBlogComments";
 
 const BlogComments = () => {
   const { id: blogId } = useParams();
-
-  // Lấy toàn bộ state và handler từ hook
   const { comments, newComment, errors, loading, handleChange, handleSubmit } =
     useBlogComments(blogId);
 
   if (loading) return <p>Loading comments...</p>;
   if (!comments) return <p>Failed to load comments.</p>;
 
+  // Config field giống ReservationForm
+  const fields = [
+    {
+      label: "Name",
+      name: "name",
+      type: "text",
+      placeholder: "Enter your name...",
+    },
+    {
+      label: "Email",
+      name: "email",
+      type: "email",
+      placeholder: "Enter your email...",
+    },
+    {
+      label: "Comment",
+      name: "content",
+      type: "textarea",
+      placeholder: "Write your comment...",
+      rows: 4,
+    },
+  ];
+
   return (
     <section className="blog-comments">
       <h3 className="comment-title">Comments ({comments.length})</h3>
 
-      <form className="comment-form" onSubmit={handleSubmit}>
+      <form className="comment-form" onSubmit={handleSubmit} noValidate>
         <h4 className="comment-form-title">Leave a Comment</h4>
 
-        <FormField
-          label="Name"
-          name="name"
-          placeholder="Enter your name..."
-          value={newComment.name}
-          onChange={handleChange}
-          required
-          error={errors.name}
-        />
+        {fields.map((field) => (
+          <FormField
+            key={field.name}
+            label={field.label}
+            name={field.name}
+            type={field.type}
+            placeholder={field.placeholder}
+            rows={field.rows}
+            value={newComment[field.name]}
+            onChange={handleChange}
+            required
+            error={errors[field.name]}
+          />
+        ))}
 
-        <FormField
-          label="Email"
-          name="email"
-          placeholder="Enter your email..."
-          value={newComment.email}
-          onChange={handleChange}
-          required
-          error={errors.email}
-        />
-
-        <FormField
-          label="Comment"
-          type="textarea"
-          name="content"
-          placeholder="Write your comment..."
-          rows={4}
-          value={newComment.content}
-          onChange={handleChange}
-          required
-          error={errors.content}
-        />
-
-        <Button type="submit" hover>
-          Post Comment
+        <Button type="submit" hover disabled={loading}>
+          {loading ? "Posting..." : "Post Comment"}
         </Button>
       </form>
 
