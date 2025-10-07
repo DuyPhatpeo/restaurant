@@ -4,7 +4,7 @@ import { getBlogById, getBlogs } from "@api/blogApi";
 import Loading from "@components/general/Loading";
 import BlogSidebar from "@components/blog/BlogSidebar";
 import BlogTags from "@components/blog/BlogTags";
-import BlogComments from "./BlogComments";
+import BlogComments from "@components/blog/BlogComments";
 import ReactMarkdown from "react-markdown";
 
 const BlogDetailPage = () => {
