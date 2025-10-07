@@ -47,7 +47,13 @@ const Header = () => {
           label: "Events",
           submenu: [
             { label: "Workshops", link: "/stories/events/workshops" },
-            { label: "Meetups", link: "/stories/events/meetups" },
+            {
+              label: "Meetups",
+              submenu: [
+                { label: "Workshops", link: "/stories/events/workshops" },
+                { label: "Meetups", link: "/stories/events/meetups" },
+              ],
+            },
           ],
         },
       ],

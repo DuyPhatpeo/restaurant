@@ -28,20 +28,18 @@ const RecursiveMenu = ({
 
         const handleClick = (e) => {
           e.stopPropagation();
-
           if (hasSubmenu && isMobile) {
             setOpenSubmenu((prev) =>
               isOpen ? prev.filter((k) => k !== key) : [...prev, key]
             );
           } else if (item.link) {
             goTo(item.link);
-            if (isMobile) setOpenSubmenu([]); // đóng hết menu khi điều hướng
+            if (isMobile) setOpenSubmenu([]); // đóng tất cả submenu khi điều hướng
           }
         };
 
         return (
           <div key={key} className={`menu-item level-${level}`}>
-            {/* Header / Link */}
             {isMobile ? (
               <div className="mobile-item-header" onClick={handleClick}>
                 <span className={isActive ? "active" : ""}>{item.label}</span>
@@ -65,7 +63,6 @@ const RecursiveMenu = ({
               </Link>
             )}
 
-            {/* Submenu */}
             {hasSubmenu && (
               <div
                 className={`${isMobile ? "mobile-submenu" : "submenu"} ${
@@ -157,7 +154,9 @@ const NavBar = ({
           openSubmenu={openSubmenu}
           setOpenSubmenu={setOpenSubmenu}
         />
-        <Button onClick={() => goTo("/reservation")}>Book a table</Button>
+        <div className="mobile-book-btn">
+          <Button onClick={() => goTo("/reservation")}>Book a table</Button>
+        </div>
       </div>
     </div>
   );
