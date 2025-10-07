@@ -42,6 +42,7 @@ const Header = () => {
     {
       label: "Stories",
       submenu: [
+        { label: "Blog", link: "/blog" },
         {
           label: "Events",
           submenu: [
@@ -52,7 +53,6 @@ const Header = () => {
             },
           ],
         },
-        { label: "Blog", link: "/blog" },
       ],
     },
     { label: "Contact", link: "/contact" },
