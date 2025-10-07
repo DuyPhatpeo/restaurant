@@ -65,6 +65,7 @@ const BlogComments = () => {
     <div className="blog-comments">
       <h3 className="comment-title">Comments ({comments.length})</h3>
 
+      {/* Danh sách comment */}
       <ul className="comment-list">
         {comments.map((cmt) => (
           <li key={cmt.id} className="comment-item">
@@ -77,9 +78,9 @@ const BlogComments = () => {
         ))}
       </ul>
 
+      {/* Form bình luận nằm dưới danh sách */}
       <form className="comment-form" onSubmit={handleSubmit}>
         <h4>Leave a Comment</h4>
-
         <FormField
           label="Name"
           name="name"
@@ -115,7 +116,6 @@ const BlogComments = () => {
           required
           error={formError.content}
         />
-
         <Button type="submit" hover>
           Post Comment
         </Button>

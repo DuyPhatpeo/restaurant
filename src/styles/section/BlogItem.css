@@ -4,7 +4,6 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
-  border-radius: 12px;
   cursor: pointer;
 }
 
@@ -12,8 +11,6 @@
 .blog-image-wrapper {
   display: block;
   overflow: hidden;
-  border-top-left-radius: 12px;
-  border-top-right-radius: 12px;
 }
 
 .blog-image {
@@ -83,12 +80,4 @@
 .read-more:hover {
   color: var(--color-primary);
   text-decoration: underline;
-}
-
-/* Bình luận */
-.blog-footer .comments {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  color: #666;
 }

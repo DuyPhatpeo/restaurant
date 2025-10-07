@@ -28,10 +28,6 @@ const BlogItem = ({ post }) => {
           <Link to={`/blog/${post.id}`} className="read-more">
             Read more
           </Link>
-
-          <span className="comments">
-            <MessageSquare size={16} /> {post.comments ?? 0}
-          </span>
         </div>
       </div>
     </div>
