@@ -1,7 +1,7 @@
 {
   "comments": [
     {
-      "id": 1,
+      "id": "1",
       "blogId": 1,
       "name": "John Doe",
       "email": "john@example.com",
@@ -9,7 +9,7 @@
       "date": "Oct 6, 2025"
     },
     {
-      "id": 2,
+      "id": "2",
       "blogId": 1,
       "name": "Sarah Smith",
       "email": "sarah@example.com",
@@ -31,6 +31,14 @@
       "content": "Test\n",
       "date": "Oct 6, 2025",
       "blogId": 1
+    },
+    {
+      "id": "dd02",
+      "name": "Tran Duy Phat",
+      "email": "tranduyphat2810@gmail.com",
+      "content": "thử nè",
+      "blogId": 1,
+      "date": "Oct 7, 2025"
     }
   ],
   "contacts": [
@@ -119,28 +127,28 @@
   ],
   "testimonials": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Ian Boner",
       "role": "Food Critic",
       "image": "/person_1.jpg",
       "text": "The atmosphere is cozy and intimate, perfect for both casual dinners and special occasions. The wine selection perfectly complements their exquisite menu."
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Jason McClean",
       "role": "Regular Customer",
       "image": "/person_2.jpg",
       "text": "I've been dining here for years and the quality has never wavered. Their signature dishes are absolutely phenomenal. The service is always top-notch!"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Mark Stevenson",
       "role": "Food Blogger",
       "image": "/person_3.jpg",
       "text": "The fusion of traditional and modern cuisine here is brilliant. Each dish tells a story, and the presentation is Instagram-worthy. A must-visit restaurant!"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Laura Smith",
       "role": "Chef",
       "image": "/person_4.jpg",
@@ -149,7 +157,7 @@
   ],
   "chefs": [
     {
-      "id": 1,
+      "id": "1",
       "name": "John Smooth",
       "role": "Restaurant Owner",
       "image": "/chef-1.jpg",
@@ -161,7 +169,7 @@
       }
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Rebeca Welson",
       "role": "Head Chef",
       "image": "/chef-2.jpg",
@@ -173,7 +181,7 @@
       }
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Kharl Branyt",
       "role": "Chef",
       "image": "/chef-3.jpg",
@@ -185,7 +193,7 @@
       }
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "Luke Simon",
       "role": "Chef",
       "image": "/chef-4.jpg",
@@ -199,29 +207,29 @@
   ],
   "categories": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Breakfast"
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Lunch"
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Dinner"
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Drinks"
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Desserts"
     }
   ],
   "foods": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Grilled Beef with Potatoes ksadjkaj ạ hạk h toes ksadjkaj ạ hạk h ",
       "price": 29,
       "desc": "Meat, Potatoes, Rice, Tomatoe, Meat, Potatoes, Rice, TomatoeMeat, Potatoes, Rice, Tomatoe",
@@ -229,7 +237,7 @@
       "categoryId": 1
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Omelette with Vegetables",
       "price": 25,
       "desc": "Eggs, Mushrooms, Vegetables",
@@ -237,7 +245,7 @@
       "categoryId": 1
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Noodle Soup",
       "price": 20,
       "desc": "Noodles, Pork, Herbs",
@@ -245,7 +253,7 @@
       "categoryId": 1
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Avocado Toast with Egg",
       "price": 22,
       "desc": "Avocado, Bread, Egg, Seasoning",
@@ -253,7 +261,7 @@
       "categoryId": 1
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Oatmeal with Strawberries",
       "price": 18,
       "desc": "Oat, Milk, Strawberries",
@@ -261,7 +269,7 @@
       "categoryId": 1
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Grilled Chicken with Vegetables",
       "price": 32,
       "desc": "Chicken, Salad, Sauce",
@@ -269,7 +277,7 @@
       "categoryId": 2
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Seafood Hotpot",
       "price": 35,
       "desc": "Fish, Clams, Noodles",
@@ -277,7 +285,7 @@
       "categoryId": 2
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Steak with Asparagus",
       "price": 40,
       "desc": "Beef, Asparagus, Sauce",
@@ -285,7 +293,7 @@
       "categoryId": 2
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Fried Chicken with Sauce",
       "price": 28,
       "desc": "Chicken, Herbs, Sauce",
@@ -293,7 +301,7 @@
       "categoryId": 3
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Roast Duck with Vegetables",
       "price": 38,
       "desc": "Duck, Carrots, Salad",
@@ -301,7 +309,7 @@
       "categoryId": 3
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Salmon with Green Sauce",
       "price": 42,
       "desc": "Salmon, Spinach, Sauce",
@@ -309,7 +317,7 @@
       "categoryId": 3
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "Mojito",
       "price": 12,
       "desc": "Rum, Lime, Mint, Soda",
@@ -317,7 +325,7 @@
       "categoryId": 4
     },
     {
-      "id": 13,
+      "id": "13",
       "title": "Orange Cocktail",
       "price": 15,
       "desc": "Orange Juice, Vodka, Ice",
@@ -325,7 +333,7 @@
       "categoryId": 4
     },
     {
-      "id": 14,
+      "id": "14",
       "title": "Beer",
       "price": 10,
       "desc": "Cold draft beer",
@@ -333,7 +341,7 @@
       "categoryId": 4
     },
     {
-      "id": 15,
+      "id": "15",
       "title": "Matcha",
       "price": 9,
       "desc": "Green Tea, Ice, Milk",
@@ -341,7 +349,7 @@
       "categoryId": 4
     },
     {
-      "id": 16,
+      "id": "16",
       "title": "Pancakes with Syrup",
       "price": 18,
       "desc": "Flour, Syrup, Fruits",
@@ -349,7 +357,7 @@
       "categoryId": 5
     },
     {
-      "id": 17,
+      "id": "17",
       "title": "Chocolate Lava Cake",
       "price": 20,
       "desc": "Chocolate, Ice Cream",
@@ -357,7 +365,7 @@
       "categoryId": 5
     },
     {
-      "id": 18,
+      "id": "18",
       "title": "Ice Cream Cone",
       "price": 12,
       "desc": "Vanilla Ice Cream",
@@ -365,7 +373,7 @@
       "categoryId": 5
     },
     {
-      "id": 19,
+      "id": "19",
       "title": "Strawberry Parfait",
       "price": 16,
       "desc": "Strawberry, Yogurt, Cream",
