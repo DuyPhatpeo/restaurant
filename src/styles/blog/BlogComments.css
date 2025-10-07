@@ -13,25 +13,53 @@
   color: #222;
 }
 
+/* ====== Form bình luận ====== */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px; /* khoảng cách với danh sách comment */
+}
+
+.comment-form-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 12px;
+}
+
+.comment-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.comment-form button {
+  margin-top: 8px; /* tạo khoảng cách với textarea */
+  align-self: flex-start; /* nút không kéo dài full width */
+  padding: 10px 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
 /* ====== Danh sách bình luận ====== */
 .comment-list {
   list-style: none;
-  margin: 0 0 40px;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px; /* khoảng cách giữa các comment */
 }
 
 .comment-item {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #f4f4f4;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #fafafa; /* nền nhạt cho mỗi comment */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* ====== Thông tin bình luận ====== */
 .comment-body {
   flex: 1;
 }
@@ -57,32 +85,8 @@
   margin: 0;
 }
 
-/* ====== Form bình luận ====== */
-.comment-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.comment-form-title {
-  font-size: 18px;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 8px;
-}
-
-.comment-form textarea {
-  min-height: 120px;
-  resize: vertical;
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 768px) {
-  .comment-item {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .comment-text {
     font-size: 14.5px;
   }

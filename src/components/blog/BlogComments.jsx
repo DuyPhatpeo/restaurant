@@ -22,24 +22,15 @@ const BlogComments = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    let isValid = true;
-    const newError = { name: "", email: "", content: "" };
+    const errors = {
+      name: !newComment.name.trim() ? "Please enter your name." : "",
+      email: !newComment.email.trim() ? "Please enter your email." : "",
+      content: !newComment.content.trim() ? "Please enter a comment." : "",
+    };
 
-    if (!newComment.name.trim()) {
-      newError.name = "Please enter your name.";
-      isValid = false;
-    }
-    if (!newComment.email.trim()) {
-      newError.email = "Please enter your email.";
-      isValid = false;
-    }
-    if (!newComment.content.trim()) {
-      newError.content = "Please enter a comment.";
-      isValid = false;
-    }
+    setFormError(errors);
 
-    setFormError(newError);
-    if (!isValid) return;
+    if (Object.values(errors).some(Boolean)) return;
 
     const payload = {
       ...newComment,
@@ -54,7 +45,7 @@ const BlogComments = () => {
       await addComment(payload);
       setNewComment({ name: "", email: "", content: "" });
     } catch (err) {
-      console.error("Lỗi khi gửi comment:", err);
+      console.error("Error submitting comment:", err);
     }
   };
 
@@ -62,25 +53,11 @@ const BlogComments = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div className="blog-comments">
+    <section className="blog-comments">
       <h3 className="comment-title">Comments ({comments.length})</h3>
 
-      {/* Danh sách comment */}
-      <ul className="comment-list">
-        {comments.map((cmt) => (
-          <li key={cmt.id} className="comment-item">
-            <div className="comment-body">
-              <h4 className="comment-name">{cmt.name}</h4>
-              <span className="comment-date">{cmt.date}</span>
-              <p className="comment-text">{cmt.content}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
-
-      {/* Form bình luận nằm dưới danh sách */}
       <form className="comment-form" onSubmit={handleSubmit}>
-        <h4>Leave a Comment</h4>
+        <h4 className="comment-form-title">Leave a Comment</h4>
         <FormField
           label="Name"
           name="name"
@@ -120,7 +97,19 @@ const BlogComments = () => {
           Post Comment
         </Button>
       </form>
-    </div>
+
+      <ul className="comment-list">
+        {comments.map((cmt) => (
+          <li key={cmt.id} className="comment-item">
+            <div className="comment-body">
+              <h5 className="comment-name">{cmt.name}</h5>
+              <span className="comment-date">{cmt.date}</span>
+              <p className="comment-text">{cmt.content}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 
