@@ -1,0 +1,227 @@
+/* ================= Desktop Menu ================= */
+.nav-menu,
+.menu-level {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 0;
+  font-size: 15px;
+  font-weight: 500;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-menu > .menu-item {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.menu-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 8px 16px;
+  width: 100%;
+  justify-content: center;
+  transition: color 0.25s ease;
+}
+.navbar.scrolled .menu-link {
+  color: var(--color-black);
+}
+.menu-link.active,
+.menu-link:hover {
+  color: var(--color-primary);
+}
+
+/* ================= Desktop Submenu ================= */
+.menu-item {
+  position: relative;
+}
+.submenu-icon {
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: var(--color-white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  display: none;
+  flex-direction: column;
+  min-width: 180px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  z-index: 999;
+  transition: all 0.25s ease;
+}
+.menu-item:hover > .submenu {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.submenu a {
+  color: var(--color-black);
+  padding: 10px 16px;
+  display: block;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.submenu a:hover {
+  background: #f7f7f7;
+  color: var(--color-primary);
+}
+
+/* ================= Nested submenu ================= */
+.submenu .submenu {
+  top: 100%;
+  left: 0;
+  background: var(--color-white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  display: none;
+  flex-direction: column;
+  min-width: 180px;
+  padding: 0.5rem 0;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+.submenu .menu-item:hover > .submenu {
+  display: flex;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ================= Mobile Items ================= */
+.mobile-item {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #eee;
+}
+.mobile-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.mobile-item-header:hover {
+  background: #f9f9f9;
+}
+.mobile-item-header span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #666;
+}
+.mobile-item-header span.active {
+  color: var(--color-primary);
+}
+.chevron {
+  margin-left: 8px;
+  color: #999;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+.chevron.open {
+  transform: rotate(180deg);
+  color: var(--color-primary);
+}
+
+/* ================= Mobile Submenu ================= */
+.mobile-submenu {
+  display: flex;
+  flex-direction: column;
+  background: #fcfcfc;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.35s ease;
+}
+.mobile-submenu.open {
+  max-height: 500px;
+  opacity: 1;
+}
+.mobile-submenu a {
+  display: block;
+  font-size: 15px;
+  color: #666;
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: background 0.25s ease, color 0.25s ease, padding-left 0.25s ease;
+}
+.mobile-submenu a:hover,
+.mobile-submenu a.active {
+  background: #f5f5f5;
+  color: var(--color-primary);
+}
+
+/* ================= Indentation & alternating background ================= */
+.mobile-menu-level.level-0 .mobile-item-header {
+  background: #fafafa;
+}
+.mobile-menu-level.level-1 .mobile-item-header {
+  background: #f7f7f7;
+  padding-left: 28px;
+}
+.mobile-menu-level.level-2 .mobile-item-header {
+  background: #f5f5f5;
+  padding-left: 44px;
+}
+.mobile-menu-level.level-3 .mobile-item-header {
+  background: #f2f2f2;
+  padding-left: 60px;
+}
+.mobile-menu-level.level-0 .mobile-submenu a {
+  padding-left: 48px;
+}
+.mobile-menu-level.level-1 .mobile-submenu a {
+  padding-left: 72px;
+}
+.mobile-menu-level.level-2 .mobile-submenu a {
+  padding-left: 96px;
+}
+.mobile-menu-level.level-3 .mobile-submenu a {
+  padding-left: 120px;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+  .mobile-item-header {
+    padding: 12px 16px;
+  }
+  .mobile-submenu a {
+    font-size: 14px;
+    padding: 10px 16px 10px 40px;
+  }
+}
+
+@media (max-width: 576px) {
+  .mobile-submenu a {
+    font-size: 13.5px;
+    padding: 10px 14px 10px 36px;
+  }
+}
+
+@media (max-width: 400px) {
+  .mobile-item-header span {
+    font-size: 14.5px;
+  }
+  .chevron {
+    transform: scale(0.9);
+  }
+  .mobile-submenu a {
+    font-size: 13px;
+    padding: 9px 12px 9px 32px;
+  }
+}
