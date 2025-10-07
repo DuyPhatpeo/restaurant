@@ -53,18 +53,32 @@
 .nav-menu,
 .menu-level {
   display: flex;
-  gap: 24px;
+  /* Make the menu take available horizontal space so items don't depend on count */
+  flex: 1 1 auto;
+  gap: 0; /* spacing handled by item paddings to keep even distribution */
   font-size: 15px;
   font-weight: 500;
+  align-items: center;
+  justify-content: center; /* center as default; items will stretch below */
+}
+
+/* make each top-level menu item flexible so items distribute evenly */
+.nav-menu > .menu-item {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: center;
 }
 
 .menu-link {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 4px;
   color: var(--color-white);
   text-decoration: none;
-  padding: 8px 12px;
+  /* ensure clickable area is wide and consistent */
+  padding: 8px 16px;
+  width: 100%;
+  justify-content: center;
   transition: color 0.25s ease;
 }
 .navbar.scrolled .menu-link {
@@ -183,13 +197,14 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   border-radius: 0 0 12px 12px;
 }
+
 .mobile-menu.open {
   display: flex;
   visibility: visible;
-  max-height: 93vh;
+  height: 100vh;
+  max-height: 100vh;
   opacity: 1;
   overflow-y: auto;
-  padding: 1rem 0 5rem;
 }
 
 /* ================= Mobile Items ================= */
