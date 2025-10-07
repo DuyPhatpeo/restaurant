@@ -70,7 +70,7 @@
 }
 .menu-link.active,
 .menu-link:hover {
-  color: var(--color-primary, #d63384);
+  color: var(--color-primary);
 }
 
 /* ================= Submenu ================= */
@@ -120,7 +120,7 @@
   color: var(--color-primary, #d63384);
 }
 
-/* --- Submenu con hiển thị DƯỚI (không ngang) --- */
+/* --- Submenu con hiển thị DƯỚI --- */
 .submenu .submenu {
   top: 100%;
   left: 0;
@@ -242,7 +242,7 @@
   color: #333;
   border-bottom: 1px solid #eee;
   text-decoration: none;
-  padding: 12px 20px;
+  padding: 12px 20px 12px 48px; /* tăng khoảng cách lề trái */
   transition: background 0.2s ease, color 0.2s ease;
 }
 .mobile-submenu a:hover,
@@ -252,6 +252,19 @@
 }
 
 /* ================= Nested Levels ================= */
+.mobile-menu-level.level-0 {
+  --level: 0;
+}
+.mobile-menu-level.level-1 {
+  --level: 1;
+}
+.mobile-menu-level.level-2 {
+  --level: 2;
+}
+.mobile-menu-level.level-3 {
+  --level: 3;
+}
+
 .mobile-menu-level[class*="level-"] .mobile-submenu {
   background: #fafafa;
 }
@@ -265,7 +278,7 @@
   background: #ebebeb;
 }
 
-/* Thụt trái theo cấp độ (chung 1 quy tắc gọn gàng) */
+/* Thụt trái theo cấp độ submenu */
 .mobile-menu-level[class*="level-"] .mobile-submenu a {
-  padding-left: calc(40px + (var(--level, 0) * 20px));
+  padding-left: calc(48px + (var(--level, 0) * 24px)); /* thụt sâu rõ hơn */
 }

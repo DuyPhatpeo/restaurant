@@ -11,25 +11,37 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState([]);
 
-  // 🌀 Scroll to top khi đổi route
+  /* 🌀 Cuộn lên đầu khi đổi route */
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    setMobileOpen(false); // đóng menu khi đổi route
+    setOpenSubmenu([]); // đóng tất cả submenu
   }, [location.pathname]);
 
-  // 🎯 Theo dõi khi user cuộn trang
+  /* 🎯 Theo dõi cuộn trang để đổi background navbar */
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* 📱 Tự đóng menu khi resize về desktop */
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 992 && mobileOpen) {
+        setMobileOpen(false);
+        setOpenSubmenu([]);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [mobileOpen]);
+
+  /* ================= MENU ITEMS ================= */
   const menuItems = [
     { label: "Home", link: "/" },
     { label: "About", link: "/about" },
-    {
-      label: "Menu",
-      link: "/menu",
-    },
+    { label: "Menu", link: "/menu" },
     {
       label: "Stories",
       submenu: [
@@ -46,11 +58,12 @@ const Header = () => {
     { label: "Contact", link: "/contact" },
   ];
 
+  /* 🧭 Điều hướng */
   const goTo = (path) => {
     navigate(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
     setMobileOpen(false);
-    setOpenSubmenu(null);
+    setOpenSubmenu([]);
   };
 
   return (
