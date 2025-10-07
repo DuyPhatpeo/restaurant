@@ -97,7 +97,7 @@
 }
 .submenu .menu-link:hover,
 .submenu .menu-link.active {
-  background: rgba(var(--color-primary), 0.08);
+  background: var(--color-primary);
   color: var(--color-primary) !important;
 }
 
