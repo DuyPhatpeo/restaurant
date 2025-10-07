@@ -9,7 +9,7 @@ const Header = () => {
 
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState(null);
+  const [openSubmenu, setOpenSubmenu] = useState([]);
 
   // 🌀 Scroll to top khi đổi route
   useEffect(() => {

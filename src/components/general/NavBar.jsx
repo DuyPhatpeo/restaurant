@@ -2,9 +2,98 @@ import { useLocation, Link } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import Button from "@components/ui/Button";
 
+const RecursiveMenu = ({
+  items = [],
+  location,
+  goTo,
+  level = 0,
+  isMobile = false,
+  openSubmenu = [],
+  setOpenSubmenu,
+  parentKey = "",
+}) => {
+  if (!Array.isArray(items)) return null;
+
+  return (
+    <div
+      className={`${
+        isMobile ? "mobile-menu-level" : "menu-level"
+      } level-${level}`}
+    >
+      {items.map((item, idx) => {
+        const key = `${parentKey}${idx}`;
+        const hasSubmenu = Array.isArray(item.submenu);
+        const isOpen = openSubmenu.includes(key);
+        const isActive = location?.pathname === item.link;
+
+        const handleClick = (e) => {
+          e.stopPropagation();
+
+          if (hasSubmenu && isMobile) {
+            setOpenSubmenu((prev) =>
+              isOpen ? prev.filter((k) => k !== key) : [...prev, key]
+            );
+          } else if (item.link) {
+            goTo(item.link);
+            if (isMobile) setOpenSubmenu([]); // đóng hết menu khi điều hướng
+          }
+        };
+
+        return (
+          <div key={key} className={`menu-item level-${level}`}>
+            {/* Header / Link */}
+            {isMobile ? (
+              <div className="mobile-item-header" onClick={handleClick}>
+                <span className={isActive ? "active" : ""}>{item.label}</span>
+                {hasSubmenu && (
+                  <ChevronDown
+                    size={16}
+                    className={`chevron ${isOpen ? "open" : ""}`}
+                  />
+                )}
+              </div>
+            ) : (
+              <Link
+                to={item.link || "#"}
+                className={`menu-link ${isActive ? "active" : ""}`}
+                onClick={hasSubmenu ? undefined : handleClick}
+              >
+                {item.label}
+                {hasSubmenu && (
+                  <ChevronDown size={14} className="submenu-icon" />
+                )}
+              </Link>
+            )}
+
+            {/* Submenu */}
+            {hasSubmenu && (
+              <div
+                className={`${isMobile ? "mobile-submenu" : "submenu"} ${
+                  isOpen ? "open" : ""
+                }`}
+              >
+                <RecursiveMenu
+                  items={item.submenu}
+                  location={location}
+                  goTo={goTo}
+                  level={level + 1}
+                  isMobile={isMobile}
+                  openSubmenu={openSubmenu}
+                  setOpenSubmenu={setOpenSubmenu}
+                  parentKey={`${key}-`}
+                />
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
 const NavBar = ({
-  scrolled,
-  menuItems,
+  scrolled = false,
+  menuItems = [],
   mobileOpen,
   setMobileOpen,
   openSubmenu,
@@ -12,6 +101,14 @@ const NavBar = ({
   goTo,
 }) => {
   const location = useLocation();
+
+  const toggleMobileMenu = () => {
+    setMobileOpen((prev) => {
+      const next = !prev;
+      if (!next) setOpenSubmenu([]); // đóng submenu khi đóng mobile menu
+      return next;
+    });
+  };
 
   return (
     <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
@@ -24,10 +121,10 @@ const NavBar = ({
           Feliciano
         </div>
 
-        {/* Toggle Menu */}
+        {/* Mobile Toggle */}
         <div
           className={`mobile-toggle ${scrolled ? "scrolled" : ""}`}
-          onClick={() => setMobileOpen(!mobileOpen)}
+          onClick={toggleMobileMenu}
         >
           <div className="mobile-toggle-inner">
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -38,36 +135,13 @@ const NavBar = ({
         {/* Desktop Menu */}
         <div className="nav-right">
           <div className="nav-menu">
-            {menuItems.map((item, idx) => (
-              <div key={idx} className="nav-item">
-                <Link
-                  to={item.link}
-                  className={location.pathname === item.link ? "active" : ""}
-                >
-                  {item.label}
-                  {item.submenu && (
-                    <ChevronDown size={14} className="submenu-icon" />
-                  )}
-                </Link>
-
-                {item.submenu && (
-                  <div className="submenu">
-                    {item.submenu.map((sub, sIdx) => (
-                      <Link
-                        key={sIdx}
-                        to={sub.link}
-                        className={
-                          location.pathname === sub.link ? "active" : ""
-                        }
-                        onClick={() => goTo(sub.link)}
-                      >
-                        {sub.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
+            <RecursiveMenu
+              items={menuItems}
+              location={location}
+              goTo={goTo}
+              openSubmenu={openSubmenu}
+              setOpenSubmenu={setOpenSubmenu}
+            />
           </div>
           <Button onClick={() => goTo("/reservation")}>Book a table</Button>
         </div>
@@ -75,47 +149,14 @@ const NavBar = ({
 
       {/* Mobile Menu */}
       <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
-        {menuItems.map((item, idx) => (
-          <div key={idx} className="mobile-item">
-            <div
-              className="mobile-item-header"
-              onClick={() =>
-                item.submenu
-                  ? setOpenSubmenu(openSubmenu === idx ? null : idx)
-                  : goTo(item.link)
-              }
-            >
-              <span className={location.pathname === item.link ? "active" : ""}>
-                {item.label}
-              </span>
-              {item.submenu && (
-                <ChevronDown
-                  size={18}
-                  className={`chevron ${openSubmenu === idx ? "open" : ""}`}
-                />
-              )}
-            </div>
-
-            {item.submenu && (
-              <div
-                className={`mobile-submenu ${
-                  openSubmenu === idx ? "open" : ""
-                }`}
-              >
-                {item.submenu.map((sub, sIdx) => (
-                  <Link
-                    key={sIdx}
-                    to={sub.link}
-                    className={location.pathname === sub.link ? "active" : ""}
-                    onClick={() => goTo(sub.link)}
-                  >
-                    {sub.label}
-                  </Link>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
+        <RecursiveMenu
+          items={menuItems}
+          location={location}
+          goTo={goTo}
+          isMobile
+          openSubmenu={openSubmenu}
+          setOpenSubmenu={setOpenSubmenu}
+        />
         <Button onClick={() => goTo("/reservation")}>Book a table</Button>
       </div>
     </div>

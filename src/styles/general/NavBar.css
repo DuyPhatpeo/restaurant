@@ -15,18 +15,17 @@
   font-size: 26px;
   font-weight: 900;
   letter-spacing: 0.05em;
-  cursor: pointer;
   display: flex;
   align-items: center;
   color: var(--color-white);
+  cursor: pointer;
   transition: color 0.3s ease;
 }
-
 .logo.scrolled {
   color: var(--color-black);
 }
 
-/* ================= Nav Container ================= */
+/* ================= Container ================= */
 .nav-container {
   max-width: 1280px;
   margin: 0 auto;
@@ -37,51 +36,47 @@
   transition: all 0.3s ease-in-out;
 }
 
-/* ================= Desktop Menu ================= */
+/* ================= Desktop ================= */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 30px;
 }
-
 .nav-right button {
   display: block;
 }
-
 @media (max-width: 992px) {
   .nav-right {
     display: none;
   }
 }
 
-.nav-menu {
+.nav-menu,
+.menu-level {
   display: flex;
-  gap: var(--spacing-lg, 24px);
+  gap: 24px;
   font-size: 15px;
   font-weight: 500;
 }
 
-.nav-menu a {
+.menu-link {
   color: var(--color-white);
   text-decoration: none;
   padding: 8px 12px;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
-
-.navbar.scrolled .nav-menu a {
+.navbar.scrolled .menu-link {
   color: var(--color-black);
 }
-
-.nav-menu a.active,
-.nav-menu a:hover {
+.menu-link.active,
+.menu-link:hover {
   color: var(--color-primary, #d63384);
 }
 
-/* ================= Desktop Submenu ================= */
-.nav-item {
+/* ================= Submenu ================= */
+.menu-item {
   position: relative;
 }
-
 .submenu-icon {
   margin-left: 4px;
   vertical-align: middle;
@@ -94,35 +89,55 @@
   background: var(--color-white);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   border-radius: 6px;
+  display: flex;
   flex-direction: column;
   min-width: 180px;
-  z-index: 999;
   padding: 0.5rem 0;
   opacity: 0;
   transform: translateY(10px);
+  pointer-events: none;
+  z-index: 999;
   transition: all 0.25s ease;
-  max-height: 0;
-  overflow: hidden;
 }
 
-.nav-item:hover .submenu {
-  display: flex;
+.menu-item:hover > .submenu {
   opacity: 1;
   transform: translateY(0);
-  max-height: 300px;
+  pointer-events: auto;
 }
 
+/* Submenu item */
 .submenu a {
   color: var(--color-black);
   padding: 10px 16px;
   text-decoration: none;
   display: block;
+  white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease;
 }
-
 .submenu a:hover {
   background: #f7f7f7;
   color: var(--color-primary, #d63384);
+}
+
+/* --- Submenu con hiển thị DƯỚI (không ngang) --- */
+.submenu .submenu {
+  top: 100%;
+  left: 0;
+  background: var(--color-white);
+  border-radius: 6px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  min-width: 180px;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.menu-item:hover > .submenu > .menu-item:hover > .submenu {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 /* ================= Mobile Toggle ================= */
@@ -132,17 +147,14 @@
   color: var(--color-white);
   transition: color 0.3s ease;
 }
-
 .mobile-toggle.scrolled {
   color: var(--color-black);
 }
-
 @media (max-width: 992px) {
   .mobile-toggle {
     display: block;
   }
 }
-
 .mobile-toggle-inner {
   display: flex;
   align-items: center;
@@ -156,57 +168,31 @@
   top: 100%;
   left: 0;
   width: 100%;
-  display: flex;
-  flex-direction: column;
   background: #fafafa;
-  gap: 1rem;
+  flex-direction: column;
   overflow: hidden;
   visibility: hidden;
   max-height: 0;
   opacity: 0;
   z-index: 1000;
   padding: 0;
-  transition: max-height 0.35s ease, opacity 0.3s ease, visibility 0.3s ease,
-    padding 0.3s ease;
-  -webkit-overflow-scrolling: touch;
+  transition: all 0.35s ease;
 }
-
 .mobile-menu.open {
+  display: flex;
+  visibility: visible;
   max-height: 93vh;
   opacity: 1;
   overflow-y: auto;
-  visibility: visible;
   padding: 1rem 0 5rem;
 }
 
-/* ================= Mobile Menu Items ================= */
-.mobile-menu a {
-  color: var(--color-black);
-  font-size: 18px;
-  font-weight: 500;
-  text-decoration: none;
-  padding: 12px 20px;
-  border-bottom: 1px solid #f0f0f0;
-  transition: background 0.2s ease, color 0.2s ease-in-out;
-}
-
-.mobile-menu a:hover,
-.mobile-menu a.active {
-  color: var(--color-primary);
-  background: #f9f9f9;
-}
-
-.mobile-menu button {
-  margin: 12px 20px;
-}
-
-/* ================= Mobile Item ================= */
+/* ================= Mobile Items ================= */
 .mobile-item {
   display: flex;
   flex-direction: column;
   border-bottom: 1px solid #eee;
 }
-
 .mobile-item-header {
   display: flex;
   justify-content: space-between;
@@ -215,25 +201,20 @@
   cursor: pointer;
   transition: background 0.2s ease;
 }
-
 .mobile-item-header:hover {
   background: #f9f9f9;
 }
-
 .mobile-item-header span {
   font-weight: 600;
   font-size: 16px;
   color: var(--color-black);
 }
-
 .mobile-item-header span.active {
-  color: var(--color-primary, #d63384);
+  color: var(--color-primary);
 }
-
 .chevron {
   transition: transform 0.3s ease;
 }
-
 .chevron.open {
   transform: rotate(180deg);
 }
@@ -246,25 +227,45 @@
   max-height: 0;
   overflow: hidden;
   opacity: 0;
-  transition: max-height 0.35s ease, opacity 0.3s ease;
+  transition: all 0.35s ease;
 }
-
 .mobile-submenu.open {
   max-height: 400px;
   opacity: 1;
+  border-left: 3px solid var(--color-primary);
 }
 
+/* --- Link trong submenu --- */
 .mobile-submenu a {
-  padding: 12px 20px 12px 40px;
+  display: block;
   font-size: 15px;
   color: #333;
   border-bottom: 1px solid #eee;
   text-decoration: none;
+  padding: 12px 20px;
   transition: background 0.2s ease, color 0.2s ease;
 }
-
 .mobile-submenu a:hover,
 .mobile-submenu a.active {
   background: #f2f2f2;
-  color: var(--color-primary, #d63384);
+  color: var(--color-primary);
+}
+
+/* ================= Nested Levels ================= */
+.mobile-menu-level[class*="level-"] .mobile-submenu {
+  background: #fafafa;
+}
+.mobile-menu-level.level-1 .mobile-submenu {
+  background: #f5f5f5;
+}
+.mobile-menu-level.level-2 .mobile-submenu {
+  background: #f0f0f0;
+}
+.mobile-menu-level.level-3 .mobile-submenu {
+  background: #ebebeb;
+}
+
+/* Thụt trái theo cấp độ (chung 1 quy tắc gọn gàng) */
+.mobile-menu-level[class*="level-"] .mobile-submenu a {
+  padding-left: calc(40px + (var(--level, 0) * 20px));
 }
