@@ -220,11 +220,13 @@
   -webkit-overflow-scrolling: touch;
 }
 
+/* Khi mở menu */
 .mobile-menu.open {
-  max-height: 100vh;
+  max-height: 93vh;
   opacity: 1;
   overflow-y: auto;
   visibility: visible;
+  padding: 1rem 0 5rem;
 }
 
 /* ================= Mobile Menu Items ================= */
