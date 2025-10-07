@@ -11,21 +11,18 @@ const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openSubmenu, setOpenSubmenu] = useState([]);
 
-  /* 🌀 Cuộn lên đầu khi đổi route */
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-    setMobileOpen(false); // đóng menu khi đổi route
-    setOpenSubmenu([]); // đóng tất cả submenu
+    setMobileOpen(false);
+    setOpenSubmenu([]);
   }, [location.pathname]);
 
-  /* 🎯 Theo dõi cuộn trang để đổi background navbar */
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  /* 📱 Tự đóng menu khi resize về desktop */
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 992 && mobileOpen) {
