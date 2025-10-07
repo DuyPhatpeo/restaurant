@@ -61,7 +61,6 @@ const Header = () => {
     { label: "Contact", link: "/contact" },
   ];
 
-  /* 🧭 Điều hướng */
   const goTo = (path) => {
     navigate(path);
     window.scrollTo({ top: 0, behavior: "smooth" });
