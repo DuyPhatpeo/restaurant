@@ -42,17 +42,17 @@ const Header = () => {
     {
       label: "Stories",
       submenu: [
-        { label: "Blog", link: "/blog" },
         {
           label: "Events",
           submenu: [
-            { label: "Workshops", link: "/" },
+            { label: "Workshops", link: "/Workshops" },
             {
               label: "Meetups",
-              link: "/",
+              link: "/Meetups",
             },
           ],
         },
+        { label: "Blog", link: "/blog" },
       ],
     },
     { label: "Contact", link: "/contact" },
