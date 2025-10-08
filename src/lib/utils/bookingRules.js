@@ -1,9 +1,6 @@
 // @lib/utils/bookingRules.js
 
-export const BLOCKED_TIME_RANGES = [
-  { start: [20, 0], end: [24, 0] },
-  { start: [0, 0], end: [9, 0] },
-];
+export const BLOCKED_TIME_RANGES = [{ start: [20, 0], end: [9, 0] }];
 
 export const BLOCKED_DAYS = [0, 6];
 
