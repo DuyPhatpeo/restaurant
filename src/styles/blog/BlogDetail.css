@@ -74,12 +74,30 @@
 }
 
 /* ====== Tiêu đề phụ trong nội dung ====== */
+.detail-body h1,
 .detail-body h2,
 .detail-body h3,
 .detail-body h4 {
   margin: 32px 0 16px;
   color: #222;
   font-weight: 700;
+  line-height: 1.4;
+}
+
+.detail-body h1 {
+  font-size: 2rem;
+}
+
+.detail-body h2 {
+  font-size: 1.6rem;
+}
+
+.detail-body h3 {
+  font-size: 1.3rem;
+}
+
+.detail-body h4 {
+  font-size: 1.1rem;
 }
 
 .detail-body ul,
