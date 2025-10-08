@@ -46,7 +46,13 @@
 .reservation-form form button {
   grid-column: span 2;
 }
-/* Error text */
+.reservation-action {
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .reservation-error-text {
   color: #e74c3c;
   font-size: 14px;
@@ -54,7 +60,6 @@
   line-height: 1.4;
   animation: fadeIn 0.3s ease;
 }
-
 /* ================= Responsive ================= */
 @media (max-width: 1400px) {
   .reservation #map {
@@ -94,7 +99,13 @@
     padding: 20px 15px;
   }
   .reservation-form form {
-    gap: 12px; /* Giảm khoảng cách cho mobile */
+    gap: 12px;
+  }
+  .reservation-action {
+    align-items: center;
+  }
+  .reservation-error-text {
+    text-align: center;
   }
 }
 
@@ -104,9 +115,9 @@
   }
   .reservation #map {
     min-height: 250px;
-    aspect-ratio: 4 / 3; /* Hợp lý hơn cho mobile nhỏ */
+    aspect-ratio: 4 / 3;
   }
   .reservation-form form {
-    gap: 8px; /* Thu gọn gap cho màn bé */
+    gap: 8px;
   }
 }
