@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { createReservation } from "@api/reservationApi";
+import { isBookingAllowedNow, isValidTime } from "@lib/utils/bookingRules";
 
 export default function useReservationForm() {
   const initialFormData = {
@@ -16,18 +17,12 @@ export default function useReservationForm() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
-  // Cập nhật form data và xóa lỗi tương ứng
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setFormData((prev) => ({ ...prev, [name]: value }));
-
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
-  // Validate form và trả về object lỗi
   const validate = () => {
     const newErrors = {};
 
@@ -35,17 +30,24 @@ export default function useReservationForm() {
       newErrors.fullName = "Full name is required.";
     if (!formData.email.trim()) newErrors.email = "Email is required.";
     else if (!/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Email is invalid.";
+      newErrors.email = "Invalid email format.";
+
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required.";
     if (!formData.date) newErrors.date = "Date is required.";
     if (!formData.time) newErrors.time = "Time is required.";
+    else if (!isValidTime(formData.time, formData.date))
+      newErrors.time = "Booking not allowed at this time or day.";
 
     return newErrors;
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!isBookingAllowedNow()) {
+      toast.error("Booking not allowed at this time or day.");
+      return;
+    }
 
     const validationErrors = validate();
     if (Object.keys(validationErrors).length) {
@@ -63,8 +65,6 @@ export default function useReservationForm() {
 
       await createReservation(payload);
       toast.success("Reservation created successfully!");
-
-      // Reset form và xóa lỗi
       setFormData(initialFormData);
       setErrors({});
     } catch (err) {
@@ -81,5 +81,6 @@ export default function useReservationForm() {
     loading,
     handleChange,
     handleSubmit,
+    isBookingAllowedNow,
   };
 }

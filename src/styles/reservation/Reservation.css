@@ -46,6 +46,14 @@
 .reservation-form form button {
   grid-column: span 2;
 }
+/* Error text */
+.error-text {
+  color: #e74c3c;
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.4;
+  animation: fadeIn 0.3s ease;
+}
 
 /* ================= Responsive ================= */
 @media (max-width: 1400px) {
