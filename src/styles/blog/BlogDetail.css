@@ -58,6 +58,8 @@
   height: auto;
   display: block;
   margin: 24px auto;
+  object-fit: contain;
+  max-height: 400px;
 }
 
 /* ====== Tiêu đề phụ trong nội dung ====== */
