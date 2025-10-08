@@ -79,7 +79,7 @@ export default function Reservation() {
             </Button>
 
             {!bookingAllowed && (
-              <p className="error-text">
+              <p className="reservation-error-text">
                 Booking is unavailable from <b>8:00 PM to 9:00 AM</b> and on
                 weekends. Please try again during our operating hours.
               </p>

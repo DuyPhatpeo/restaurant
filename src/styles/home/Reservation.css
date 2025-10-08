@@ -67,7 +67,7 @@
 .reservation-wrapper .reservation-button {
   padding: 14px 32px;
 }
-.error-text {
+.form-reservation-error-text {
   color: #e74c3c;
   font-size: 14px;
   margin-top: 8px;
