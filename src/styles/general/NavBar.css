@@ -98,9 +98,10 @@
   display: flex;
   visibility: visible;
   height: 95vh;
-  max-height: 93vh;
+  max-height: 95vh;
   opacity: 1;
   overflow-y: auto;
+  padding-bottom: 50px;
 }
 
 /* ================= Book Button (Mobile) ================= */
