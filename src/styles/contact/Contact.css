@@ -81,6 +81,19 @@
 }
 
 @media (max-width: 768px) {
+  .contact-wrapper {
+    flex-direction: column;
+  }
+
+  .contact-map {
+    order: -1;
+    margin-bottom: 20px;
+    height: 300px;
+  }
+
+  .contact-form {
+    order: 0; /* form đứng sau map */
+  }
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 15px;
