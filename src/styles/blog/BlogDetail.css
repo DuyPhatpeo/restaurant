@@ -212,7 +212,6 @@
   height: auto;
 }
 
-/* Fallback cho trình duyệt không hỗ trợ aspect-ratio */
 @supports not (aspect-ratio: 16 / 9) {
   .detail-body iframe {
     position: relative;
@@ -236,17 +235,6 @@
   object-fit: cover;
 }
 
-/* ====== Caption giả định từ thẻ p ngay sau video/iframe ====== */
-.detail-body iframe + p,
-.detail-body video + p {
-  font-size: 0.9rem;
-  color: #777;
-  margin-top: 8px;
-  text-align: center;
-  font-style: italic;
-}
-
-/* ====== Responsive nhỏ hơn: giảm margin ====== */
 @media (max-width: 768px) {
   .detail-body iframe,
   .detail-body video {
