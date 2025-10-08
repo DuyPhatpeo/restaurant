@@ -2,7 +2,7 @@
 
 export const BLOCKED_TIME_RANGES = [{ start: [20, 0], end: [9, 0] }];
 
-export const BLOCKED_DAYS = [0, 6, 3];
+export const BLOCKED_DAYS = [0, 6];
 
 const toMinutes = ([h, m]) => h * 60 + m;
 
