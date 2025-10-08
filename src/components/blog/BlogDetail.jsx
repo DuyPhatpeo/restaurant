@@ -55,14 +55,14 @@ const BlogDetailPage = () => {
               <span>{blog.date}</span> • <span>{blog.author}</span>
             </p>
 
-            {blog.image && (
+            {/* {blog.image && (
               <img
                 src={blog.image}
                 alt={blog.title}
                 className="detail-image"
                 loading="lazy"
               />
-            )}
+            )} */}
 
             <div className="detail-body">
               <ReactMarkdown>{blog.content}</ReactMarkdown>
