@@ -194,3 +194,62 @@
     overflow-x: auto;
   }
 }
+
+/* ====== Video & Iframe nhúng trong nội dung ====== */
+.detail-body iframe,
+.detail-body video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: none;
+  margin: 24px 0;
+  background: #000;
+}
+
+/* ====== Responsive 16:9 ratio cho iframe (YouTube, Vimeo, v.v.) ====== */
+.detail-body iframe {
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* Fallback cho trình duyệt không hỗ trợ aspect-ratio */
+@supports not (aspect-ratio: 16 / 9) {
+  .detail-body iframe {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+  }
+
+  .detail-body iframe[src] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+}
+
+/* ====== Video ====== */
+.detail-body video {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ====== Caption giả định từ thẻ p ngay sau video/iframe ====== */
+.detail-body iframe + p,
+.detail-body video + p {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 8px;
+  text-align: center;
+  font-style: italic;
+}
+
+/* ====== Responsive nhỏ hơn: giảm margin ====== */
+@media (max-width: 768px) {
+  .detail-body iframe,
+  .detail-body video {
+    margin: 16px 0;
+  }
+}
