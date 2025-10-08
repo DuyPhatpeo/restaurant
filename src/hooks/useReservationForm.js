@@ -26,6 +26,7 @@ export default function useReservationForm() {
   const validate = () => {
     const newErrors = {};
 
+    // ---- Basic checks ----
     if (!formData.fullName.trim())
       newErrors.fullName = "Full name is required.";
     if (!formData.email.trim()) newErrors.email = "Email is required.";
@@ -35,8 +36,24 @@ export default function useReservationForm() {
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required.";
     if (!formData.date) newErrors.date = "Date is required.";
     if (!formData.time) newErrors.time = "Time is required.";
-    else if (!isValidTime(formData.time, formData.date))
-      newErrors.time = "Booking not allowed at this time or day.";
+
+    // ---- Advanced checks ----
+    if (formData.date) {
+      const today = new Date();
+      const selectedDate = new Date(formData.date);
+
+      // Không cho chọn ngày trong quá khứ
+      if (selectedDate.setHours(0, 0, 0, 0) < today.setHours(0, 0, 0, 0)) {
+        newErrors.date = "You cannot select a past date.";
+      }
+    }
+
+    // Kiểm tra thời gian có hợp lệ trong ngày chọn không
+    if (formData.date && formData.time) {
+      if (!isValidTime(formData.time, formData.date)) {
+        newErrors.time = "Invalid booking time for this date.";
+      }
+    }
 
     return newErrors;
   };
