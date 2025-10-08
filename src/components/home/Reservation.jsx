@@ -5,10 +5,15 @@ import Button from "@components/ui/Button";
 import useReservationForm from "@hooks/useReservationForm";
 
 export default function ReservationForm() {
-  const { formData, errors, loading, handleChange, handleSubmit } =
-    useReservationForm();
+  const {
+    formData,
+    errors,
+    loading,
+    handleChange,
+    handleSubmit,
+    isBookingAllowedNow,
+  } = useReservationForm();
 
-  // Các field config
   const fields = [
     {
       label: "Full Name",
@@ -43,6 +48,9 @@ export default function ReservationForm() {
     { label: "Reservation Time", name: "time", type: "time" },
   ];
 
+  // Kiểm tra giờ & ngày có cho phép đặt bàn không
+  const bookingAllowed = isBookingAllowedNow();
+
   return (
     <section className="reservation-section">
       <div className="reservation-wrapper">
@@ -61,15 +69,22 @@ export default function ReservationForm() {
               options={field.options}
               value={formData[field.name]}
               onChange={handleChange}
-              required={field.name != "guests"}
+              required={field.name !== "guests"}
               error={errors[field.name]}
             />
           ))}
 
           <div className="reservation-action">
-            <Button hover type="submit" disabled={loading}>
+            <Button hover type="submit" disabled={loading || !bookingAllowed}>
               {loading ? "Processing..." : "Make a Reservation"}
             </Button>
+
+            {!bookingAllowed && (
+              <p className="error-text">
+                Booking is unavailable from <b>8:00 PM – 9:00 AM</b> and on
+                weekends. Please try again during business hours.
+              </p>
+            )}
           </div>
         </form>
       </div>
