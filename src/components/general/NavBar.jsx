@@ -16,26 +16,30 @@ const NavBar = ({
 }) => {
   const location = useLocation();
 
+  // Đóng submenu khi đóng mobile menu
   const toggleMobileMenu = () => {
     setMobileOpen((prev) => {
       const next = !prev;
-      if (!next) setOpenSubmenu([]); // đóng submenu khi đóng mobile menu
+      if (!next) setOpenSubmenu([]);
       return next;
     });
   };
 
+  const handleGoHome = () => goTo("/");
+  const handleBookTable = () => goTo("/reservation");
+
   return (
     <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="nav-container">
-        {/* Logo */}
+        {/* ===== Logo ===== */}
         <div
           className={`logo ${scrolled ? "scrolled" : ""}`}
-          onClick={() => goTo("/")}
+          onClick={handleGoHome}
         >
           Feliciano
         </div>
 
-        {/* Mobile Toggle */}
+        {/* ===== Mobile Toggle ===== */}
         <div
           className={`mobile-toggle ${scrolled ? "scrolled" : ""}`}
           onClick={toggleMobileMenu}
@@ -46,7 +50,7 @@ const NavBar = ({
           </div>
         </div>
 
-        {/* Desktop Menu */}
+        {/* ===== Desktop Menu ===== */}
         <div className="nav-right">
           <div className="nav-menu">
             <RecursiveMenu
@@ -57,11 +61,11 @@ const NavBar = ({
               setOpenSubmenu={setOpenSubmenu}
             />
           </div>
-          <Button onClick={() => goTo("/reservation")}>Book a table</Button>
+          <Button onClick={handleBookTable}>Book a table</Button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* ===== Mobile Menu ===== */}
       <div className={`mobile-menu ${mobileOpen ? "open" : ""}`}>
         <RecursiveMenu
           items={menuItems}
@@ -72,7 +76,7 @@ const NavBar = ({
           setOpenSubmenu={setOpenSubmenu}
         />
         <div className="mobile-book-btn">
-          <Button onClick={() => goTo("/reservation")}>Book a table</Button>
+          <Button onClick={handleBookTable}>Book a table</Button>
         </div>
       </div>
     </div>

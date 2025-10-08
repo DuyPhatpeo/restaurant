@@ -1,3 +1,4 @@
+// src/components/general/RecursiveMenu.jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
@@ -12,7 +13,19 @@ const RecursiveMenu = ({
   setOpenSubmenu,
   parentKey = "",
 }) => {
-  if (!Array.isArray(items)) return null;
+  if (!Array.isArray(items) || items.length === 0) return null;
+
+  const handleItemClick = (item, key, hasSubmenu, isOpen, e) => {
+    e.stopPropagation();
+    if (hasSubmenu && isMobile) {
+      setOpenSubmenu((prev) =>
+        isOpen ? prev.filter((k) => k !== key) : [...prev, key]
+      );
+    } else if (item.link) {
+      goTo(item.link);
+      if (isMobile) setOpenSubmenu([]); // đóng tất cả submenu khi điều hướng
+    }
+  };
 
   return (
     <div
@@ -22,26 +35,20 @@ const RecursiveMenu = ({
     >
       {items.map((item, idx) => {
         const key = `${parentKey}${idx}`;
-        const hasSubmenu = Array.isArray(item.submenu);
+        const hasSubmenu =
+          Array.isArray(item.submenu) && item.submenu.length > 0;
         const isOpen = openSubmenu.includes(key);
         const isActive = location?.pathname === item.link;
-
-        const handleClick = (e) => {
-          e.stopPropagation();
-          if (hasSubmenu && isMobile) {
-            setOpenSubmenu((prev) =>
-              isOpen ? prev.filter((k) => k !== key) : [...prev, key]
-            );
-          } else if (item.link) {
-            goTo(item.link);
-            if (isMobile) setOpenSubmenu([]); // Đóng tất cả submenu khi điều hướng
-          }
-        };
 
         return (
           <div key={key} className={`navmenu-item level-${level}`}>
             {isMobile ? (
-              <div className="navmenu-mobile-header" onClick={handleClick}>
+              <div
+                className="navmenu-mobile-header"
+                onClick={(e) =>
+                  handleItemClick(item, key, hasSubmenu, isOpen, e)
+                }
+              >
                 <span className={isActive ? "active" : ""}>{item.label}</span>
                 {hasSubmenu && (
                   <ChevronDown
@@ -54,7 +61,11 @@ const RecursiveMenu = ({
               <Link
                 to={item.link || "#"}
                 className={`navmenu-link ${isActive ? "active" : ""}`}
-                onClick={hasSubmenu ? undefined : handleClick}
+                onClick={
+                  hasSubmenu
+                    ? (e) => e.preventDefault()
+                    : (e) => handleItemClick(item, key, hasSubmenu, isOpen, e)
+                }
               >
                 {item.label}
                 {hasSubmenu && (
