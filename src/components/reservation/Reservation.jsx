@@ -3,6 +3,7 @@ import FormField from "@components/ui/FormField";
 import SectionHeader from "@components/ui/SectionHeader";
 import Button from "@components/ui/Button";
 import useReservationForm from "@hooks/useReservationForm";
+import { BOOKING_STATUS } from "@lib/utils/bookingRules";
 
 const formFields = [
   { label: "Name", name: "fullName", type: "text", placeholder: "Your name" },
@@ -39,6 +40,7 @@ export default function Reservation() {
   } = useReservationForm();
 
   const bookingAllowed = isBookingAllowedNow();
+  const isFull = BOOKING_STATUS === "full";
 
   return (
     <section className="reservation">
@@ -70,18 +72,33 @@ export default function Reservation() {
               onChange={handleChange}
               required={name !== "guests"}
               error={errors[name]}
+              disabled={isFull}
             />
           ))}
 
           <div className="reservation-action">
-            <Button hover type="submit" disabled={loading || !bookingAllowed}>
-              {loading ? "Processing..." : "Make a Reservation"}
+            <Button
+              hover
+              type="submit"
+              disabled={loading || !bookingAllowed || isFull}
+            >
+              {loading
+                ? "Processing..."
+                : isFull
+                ? "Fully Booked"
+                : "Make a Reservation"}
             </Button>
 
-            {!bookingAllowed && (
+            {!bookingAllowed && !isFull && (
               <p className="reservation-error-text">
                 Booking is unavailable from <b>8:00 PM to 9:00 AM</b> and on
                 weekends. Please try again during our operating hours.
+              </p>
+            )}
+
+            {isFull && (
+              <p className="reservation-error-text">
+                Sorry, the restaurant is fully booked. Please try another day.
               </p>
             )}
           </div>

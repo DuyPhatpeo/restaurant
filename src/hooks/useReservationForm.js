@@ -1,7 +1,12 @@
+// @hooks/useReservationForm.js
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { createReservation } from "@api/reservationApi";
-import { isBookingAllowedNow, isValidTime } from "@lib/utils/bookingRules";
+import {
+  isBookingAllowedNow,
+  isValidTime,
+  BOOKING_STATUS,
+} from "@lib/utils/bookingRules";
 
 export default function useReservationForm() {
   const initialFormData = {
@@ -54,11 +59,16 @@ export default function useReservationForm() {
 
   const validateTime = (date, time) => {
     if (!time) return "Time is required.";
+
+    if (BOOKING_STATUS === "full")
+      return "Sorry, the restaurant is fully booked.";
+
     if (!isValidTime(time, date)) return "Invalid booking time for this date.";
 
     const bookingDateTime = new Date(`${date}T${time}`);
     const diffMinutes = (bookingDateTime - new Date()) / (1000 * 60);
     if (diffMinutes < 30) return "Please book at least 30 minutes in advance.";
+
     return "";
   };
 
@@ -97,6 +107,11 @@ export default function useReservationForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (BOOKING_STATUS === "full") {
+      toast.error("Sorry, the restaurant is fully booked.");
+      return;
+    }
 
     if (!isBookingAllowedNow()) {
       toast.error("Booking not allowed at this time or day.");
