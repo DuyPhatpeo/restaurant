@@ -1,0 +1,127 @@
+/* =========================
+   Sitemap Page Styles
+========================= */
+
+.sitemap-container {
+  min-height: 100vh;
+  background: linear-gradient(to bottom right, #f6f8fb, #eef1f5);
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.sitemap-box {
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  padding: 40px 50px;
+  transition: all 0.3s ease;
+}
+
+.sitemap-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 12px;
+  text-align: center;
+  letter-spacing: 0.4px;
+}
+
+/* =========================
+   Tree Structure
+========================= */
+.tree {
+  border-left: 2px solid #e2e8f0;
+  padding-left: 28px;
+}
+
+.tree-item {
+  position: relative;
+  margin: 16px 0;
+}
+
+.tree-node {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  transition: all 0.25s ease;
+}
+
+.tree-dot {
+  width: 10px;
+  height: 10px;
+  border: 2px solid #64748b;
+  border-radius: 50%;
+  background: #fff;
+  margin-top: 4px;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.tree-icon {
+  color: #64748b;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  transition: color 0.25s ease;
+}
+
+.tree-label {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: #1e293b;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.tree-label.sub {
+  font-size: 14px;
+  color: #475569;
+}
+
+.tree-path {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+/* Hover effects */
+.tree-node:hover .tree-label {
+  color: var(--color-primary);
+  transform: translateX(5px);
+}
+
+.tree-node:hover .tree-dot {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+}
+
+.tree-node:hover .tree-icon {
+  color: var(--color-primary);
+}
+
+/* Child branch indentation */
+.tree-children {
+  border-left: 1px solid #e2e8f0;
+  margin-left: 22px;
+  padding-left: 18px;
+  margin-top: 6px;
+  transition: all 0.25s ease;
+}
+.tree-desc {
+  font-size: 13px;
+  color: #64748b;
+  margin-left: 26px;
+  margin-top: 4px;
+  line-height: 1.5;
+  font-style: italic;
+}

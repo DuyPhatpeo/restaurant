@@ -8,3 +8,4 @@ import "@styles/base/NotFound.css";
 import "@styles/base/Menu.css";
 import "@styles/base/Contact.css";
 import "@styles/base/Blog.css";
+import "@styles/base/Library.css";
