@@ -114,7 +114,7 @@
       "date": "Sept 15, 2019",
       "author": "John Smooth",
       "title": "Healthy ingredients for your daily meals",
-      "content": "<p>Eating healthy doesn't mean boring food. Learn which ingredient boost nutrition while keeping your meals tasty.</p>\n<iframe src=\"https://www.youtube.com/embed/KOStDZ_Lbxc?list=RDKOStDZ_Lbxc\" title=\"YouTube video: Healthy ingredients\"loading=\"lazy\" allow=\"accelerometer autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen> </iframe>\n<p Video: Ingredients that boost nutrition</p>\n <video controls playsinline preload=\"metadata\"> <source src=\"/videos/intro.mp4\" type=\"video/mp4\"></video>\n<p >Intro video from our kitchen</p>"
+      "content": "<p>Eating healthy doesn't mean boring food. Learn which ingredients boost nutrition while keeping your meals tasty.</p>\n<iframe src=\"https://www.youtube.com/embed/KOStDZ_Lbxc?list=RDKOStDZ_Lbxc\" title=\"YouTube video: Healthy ingredients\" loading=\"lazy\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n<p>Video: Ingredients that boost nutrition</p>\n<video controls playsinline preload=\"metadata\">\n  <source src=\"/videos/intro.mp4\" type=\"video/mp4\">\n</video>\n<p>Intro video from our kitchen</p>"
     },
     {
       "id": "4",
