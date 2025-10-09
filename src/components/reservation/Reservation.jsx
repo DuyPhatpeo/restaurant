@@ -72,7 +72,7 @@ export default function Reservation() {
               onChange={handleChange}
               required={name !== "guests"}
               error={errors[name]}
-              disabled={isFull}
+              disabled={isFull || !bookingAllowed}
             />
           ))}
 
