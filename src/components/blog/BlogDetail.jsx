@@ -14,20 +14,22 @@ const BlogDetailPage = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchBlog = async () => {
+    const fetchBlogData = async () => {
       setLoading(true);
       setError("");
       try {
-        const data = await getBlogById(id);
-        const allBlogs = await getBlogs();
+        const [data, allBlogs] = await Promise.all([
+          getBlogById(id),
+          getBlogs(),
+        ]);
 
         const filteredBlogs = allBlogs.filter((item) => item.id !== id);
 
         setBlog({
           ...data,
-          tags: ["FOOD", "WINE", "DRINK", "DISH"],
+          tags: data.tags || ["FOOD", "WINE", "DRINK", "DISH"],
         });
-        setOtherBlogs(filteredBlogs.slice(0, 4));
+        setOtherBlogs(filteredBlogs.slice(0, 6));
       } catch (err) {
         console.error("Lỗi khi tải bài viết:", err);
         setError("Không thể tải bài viết. Vui lòng thử lại sau!");
@@ -36,7 +38,7 @@ const BlogDetailPage = () => {
       }
     };
 
-    fetchBlog();
+    if (id) fetchBlogData();
   }, [id]);
 
   if (loading) return <Loading />;
@@ -44,38 +46,42 @@ const BlogDetailPage = () => {
   if (!blog) return <p className="not-found">Bài viết không tồn tại.</p>;
 
   return (
-    <section className="blog-detail">
-      <div className="container">
-        <div className="detail-layout">
-          <div className="detail-main">
-            <h2 className="detail-title">{blog.title}</h2>
+    <>
+      <section className="blog-detail">
+        <div className="container">
+          <div className="detail-layout">
+            {/* Nội dung chính */}
+            <div className="detail-main">
+              <h2 className="detail-title">{blog.title}</h2>
 
-            <p className="meta">
-              <span>{blog.date}</span> • <span>{blog.author}</span>
-            </p>
+              <p className="meta">
+                <span>{blog.date}</span> • <span>{blog.author}</span>
+              </p>
 
-            {/* {blog.image && (
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="detail-image"
-                loading="lazy"
+              {/* {blog.image && (
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="detail-image"
+                  loading="lazy"
+                />
+              )} */}
+
+              <div
+                className="detail-body"
+                dangerouslySetInnerHTML={{ __html: blog.content }}
               />
-            )} */}
 
-            <div
-              className="detail-body"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
-            />
+              <BlogTags tags={blog.tags} />
+              <BlogComments />
+            </div>
 
-            <BlogTags tags={blog.tags} />
-            <BlogComments />
+            {/* Sidebar */}
+            <BlogSidebar blogs={otherBlogs} />
           </div>
-
-          <BlogSidebar blogs={otherBlogs} />
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

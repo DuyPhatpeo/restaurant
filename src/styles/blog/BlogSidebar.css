@@ -27,7 +27,44 @@
   margin-bottom: 20px;
 }
 
-/* --- Danh sách bài viết / mục trong sidebar --- */
+/* ================== CATEGORY SECTION ================== */
+
+.sidebar-category {
+  margin-bottom: 40px;
+}
+
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.category-item {
+  border-bottom: 1px solid #eee;
+}
+
+.category-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  padding: 10px 0;
+  transition: color 0.2s ease;
+}
+
+.category-link:hover .category-name {
+  color: #c7a17a;
+}
+
+.category-count {
+  color: #c7a17a;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+/* ================== RELATED POSTS SECTION ================== */
+
 .sidebar-list {
   list-style: none;
   padding: 0;
@@ -37,14 +74,12 @@
   gap: 15px;
 }
 
-/* --- Từng item --- */
 .sidebar-item {
   background-color: #fff;
   overflow: hidden;
   transition: all 0.2s ease;
 }
 
-/* --- Link bài viết --- */
 .sidebar-link {
   display: flex;
   align-items: center;
@@ -53,7 +88,10 @@
   padding: 10px;
 }
 
-/* --- Ảnh thumbnail --- */
+.sidebar-link:hover h4 {
+  color: #c7a17a;
+}
+
 .sidebar-thumb {
   width: 80px;
   height: 80px;
@@ -63,7 +101,6 @@
   border-radius: 6px;
 }
 
-/* --- Thông tin bài viết --- */
 .sidebar-info h4 {
   font-size: 16px;
   font-weight: 600;
@@ -106,6 +143,14 @@
   .sidebar-info h4 {
     font-size: 15px;
   }
+
+  .category-link {
+    padding: 8px 0;
+  }
+
+  .category-count {
+    font-size: 14px;
+  }
 }
 
 /* 📲 Tablet & Mobile <= 768px */
@@ -117,6 +162,18 @@
   .sidebar-thumb {
     width: 70px;
     height: 70px;
+  }
+
+  .sidebar-category {
+    margin-bottom: 30px;
+  }
+
+  .category-link {
+    font-size: 15px;
+  }
+
+  .category-count {
+    font-size: 14px;
   }
 }
 
@@ -150,6 +207,16 @@
   .sidebar-info p {
     font-size: 12px;
   }
+
+  .category-link {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 0;
+  }
+
+  .category-count {
+    font-size: 13px;
+  }
 }
 
 /* 🖥️ Large Screens >= 1440px */
@@ -165,5 +232,13 @@
   .sidebar-thumb {
     width: 90px;
     height: 90px;
+  }
+
+  .category-link {
+    padding: 12px 0;
+  }
+
+  .category-count {
+    font-size: 16px;
   }
 }
