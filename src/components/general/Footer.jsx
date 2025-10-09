@@ -103,8 +103,10 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="copyright">
-        Copyright ©2025 All rights reserved | This template is made with ❤️ by
-        Colorlib
+        Copyright ©2025 All rights reserved | Made with ❤️ by Dino |{" "}
+        <a href="/sitemap" className="sitemap-link">
+          Website Map
+        </a>
       </div>
     </footer>
   );
