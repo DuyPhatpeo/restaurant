@@ -48,10 +48,20 @@ export default function useReservationForm() {
       }
     }
 
-    // Kiểm tra thời gian có hợp lệ trong ngày chọn không
+    // Kiểm tra thời gian hợp lệ và đặt trước 30 phút
     if (formData.date && formData.time) {
+      const bookingDateTime = new Date(`${formData.date}T${formData.time}`);
+      const now = new Date();
+
+      // Check thời gian hợp lệ trong ngày (ví dụ trong giờ mở cửa)
       if (!isValidTime(formData.time, formData.date)) {
         newErrors.time = "Invalid booking time for this date.";
+      }
+
+      // Kiểm tra phải đặt trước ít nhất 30 phút
+      const diffMinutes = (bookingDateTime - now) / (1000 * 60);
+      if (diffMinutes < 30) {
+        newErrors.time = "Please book at least 30 minutes in advance.";
       }
     }
 
