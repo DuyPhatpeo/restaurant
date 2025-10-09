@@ -7,7 +7,7 @@ import BlogTags from "@components/blog/BlogTags";
 import BlogComments from "@components/blog/BlogComments";
 
 const BlogDetailPage = () => {
-  const { id } = useParams();
+  const { id } = useParams(); // luôn là string
   const [blog, setBlog] = useState(null);
   const [otherBlogs, setOtherBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -17,18 +17,27 @@ const BlogDetailPage = () => {
     const fetchBlogData = async () => {
       setLoading(true);
       setError("");
+
       try {
         const [data, allBlogs] = await Promise.all([
           getBlogById(id),
           getBlogs(),
         ]);
 
-        const filteredBlogs = allBlogs.filter((item) => item.id !== id);
+        // ✅ Loại bỏ bài viết hiện tại (so sánh kiểu chuỗi)
+        const filteredBlogs = allBlogs.filter(
+          (item) => item.id.toString() !== id.toString()
+        );
 
+        // ✅ Đảm bảo tags có giá trị fallback
         setBlog({
           ...data,
-          tags: data.tags || ["FOOD", "WINE", "DRINK", "DISH"],
+          tags: data.tags?.length
+            ? data.tags
+            : ["FOOD", "WINE", "DRINK", "DISH"],
         });
+
+        // ✅ Lấy 6 bài viết gợi ý (ngoại trừ bài hiện tại)
         setOtherBlogs(filteredBlogs.slice(0, 6));
       } catch (err) {
         console.error("Lỗi khi tải bài viết:", err);
@@ -46,42 +55,40 @@ const BlogDetailPage = () => {
   if (!blog) return <p className="not-found">Bài viết không tồn tại.</p>;
 
   return (
-    <>
-      <section className="blog-detail">
-        <div className="container">
-          <div className="detail-layout">
-            {/* Nội dung chính */}
-            <div className="detail-main">
-              <h2 className="detail-title">{blog.title}</h2>
+    <section className="blog-detail">
+      <div className="container">
+        <div className="detail-layout">
+          {/* ==== NỘI DUNG CHÍNH ==== */}
+          <div className="detail-main">
+            <h2 className="detail-title">{blog.title}</h2>
+            <p className="meta">
+              <span>{blog.date}</span> • <span>{blog.author}</span>
+            </p>
 
-              <p className="meta">
-                <span>{blog.date}</span> • <span>{blog.author}</span>
-              </p>
-
-              {/* {blog.image && (
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="detail-image"
-                  loading="lazy"
-                />
-              )} */}
-
-              <div
-                className="detail-body"
-                dangerouslySetInnerHTML={{ __html: blog.content }}
+            {/* Ảnh bài viết (nếu có) */}
+            {/* {blog.image && (
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="detail-image"
+                loading="lazy"
               />
+            )} */}
 
-              <BlogTags tags={blog.tags} />
-              <BlogComments />
-            </div>
+            <div
+              className="detail-body"
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            />
 
-            {/* Sidebar */}
-            <BlogSidebar blogs={otherBlogs} />
+            <BlogTags tags={blog.tags} />
+            <BlogComments />
           </div>
+
+          {/* ==== SIDEBAR ==== */}
+          <BlogSidebar blogs={otherBlogs} currentBlogId={id} />
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

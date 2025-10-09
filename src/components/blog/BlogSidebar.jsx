@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getCategories, getFoods } from "@api/foodApi";
-import { getBlogs } from "@api/blogApi"; // thêm API blog
+import { getBlogs } from "@api/blogApi";
 
-const FoodSidebar = () => {
+const FoodSidebar = ({ currentBlogId }) => {
   const [categories, setCategories] = useState([]);
   const [foods, setFoods] = useState([]);
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,25 +16,34 @@ const FoodSidebar = () => {
         const [catData, foodData, blogData] = await Promise.all([
           getCategories(),
           getFoods(),
-          getBlogs(), // gọi thêm blog API
+          getBlogs(),
         ]);
-        setCategories(catData);
-        setFoods(foodData);
-        setBlogs(blogData.slice(0, 4)); // chỉ lấy 4 bài mới nhất
+
+        setCategories(catData || []);
+        setFoods(foodData || []);
+
+        const filteredBlogs = blogData.filter(
+          (b) => b.id.toString() !== String(currentBlogId)
+        );
+
+        setBlogs(filteredBlogs.slice(0, 4));
       } catch (err) {
         console.error("Failed to load sidebar data:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
-  }, []);
+  }, [currentBlogId]);
 
-  // Đếm số lượng food theo categoryId
   const foodCounts = foods.reduce((acc, food) => {
     const catId = food.categoryId || "uncategorized";
     acc[catId] = (acc[catId] || 0) + 1;
     return acc;
   }, {});
+
+  if (loading) return <p className="sidebar-loading">Loading sidebar...</p>;
 
   return (
     <aside className="detail-sidebar">
@@ -42,7 +53,12 @@ const FoodSidebar = () => {
         <ul className="category-list">
           {categories.map((cat) => (
             <li key={cat.id} className="category-item">
-              <Link to={`/menu`} className="category-link">
+              <Link
+                to={`/menu?category=${cat.id}`}
+                className={`category-link ${
+                  location.search.includes(`category=${cat.id}`) ? "active" : ""
+                }`}
+              >
                 <span className="category-name">{cat.name}</span>
                 <span className="category-count">
                   ({foodCounts[cat.id] || 0})
@@ -53,27 +69,30 @@ const FoodSidebar = () => {
         </ul>
       </div>
 
-      {/* ==== BÀI VIẾT GỢI Ý ==== */}
-      <div className="sidebar-related">
-        <h3 className="sidebar-title">Suggestions for you</h3>
-        <ul className="sidebar-list">
-          {blogs.map((item) => (
-            <li key={item.id} className="sidebar-item">
-              <Link to={`/blog/${item.id}`} className="sidebar-link">
-                <img
-                  src={item.image || "/placeholder.jpg"}
-                  alt={item.title}
-                  className="sidebar-thumb"
-                />
-                <div className="sidebar-info">
-                  <h4>{item.title}</h4>
-                  <p>{item.date}</p>
-                </div>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* ==== GỢI Ý BÀI VIẾT ==== */}
+      {blogs.length > 0 && (
+        <div className="sidebar-related">
+          <h3 className="sidebar-title">Suggestions for you</h3>
+          <ul className="sidebar-list">
+            {blogs.map((item) => (
+              <li key={item.id} className="sidebar-item">
+                <Link to={`/blog/${item.id}`} className="sidebar-link">
+                  <img
+                    src={item.image || "/placeholder.jpg"}
+                    alt={item.title}
+                    className="sidebar-thumb"
+                    loading="lazy"
+                  />
+                  <div className="sidebar-info">
+                    <h4>{item.title}</h4>
+                    <p>{item.date}</p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </aside>
   );
 };
