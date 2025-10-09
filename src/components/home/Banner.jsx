@@ -22,13 +22,11 @@ const Banner = () => {
 
   return (
     <>
-      {/* Banner Section */}
-      <div
-        className="banner-wrapper"
-        style={{ backgroundImage: `url(${slides[current].image})` }}
-      >
+      <div className="banner-wrapper">
+        <img src={slides[current].image} alt={slides[current].title} />
         <div className="banner-overlay"></div>
-        <div className="banner-content">
+
+        <div key={current} className="banner-content banner-animate">
           <div className="banner-subtitle">{slides[current].subtitle}</div>
           <div className="banner-title">{slides[current].title}</div>
         </div>
