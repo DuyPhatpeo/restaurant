@@ -36,7 +36,6 @@
   overflow: hidden;
   transition: all 0.2s ease;
   background-color: #fff;
-  border-radius: 8px;
 }
 
 .sidebar-link {
@@ -53,7 +52,6 @@
   object-fit: cover;
   margin-right: 12px;
   flex-shrink: 0;
-  border-radius: 6px;
 }
 
 .sidebar-info h4 {
