@@ -3,7 +3,6 @@
 ========================= */
 
 .sitemap-container {
-  min-height: 100vh;
   background: linear-gradient(to bottom right, #f6f8fb, #eef1f5);
   padding: 60px 20px;
   display: flex;
@@ -15,7 +14,7 @@
   width: 100%;
   max-width: 800px;
   background: #fff;
-  border-radius: 18px;
+  border-radius: 15px;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
   padding: 40px 50px;
   transition: all 0.3s ease;
