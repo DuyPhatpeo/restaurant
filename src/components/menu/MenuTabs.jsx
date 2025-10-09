@@ -11,7 +11,7 @@ const MenuTabs = ({ categories = [], activeTab, onTabChange }) => {
           }`}
           onClick={() => onTabChange(cat.id.toString())}
         >
-          {cat.title}
+          {cat.name}
         </button>
       ))}
     </div>

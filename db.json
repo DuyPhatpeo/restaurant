@@ -296,23 +296,23 @@
   "categories": [
     {
       "id": "1",
-      "title": "Breakfast"
+      "name": "Breakfast"
     },
     {
       "id": "2",
-      "title": "Lunch"
+      "name": "Lunch"
     },
     {
       "id": "3",
-      "title": "Dinner"
+      "name": "Dinner"
     },
     {
       "id": "4",
-      "title": "Drinks"
+      "name": "Drinks"
     },
     {
       "id": "5",
-      "title": "Desserts"
+      "name": "Desserts"
     }
   ],
   "foods": [
