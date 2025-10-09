@@ -1,11 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
+// ==========================
+// Sitemap Component
+// ==========================
 export default function Sitemap() {
-  // ==========================
-  // Dữ liệu sitemap
-  // ==========================
   const sitemapData = [
+    {
+      title: "www.example.com", // Subdomain hiển thị trên cùng
+      path: "https://www.example.com",
+      isSubdomain: true,
+    },
     {
       title: "Home",
       path: "/",
@@ -79,15 +83,37 @@ function Tree({ data, level = 0 }) {
       {data.map((item, index) => (
         <div key={index} className="tree-item">
           <div className="tree-node">
-            <span className="tree-dot"></span>
+            <span
+              className="tree-dot"
+              style={{
+                display: "inline-block",
+                width: 6,
+                height: 6,
+                background: "#000",
+                borderRadius: "50%",
+                marginRight: 6,
+              }}
+            ></span>
+
             {item.path ? (
-              <Link
-                to={item.path}
+              <a
+                href={
+                  item.isSubdomain || item.subdomain
+                    ? `https://${item.subdomain || item.title}${
+                        item.path !== "/" ? item.path : ""
+                      }`
+                    : item.path
+                }
+                target={item.isSubdomain || item.subdomain ? "_blank" : "_self"}
+                rel={
+                  item.isSubdomain || item.subdomain
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 className={`tree-label ${level > 0 ? "sub" : ""}`}
-                title={item.path}
               >
                 {item.title}
-              </Link>
+              </a>
             ) : (
               <span className={`tree-label ${level > 0 ? "sub" : ""}`}>
                 {item.title}
@@ -95,7 +121,18 @@ function Tree({ data, level = 0 }) {
             )}
           </div>
 
-          {item.desc && <p className="tree-desc">{item.desc}</p>}
+          {item.desc && (
+            <p
+              className="tree-desc"
+              style={{
+                margin: "2px 0 4px 20px",
+                fontSize: "0.85rem",
+                color: "#555",
+              }}
+            >
+              {item.desc}
+            </p>
+          )}
 
           {item.children && (
             <div className="tree-children">

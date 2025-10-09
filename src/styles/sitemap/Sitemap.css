@@ -35,9 +35,8 @@
 /* =========================
    Tree Structure
 ========================= */
-.tree {
-  border-left: 2px solid #e2e8f0;
-  padding-left: 28px;
+.tree-level {
+  margin-left: 0;
 }
 
 .tree-item {
@@ -46,9 +45,9 @@
 }
 
 .tree-node {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  display: flex; /* cùng hàng với dot */
+  align-items: center; /* căn giữa theo hàng */
+  gap: 8px; /* khoảng cách dot và label */
   transition: all 0.25s ease;
 }
 
@@ -58,27 +57,17 @@
   border: 2px solid #64748b;
   border-radius: 50%;
   background: #fff;
-  margin-top: 4px;
   flex-shrink: 0;
   transition: all 0.25s ease;
 }
 
-.tree-icon {
-  color: #64748b;
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
-  transition: color 0.25s ease;
-}
-
 .tree-label {
-  display: flex;
-  flex-direction: column;
+  display: inline-block; /* cùng hàng với dot */
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
   color: #1e293b;
-  line-height: 1.2;
+  line-height: 1.3;
   cursor: pointer;
   transition: color 0.2s ease, transform 0.2s ease;
 }
@@ -88,10 +77,18 @@
   color: #475569;
 }
 
-.tree-path {
-  font-size: 12px;
-  color: #94a3b8;
-  margin-top: 2px;
+.tree-label.subdomain {
+  font-weight: 700;
+  color: #007bff;
+  font-size: 16px;
+}
+
+.tree-desc {
+  margin-left: 22px; /* cách dot */
+  font-size: 13px;
+  color: #64748b;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* Hover effects */
@@ -105,10 +102,6 @@
   background: var(--color-primary);
 }
 
-.tree-node:hover .tree-icon {
-  color: var(--color-primary);
-}
-
 /* Child branch indentation */
 .tree-children {
   border-left: 1px solid #e2e8f0;
@@ -116,15 +109,6 @@
   padding-left: 18px;
   margin-top: 6px;
   transition: all 0.25s ease;
-}
-
-.tree-desc {
-  font-size: 13px;
-  color: #64748b;
-  margin-left: 26px;
-  margin-top: 4px;
-  line-height: 1.5;
-  font-style: italic;
 }
 
 /* =========================
@@ -149,8 +133,12 @@
     font-size: 13px;
   }
 
-  .tree-path {
-    font-size: 11px;
+  .tree-label.subdomain {
+    font-size: 15px;
+  }
+
+  .tree-desc {
+    font-size: 12.5px;
   }
 }
 
@@ -170,35 +158,21 @@
     margin-bottom: 24px;
   }
 
-  .tree {
-    padding-left: 18px;
-    border-left: 1px solid #e2e8f0;
-  }
-
-  .tree-item {
-    margin: 12px 0;
-  }
-
   .tree-dot {
     width: 8px;
     height: 8px;
   }
 
-  .tree-icon {
-    width: 16px;
-    height: 16px;
-  }
-
   .tree-label {
-    font-size: 13.5px;
+    font-size: 13px;
   }
 
   .tree-label.sub {
-    font-size: 12.5px;
+    font-size: 12px;
   }
 
-  .tree-path {
-    font-size: 11px;
+  .tree-label.subdomain {
+    font-size: 14px;
   }
 
   .tree-desc {
@@ -217,16 +191,21 @@
     font-size: 18px;
   }
 
-  .tree-node {
-    gap: 8px;
+  .tree-dot {
+    width: 6px;
+    height: 6px;
   }
 
   .tree-label {
-    font-size: 13px;
+    font-size: 12.5px;
   }
 
-  .tree-path {
-    display: none; /* ẩn đường dẫn nếu quá nhỏ */
+  .tree-label.sub {
+    font-size: 12px;
+  }
+
+  .tree-label.subdomain {
+    font-size: 13px;
   }
 
   .tree-desc {
