@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getCategories } from "@api/foodApi";
+import { getCategories, getFoods } from "@api/foodApi";
 import { getBlogs } from "@api/blogApi";
 
 const BlogSidebar = ({ currentBlogId }) => {
   const [categories, setCategories] = useState([]);
+  const [foods, setFoods] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
@@ -12,19 +13,20 @@ const BlogSidebar = ({ currentBlogId }) => {
   useEffect(() => {
     const fetchSidebarData = async () => {
       try {
-        const [catData, blogData] = await Promise.all([
+        const [catData, foodData, blogData] = await Promise.all([
           getCategories(),
+          getFoods(),
           getBlogs(),
         ]);
 
         setCategories(catData || []);
+        setFoods(foodData || []);
 
-        // ✅ Loại bỏ bài viết đang xem
-        const filtered = (blogData || []).filter(
+        const filteredBlogs = (blogData || []).filter(
           (b) => String(b.id) !== String(currentBlogId)
         );
 
-        setBlogs(filtered.slice(0, 4)); // chỉ lấy 4 bài gợi ý
+        setBlogs(filteredBlogs.slice(0, 4));
       } catch (error) {
         console.error("Failed to load sidebar data:", error);
       } finally {
@@ -34,6 +36,12 @@ const BlogSidebar = ({ currentBlogId }) => {
 
     fetchSidebarData();
   }, [currentBlogId]);
+
+  const foodCounts = foods.reduce((acc, food) => {
+    const catId = food.categoryId || "uncategorized";
+    acc[catId] = (acc[catId] || 0) + 1;
+    return acc;
+  }, {});
 
   if (loading) return <p className="sidebar-loading">Loading sidebar...</p>;
 
@@ -47,7 +55,7 @@ const BlogSidebar = ({ currentBlogId }) => {
             {categories.map((cat) => (
               <li key={cat.id} className="category-item">
                 <Link
-                  to={`/menu?category=${cat.id}`}
+                  to={`/menu`}
                   className={`category-link ${
                     location.search.includes(`category=${cat.id}`)
                       ? "active"
@@ -55,6 +63,9 @@ const BlogSidebar = ({ currentBlogId }) => {
                   }`}
                 >
                   <span className="category-name">{cat.name}</span>
+                  <span className="category-count">
+                    ({foodCounts[cat.id] || 0})
+                  </span>
                 </Link>
               </li>
             ))}
