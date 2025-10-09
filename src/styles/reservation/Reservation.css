@@ -54,17 +54,15 @@
   align-items: flex-start;
 }
 
-/* Text lỗi chồng lên nhẹ, không đẩy layout */
 .reservation-error-text {
-  position: absolute;
-  bottom: -22px;
-  left: 0;
+  position: static; /* bỏ absolute */
+  margin-top: 8px;
   color: #e74c3c;
   font-size: 14px;
   line-height: 1.4;
   animation: fadeIn 0.3s ease;
-  pointer-events: none;
 }
+
 /* ================= Responsive ================= */
 @media (max-width: 1400px) {
   .reservation #map {
