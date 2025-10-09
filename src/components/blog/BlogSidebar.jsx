@@ -42,7 +42,7 @@ const FoodSidebar = () => {
         <ul className="category-list">
           {categories.map((cat) => (
             <li key={cat.id} className="category-item">
-              <Link to={`/menu?category=${cat.id}`} className="category-link">
+              <Link to={`/menu`} className="category-link">
                 <span className="category-name">{cat.name}</span>
                 <span className="category-count">
                   ({foodCounts[cat.id] || 0})
