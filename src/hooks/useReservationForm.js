@@ -17,55 +17,82 @@ export default function useReservationForm() {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
+  // ========= REGEX CONSTANTS =========
+  const namePattern = /^[\p{L}\s'-]+$/u;
+  const emailPattern = /\S+@\S+\.\S+/;
+  const phonePattern = /^(\+?\d{9,11})$/;
+
+  // ========= VALIDATION HELPERS =========
+  const validateName = (name) => {
+    if (!name.trim()) return "Full name is required.";
+    if (!namePattern.test(name))
+      return "Full name can only contain letters and spaces (no special characters).";
+    return "";
+  };
+
+  const validateEmail = (email) => {
+    if (!email.trim()) return "Email is required.";
+    if (!emailPattern.test(email)) return "Invalid email format.";
+    return "";
+  };
+
+  const validatePhone = (phone) => {
+    if (!phone.trim()) return "Phone number is required.";
+    if (!phonePattern.test(phone))
+      return "Invalid phone number. Please enter a valid 9–11 digit number.";
+    return "";
+  };
+
+  const validateDate = (date) => {
+    if (!date) return "Date is required.";
+    const today = new Date();
+    const selected = new Date(date);
+    if (selected.setHours(0, 0, 0, 0) < today.setHours(0, 0, 0, 0))
+      return "You cannot select a past date.";
+    return "";
+  };
+
+  const validateTime = (date, time) => {
+    if (!time) return "Time is required.";
+    if (!isValidTime(time, date)) return "Invalid booking time for this date.";
+
+    const bookingDateTime = new Date(`${date}T${time}`);
+    const diffMinutes = (bookingDateTime - new Date()) / (1000 * 60);
+    if (diffMinutes < 30) return "Please book at least 30 minutes in advance.";
+    return "";
+  };
+
+  // ========= MAIN VALIDATION =========
+  const validate = () => {
+    const newErrors = {};
+
+    const nameError = validateName(formData.fullName);
+    if (nameError) newErrors.fullName = nameError;
+
+    const emailError = validateEmail(formData.email);
+    if (emailError) newErrors.email = emailError;
+
+    const phoneError = validatePhone(formData.phone);
+    if (phoneError) newErrors.phone = phoneError;
+
+    const dateError = validateDate(formData.date);
+    if (dateError) newErrors.date = dateError;
+
+    if (formData.date && formData.time) {
+      const timeError = validateTime(formData.date, formData.time);
+      if (timeError) newErrors.time = timeError;
+    } else if (!formData.time) {
+      newErrors.time = "Time is required.";
+    }
+
+    return newErrors;
+  };
+
+  // ========= EVENT HANDLERS =========
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
-  };
-
-  const validate = () => {
-    const newErrors = {};
-
-    // ---- Basic checks ----
-    if (!formData.fullName.trim())
-      newErrors.fullName = "Full name is required.";
-    if (!formData.email.trim()) newErrors.email = "Email is required.";
-    else if (!/\S+@\S+\.\S+/.test(formData.email))
-      newErrors.email = "Invalid email format.";
-
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required.";
-    if (!formData.date) newErrors.date = "Date is required.";
-    if (!formData.time) newErrors.time = "Time is required.";
-
-    // ---- Advanced checks ----
-    if (formData.date) {
-      const today = new Date();
-      const selectedDate = new Date(formData.date);
-
-      // Không cho chọn ngày trong quá khứ
-      if (selectedDate.setHours(0, 0, 0, 0) < today.setHours(0, 0, 0, 0)) {
-        newErrors.date = "You cannot select a past date.";
-      }
-    }
-
-    // Kiểm tra thời gian hợp lệ và đặt trước 30 phút
-    if (formData.date && formData.time) {
-      const bookingDateTime = new Date(`${formData.date}T${formData.time}`);
-      const now = new Date();
-
-      // Check thời gian hợp lệ trong ngày (ví dụ trong giờ mở cửa)
-      if (!isValidTime(formData.time, formData.date)) {
-        newErrors.time = "Invalid booking time for this date.";
-      }
-
-      // Kiểm tra phải đặt trước ít nhất 30 phút
-      const diffMinutes = (bookingDateTime - now) / (1000 * 60);
-      if (diffMinutes < 30) {
-        newErrors.time = "Please book at least 30 minutes in advance.";
-      }
-    }
-
-    return newErrors;
   };
 
   const handleSubmit = async (e) => {
@@ -77,7 +104,7 @@ export default function useReservationForm() {
     }
 
     const validationErrors = validate();
-    if (Object.keys(validationErrors).length) {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       toast.error("Please fix the errors in the form.");
       return;

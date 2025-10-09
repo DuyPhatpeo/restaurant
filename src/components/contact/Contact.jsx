@@ -3,7 +3,7 @@ import Button from "@components/ui/Button";
 import FormField from "@components/ui/FormField";
 import { useContactForm } from "@hooks/useContactForm";
 
-// Component hiển thị thông tin liên hệ
+// ================== Contact Info ==================
 const ContactInfo = () => {
   const info = [
     {
@@ -40,19 +40,38 @@ const ContactInfo = () => {
   );
 };
 
+// ================== Contact Form ==================
 const Contact = () => {
-  const { formData, errors, loading, handleChange, handleSubmit } =
+  const { formData, errors, submitting, handleChange, handleSubmit } =
     useContactForm();
 
-  // Định nghĩa các field để render map
+  // Đồng bộ với ReservationForm (có label + placeholder rõ ràng)
   const fields = [
-    { name: "name", placeholder: "Your Name", required: true },
-    { name: "email", type: "email", placeholder: "Your Email", required: true },
-    { name: "subject", placeholder: "Subject" },
     {
+      label: "Full Name",
+      name: "name",
+      type: "text",
+      placeholder: "Enter your full name",
+      required: true,
+    },
+    {
+      label: "Email Address",
+      name: "email",
+      type: "email",
+      placeholder: "Enter your email",
+      required: true,
+    },
+    {
+      label: "Subject",
+      name: "subject",
+      type: "text",
+      placeholder: "Enter the subject (optional)",
+    },
+    {
+      label: "Message",
       name: "message",
       type: "textarea",
-      placeholder: "Message",
+      placeholder: "Write your message here...",
       rows: 5,
       required: true,
     },
@@ -79,11 +98,15 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="contact-form">
             <h3>Contact Us</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} noValidate>
               {fields.map((field) => (
                 <FormField
                   key={field.name}
-                  {...field}
+                  label={field.label}
+                  name={field.name}
+                  type={field.type}
+                  placeholder={field.placeholder}
+                  rows={field.rows}
                   value={formData[field.name]}
                   onChange={handleChange}
                   required={field.required}
@@ -91,8 +114,8 @@ const Contact = () => {
                 />
               ))}
 
-              <Button hover type="submit" disabled={loading}>
-                {loading ? "Sending..." : "Send Message"}
+              <Button hover type="submit" disabled={submitting}>
+                {submitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </div>
