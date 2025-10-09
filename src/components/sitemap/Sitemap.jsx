@@ -6,61 +6,63 @@ import React from "react";
 export default function Sitemap() {
   const sitemapData = [
     {
-      title: "www.example.com", // Subdomain hiển thị trên cùng
-      path: "https://www.example.com",
+      title: "www.restaurant.com", // Subdomain hiển thị trên cùng
+      path: "https://www.restaurant.com",
       isSubdomain: true,
-    },
-    {
-      title: "Home",
-      path: "/",
-      desc: "The main landing page showcasing highlights of the restaurant.",
-    },
-    {
-      title: "About",
-      path: "/about",
-      desc: "Learn more about our story, team, and culinary philosophy.",
-    },
-    {
-      title: "Menu",
-      path: "/menu",
-      desc: "Browse our full selection of dishes, drinks, and specialties.",
-    },
-    {
-      title: "Stories",
-      desc: "Explore articles, news, and special stories from our restaurant.",
       children: [
         {
-          title: "Blog",
-          path: "/blog",
-          desc: "Food insights, cooking tips, and cultural stories.",
+          title: "Home",
+          path: "/",
+          desc: "The main landing page showcasing highlights of the restaurant.",
         },
         {
-          title: "Events",
-          desc: "Special occasions and upcoming restaurant events.",
+          title: "About",
+          path: "/about",
+          desc: "Learn more about our story, team, and culinary philosophy.",
+        },
+        {
+          title: "Menu",
+          path: "/menu",
+          desc: "Browse our full selection of dishes, drinks, and specialties.",
+        },
+        {
+          title: "Stories",
+          desc: "Explore articles, news, and special stories from our restaurant.",
           children: [
             {
-              title: "Workshops",
-              path: "/workshops",
-              desc: "Cooking and mixology classes hosted by our chefs.",
+              title: "Blog",
+              path: "/blog",
+              desc: "Food insights, cooking tips, and cultural stories.",
             },
             {
-              title: "Meetups",
-              path: "/meetups",
-              desc: "Community gatherings and food lover meetups.",
+              title: "Events",
+              desc: "Special occasions and upcoming restaurant events.",
+              children: [
+                {
+                  title: "Workshops",
+                  path: "/workshops",
+                  desc: "Cooking and mixology classes hosted by our chefs.",
+                },
+                {
+                  title: "Meetups",
+                  path: "/meetups",
+                  desc: "Community gatherings and food lover meetups.",
+                },
+              ],
             },
           ],
         },
+        {
+          title: "Contact",
+          path: "/contact",
+          desc: "Get in touch with us, find our location, or connect online.",
+        },
+        {
+          title: "Reservation",
+          path: "/reservation",
+          desc: "Book a table online by choosing your preferred date and time.",
+        },
       ],
-    },
-    {
-      title: "Contact",
-      path: "/contact",
-      desc: "Get in touch with us, find our location, or connect online.",
-    },
-    {
-      title: "Reservation",
-      path: "/reservation",
-      desc: "Book a table online by choosing your preferred date and time.",
     },
   ];
 
