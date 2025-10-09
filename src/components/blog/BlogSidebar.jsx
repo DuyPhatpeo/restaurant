@@ -55,7 +55,7 @@ const FoodSidebar = () => {
 
       {/* ==== BÀI VIẾT GỢI Ý ==== */}
       <div className="sidebar-related">
-        <h3 className="sidebar-title">Gợi ý cho bạn</h3>
+        <h3 className="sidebar-title">Suggestions for you</h3>
         <ul className="sidebar-list">
           {blogs.map((item) => (
             <li key={item.id} className="sidebar-item">
