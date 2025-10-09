@@ -7,7 +7,7 @@ import BlogTags from "@components/blog/BlogTags";
 import BlogComments from "@components/blog/BlogComments";
 
 const BlogDetailPage = () => {
-  const { id } = useParams(); // luôn là string
+  const { id } = useParams();
   const [blog, setBlog] = useState(null);
   const [otherBlogs, setOtherBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -24,12 +24,15 @@ const BlogDetailPage = () => {
           getBlogs(),
         ]);
 
-        // ✅ Loại bỏ bài viết hiện tại (so sánh kiểu chuỗi)
-        const filteredBlogs = allBlogs.filter(
-          (item) => item.id.toString() !== id.toString()
+        if (!data) {
+          setError("Không tìm thấy bài viết.");
+          return;
+        }
+
+        const relatedBlogs = (allBlogs || []).filter(
+          (item) => String(item.id) !== String(id)
         );
 
-        // ✅ Đảm bảo tags có giá trị fallback
         setBlog({
           ...data,
           tags: data.tags?.length
@@ -37,8 +40,7 @@ const BlogDetailPage = () => {
             : ["FOOD", "WINE", "DRINK", "DISH"],
         });
 
-        // ✅ Lấy 6 bài viết gợi ý (ngoại trừ bài hiện tại)
-        setOtherBlogs(filteredBlogs.slice(0, 6));
+        setOtherBlogs(relatedBlogs.slice(0, 6));
       } catch (err) {
         console.error("Lỗi khi tải bài viết:", err);
         setError("Không thể tải bài viết. Vui lòng thử lại sau!");
@@ -65,15 +67,12 @@ const BlogDetailPage = () => {
               <span>{blog.date}</span> • <span>{blog.author}</span>
             </p>
 
-            {/* Ảnh bài viết (nếu có) */}
-            {/* {blog.image && (
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="detail-image"
-                loading="lazy"
-              />
-            )} */}
+            {/* <img
+              src={blog.image}
+              alt={blog.title}
+              className="detail-image"
+              loading="lazy"
+            /> */}
 
             <div
               className="detail-body"
@@ -85,7 +84,7 @@ const BlogDetailPage = () => {
           </div>
 
           {/* ==== SIDEBAR ==== */}
-          <BlogSidebar blogs={otherBlogs} currentBlogId={id} />
+          <BlogSidebar currentBlogId={id} />
         </div>
       </div>
     </section>

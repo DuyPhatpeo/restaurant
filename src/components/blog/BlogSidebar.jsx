@@ -1,73 +1,66 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getCategories, getFoods } from "@api/foodApi";
+import { getCategories } from "@api/foodApi";
 import { getBlogs } from "@api/blogApi";
 
-const FoodSidebar = ({ currentBlogId }) => {
+const BlogSidebar = ({ currentBlogId }) => {
   const [categories, setCategories] = useState([]);
-  const [foods, setFoods] = useState([]);
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchSidebarData = async () => {
       try {
-        const [catData, foodData, blogData] = await Promise.all([
+        const [catData, blogData] = await Promise.all([
           getCategories(),
-          getFoods(),
           getBlogs(),
         ]);
 
         setCategories(catData || []);
-        setFoods(foodData || []);
 
-        const filteredBlogs = blogData.filter(
-          (b) => b.id.toString() !== String(currentBlogId)
+        // ✅ Loại bỏ bài viết đang xem
+        const filtered = (blogData || []).filter(
+          (b) => String(b.id) !== String(currentBlogId)
         );
 
-        setBlogs(filteredBlogs.slice(0, 4));
-      } catch (err) {
-        console.error("Failed to load sidebar data:", err);
+        setBlogs(filtered.slice(0, 4)); // chỉ lấy 4 bài gợi ý
+      } catch (error) {
+        console.error("Failed to load sidebar data:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchData();
+    fetchSidebarData();
   }, [currentBlogId]);
-
-  const foodCounts = foods.reduce((acc, food) => {
-    const catId = food.categoryId || "uncategorized";
-    acc[catId] = (acc[catId] || 0) + 1;
-    return acc;
-  }, {});
 
   if (loading) return <p className="sidebar-loading">Loading sidebar...</p>;
 
   return (
     <aside className="detail-sidebar">
-      {/* ==== CATEGORY MENU ==== */}
-      <div className="sidebar-category">
-        <h3 className="sidebar-title">Categories</h3>
-        <ul className="category-list">
-          {categories.map((cat) => (
-            <li key={cat.id} className="category-item">
-              <Link
-                to={`/menu?category=${cat.id}`}
-                className={`category-link ${
-                  location.search.includes(`category=${cat.id}`) ? "active" : ""
-                }`}
-              >
-                <span className="category-name">{cat.name}</span>
-                <span className="category-count">
-                  ({foodCounts[cat.id] || 0})
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {/* ==== DANH MỤC MÓN ĂN ==== */}
+      {categories.length > 0 && (
+        <div className="sidebar-category">
+          <h3 className="sidebar-title">Categories</h3>
+          <ul className="category-list">
+            {categories.map((cat) => (
+              <li key={cat.id} className="category-item">
+                <Link
+                  to={`/menu?category=${cat.id}`}
+                  className={`category-link ${
+                    location.search.includes(`category=${cat.id}`)
+                      ? "active"
+                      : ""
+                  }`}
+                >
+                  <span className="category-name">{cat.name}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       {/* ==== GỢI Ý BÀI VIẾT ==== */}
       {blogs.length > 0 && (
@@ -97,4 +90,4 @@ const FoodSidebar = ({ currentBlogId }) => {
   );
 };
 
-export default FoodSidebar;
+export default BlogSidebar;
