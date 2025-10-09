@@ -117,6 +117,7 @@
   margin-top: 6px;
   transition: all 0.25s ease;
 }
+
 .tree-desc {
   font-size: 13px;
   color: #64748b;
@@ -124,4 +125,112 @@
   margin-top: 4px;
   line-height: 1.5;
   font-style: italic;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+/* Tablet (≤ 992px) */
+@media (max-width: 992px) {
+  .sitemap-box {
+    padding: 30px 35px;
+  }
+
+  .sitemap-title {
+    font-size: 22px;
+  }
+
+  .tree-label {
+    font-size: 14px;
+  }
+
+  .tree-label.sub {
+    font-size: 13px;
+  }
+
+  .tree-path {
+    font-size: 11px;
+  }
+}
+
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
+  .sitemap-container {
+    padding: 40px 15px;
+  }
+
+  .sitemap-box {
+    padding: 25px 25px;
+    border-radius: 14px;
+  }
+
+  .sitemap-title {
+    font-size: 20px;
+    margin-bottom: 24px;
+  }
+
+  .tree {
+    padding-left: 18px;
+    border-left: 1px solid #e2e8f0;
+  }
+
+  .tree-item {
+    margin: 12px 0;
+  }
+
+  .tree-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  .tree-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .tree-label {
+    font-size: 13.5px;
+  }
+
+  .tree-label.sub {
+    font-size: 12.5px;
+  }
+
+  .tree-path {
+    font-size: 11px;
+  }
+
+  .tree-desc {
+    margin-left: 18px;
+    font-size: 12.5px;
+  }
+}
+
+/* Small mobile (≤ 480px) */
+@media (max-width: 480px) {
+  .sitemap-box {
+    padding: 20px 18px;
+  }
+
+  .sitemap-title {
+    font-size: 18px;
+  }
+
+  .tree-node {
+    gap: 8px;
+  }
+
+  .tree-label {
+    font-size: 13px;
+  }
+
+  .tree-path {
+    display: none; /* ẩn đường dẫn nếu quá nhỏ */
+  }
+
+  .tree-desc {
+    margin-left: 14px;
+    font-size: 12px;
+  }
 }

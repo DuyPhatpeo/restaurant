@@ -1,20 +1,20 @@
 import BannerHero from "@components/ui/BannerHero";
 import React from "react";
-import Library from "@components/sitemap/Sitemap";
+import Sitemap from "@components/sitemap/Sitemap";
 
 const MainLibrary = () => {
   return (
     <>
       <BannerHero
-        title="Library"
+        title="Sitemap"
         bg="/bg_3.jpg"
         breadcrumb={
           <>
-            <a href="/">Home</a> &gt; <span>Library</span> &gt;
+            <a href="/">Home</a> &gt; <span>Sitemap</span> &gt;
           </>
         }
       />
-      <Library />
+      <Sitemap />
     </>
   );
 };
