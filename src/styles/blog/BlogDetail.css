@@ -1,10 +1,10 @@
-/* ================== Blog Detail Section ================== */
+/* ================== BLOG DETAIL SECTION ================== */
 .blog-detail {
   padding: 80px 0;
   background: var(--color-white);
 }
 
-/* ====== Layout chính ====== */
+/* ====== LAYOUT CHÍNH ====== */
 .detail-layout {
   max-width: 1200px;
   margin: 0 auto;
@@ -19,13 +19,13 @@
   order: 1;
 }
 
-/* ====== Tiêu đề & metadata ====== */
+/* ================== HEADER: TITLE + META ================== */
 .detail-title {
   font-size: 2rem;
-  margin-bottom: 12px;
   font-weight: 700;
   color: #222;
   line-height: 1.3;
+  margin-bottom: 12px;
 }
 
 .meta {
@@ -34,37 +34,31 @@
   margin-bottom: 20px;
 }
 
-/* ====== Ảnh chính ====== */
+/* ================== ẢNH CHÍNH ================== */
 .detail-image {
   width: 100%;
   margin-bottom: 24px;
   object-fit: cover;
+  border-radius: 2px;
 }
 
-/* ====== Nội dung markdown ====== */
+/* ================== NỘI DUNG ================== */
 .detail-body {
   font-size: 1rem;
   line-height: 1.8;
   color: #444;
 }
 
+/* --- Đoạn văn --- */
 .detail-body p {
   margin-bottom: 16px;
 }
 
-/* ====== Hình ảnh trong nội dung markdown ====== */
-.detail-body img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 24px auto;
-  object-fit: contain;
-  max-height: 400px;
-}
+/* --- Liên kết --- */
 .detail-body a {
   color: var(--color-primary);
-  text-decoration: none;
   font-weight: 600;
+  text-decoration: none;
   transition: color 0.2s ease, text-decoration 0.2s ease;
 }
 
@@ -73,7 +67,7 @@
   text-decoration: underline;
 }
 
-/* ====== Tiêu đề phụ trong nội dung ====== */
+/* --- Tiêu đề phụ --- */
 .detail-body h1,
 .detail-body h2,
 .detail-body h3,
@@ -87,24 +81,23 @@
 .detail-body h1 {
   font-size: 2rem;
 }
-
 .detail-body h2 {
   font-size: 1.6rem;
 }
-
 .detail-body h3 {
   font-size: 1.3rem;
 }
-
 .detail-body h4 {
   font-size: 1.1rem;
 }
 
+/* --- Danh sách --- */
 .detail-body ul,
 .detail-body ol {
   margin: 16px 0 16px 24px;
 }
 
+/* --- Trích dẫn --- */
 .detail-body blockquote {
   border-left: 4px solid #ddd;
   padding-left: 16px;
@@ -113,7 +106,80 @@
   margin: 20px 0;
 }
 
-/* ====== Responsive ====== */
+/* ================== MEDIA TRONG NỘI DUNG ================== */
+.detail-body img,
+.detail-body iframe,
+.detail-body video {
+  display: block;
+  max-width: 100%;
+  margin: 24px auto;
+  border-radius: 2px;
+}
+
+/* --- Ảnh --- */
+.detail-body img {
+  height: auto;
+  object-fit: contain;
+  max-height: 400px;
+}
+
+/* --- Iframe (YouTube, Vimeo, Map, v.v.) --- */
+.detail-body iframe {
+  border: none;
+  background: #000;
+  aspect-ratio: 16 / 9;
+  height: auto;
+}
+
+/* --- Fallback cho trình duyệt cũ --- */
+@supports not (aspect-ratio: 16 / 9) {
+  .detail-body iframe {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    margin: 24px auto;
+  }
+
+  .detail-body iframe[src] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* --- Video --- */
+.detail-body video {
+  aspect-ratio: 16 / 9;
+  height: auto;
+  object-fit: cover;
+}
+
+/* ================== BẢNG TRONG NỘI DUNG ================== */
+.detail-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 24px auto;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.detail-body th,
+.detail-body td {
+  border: 1px solid #ddd;
+  padding: 12px 16px;
+}
+
+.detail-body th {
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+/* ================== RESPONSIVE ================== */
+
+/* --- Tablet ngang (1024px) --- */
 @media (max-width: 1024px) {
   .detail-layout {
     grid-template-columns: 1.5fr 1fr;
@@ -121,6 +187,7 @@
   }
 }
 
+/* --- Tablet dọc & mobile lớn (768px) --- */
 @media (max-width: 768px) {
   .blog-detail {
     padding: 60px 16px;
@@ -132,22 +199,8 @@
     gap: 40px;
   }
 
-  .detail-main {
-    order: 1;
-  }
-
   .detail-title {
     font-size: 1.6rem;
-  }
-
-  .detail-body img {
-    margin: 16px 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .detail-title {
-    font-size: 1.4rem;
   }
 
   .meta {
@@ -157,73 +210,43 @@
   .detail-body {
     font-size: 0.95rem;
   }
-}
-/* ====== Bảng trong nội dung markdown ====== */
-.detail-body table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 24px 0;
-  font-size: 1rem;
-  text-align: left;
-}
 
-.detail-body th,
-.detail-body td {
-  border: 1px solid #ddd;
-  padding: 12px 16px;
-}
+  /* media & bảng canh giữa gọn hơn */
+  .detail-body img,
+  .detail-body iframe,
+  .detail-body video {
+    margin: 16px auto;
+  }
 
-@media (max-width: 768px) {
   .detail-body table {
     display: block;
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 }
 
-/* ====== Video & Iframe nhúng trong nội dung ====== */
-.detail-body iframe,
-.detail-body video {
-  display: block;
-  width: 100%;
-  max-width: 100%;
-  border: none;
-  margin: 24px 0;
-  background: #000;
-}
-
-/* ====== Responsive 16:9 ratio cho iframe (YouTube, Vimeo, v.v.) ====== */
-.detail-body iframe {
-  aspect-ratio: 16 / 9;
-  height: auto;
-}
-
-@supports not (aspect-ratio: 16 / 9) {
-  .detail-body iframe {
-    position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 56.25%;
+/* --- Mobile nhỏ (480px) --- */
+@media (max-width: 480px) {
+  .detail-title {
+    font-size: 1.4rem;
+  }
+  .meta {
+    font-size: 0.8rem;
+  }
+  .detail-body {
+    font-size: 0.9rem;
   }
 
-  .detail-body iframe[src] {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
+  .detail-body img {
+    max-height: 300px;
   }
-}
 
-/* ====== Video ====== */
-.detail-body video {
-  aspect-ratio: 16 / 9;
-  height: auto;
-  object-fit: cover;
-}
-
-@media (max-width: 768px) {
+  /* đảm bảo iframe & video vừa khung */
   .detail-body iframe,
   .detail-body video {
-    margin: 16px 0;
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    height: auto;
   }
 }
