@@ -11,7 +11,6 @@ const ReservaitonPage = lazy(() => import("@pages/ReservaitonPage"));
 const BlogPage = lazy(() => import("@pages/BlogPage"));
 const BlogDetailPage = lazy(() => import("@pages/BlogDetailPage"));
 const LibraryPage = lazy(() => import("@pages/LibraryPage"));
-const SitemapPage = lazy(() => import("@pages/SitemapPage"));
 const NotFound = lazy(() => import("@pages/NotFound"));
 
 const AppRoutes = () => {
@@ -26,7 +25,6 @@ const AppRoutes = () => {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
         <Route path="/library" element={<LibraryPage />} />
-        <Route path="/sitemap" element={<SitemapPage />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>
