@@ -5,7 +5,7 @@ import Button from "@components/ui/button";
 
 export default function LibraryList() {
   const [items, setItems] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(6);
+  const [visibleCount, setVisibleCount] = useState(7);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const gridRef = useRef();
@@ -90,7 +90,7 @@ export default function LibraryList() {
       {visibleCount < items.length && (
         <div className="button-see-more">
           <Button onClick={handleLoadMore} hover>
-            Xem thêm
+            See More
           </Button>
         </div>
       )}
