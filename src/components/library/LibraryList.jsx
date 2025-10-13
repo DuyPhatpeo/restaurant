@@ -89,7 +89,9 @@ export default function LibraryList() {
 
       {visibleCount < items.length && (
         <div className="button-see-more">
-          <Button onClick={handleLoadMore}>Xem thêm</Button>
+          <Button onClick={handleLoadMore} hover>
+            Xem thêm
+          </Button>
         </div>
       )}
     </div>
