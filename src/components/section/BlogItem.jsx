@@ -53,12 +53,6 @@ const BlogItem = ({ post, index }) => {
           <Link to={`/blog/${post.id}`} className="read-more">
             Read more
           </Link>
-
-          {/* Biểu tượng bình luận (nếu cần) */}
-          <div className="comments">
-            <MessageSquare size={18} />
-            <span>{post.comments || 0}</span>
-          </div>
         </div>
       </div>
     </div>
