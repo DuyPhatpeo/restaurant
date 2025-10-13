@@ -7,7 +7,7 @@ import { getLibrary } from "@api/libraryApi";
 
 export default function Library() {
   const [mediaList, setMediaList] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(9);
+  const [visibleCount, setVisibleCount] = useState(10);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [loading, setLoading] = useState(true);
 
