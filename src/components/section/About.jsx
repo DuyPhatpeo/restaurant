@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import about1 from "/about.jpg";
 import about2 from "/about-1.jpg";
 import SectionHeader from "@components/ui/SectionHeader";
@@ -8,8 +8,28 @@ import "aos/dist/aos.css";
 // ================= AnimatedNumber =================
 const AnimatedNumber = ({ value, duration = 2000 }) => {
   const [count, setCount] = useState(0);
+  const [start, setStart] = useState(false);
+  const ref = useRef();
 
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStart(true);
+          observer.disconnect(); // chỉ chạy 1 lần
+        }
+      },
+      { threshold: 0.3 } // 30% phần tử xuất hiện
+    );
+
+    if (ref.current) observer.observe(ref.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!start) return;
+
     const end = parseInt(value.toString().replace(/,/g, ""), 10);
     if (end === 0) return;
 
@@ -28,9 +48,9 @@ const AnimatedNumber = ({ value, duration = 2000 }) => {
     };
 
     requestAnimationFrame(animate);
-  }, [value, duration]);
+  }, [start, value, duration]);
 
-  return <>{count}</>;
+  return <span ref={ref}>{count}</span>;
 };
 
 // ================= AboutSection =================
@@ -102,7 +122,7 @@ const AboutSection = () => {
             key={index}
             className="stat-item"
             data-aos="zoom-in"
-            data-aos-delay={index * 250}
+            data-aos-delay={index * 300}
           >
             <h3 className="stat-number">
               <AnimatedNumber value={stat.value} />
