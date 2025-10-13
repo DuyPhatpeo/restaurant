@@ -103,10 +103,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="copyright">
-        Copyright ©2025 All rights reserved | Made with ❤️ by Dino |{" "}
-        <a href="/sitemap" className="sitemap-link">
-          Website Map
-        </a>
+        Copyright ©2025 All rights reserved | Made with ❤️ by Dino
       </div>
     </footer>
   );
