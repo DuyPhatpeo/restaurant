@@ -69,6 +69,42 @@
       "type": "image",
       "src": "/insta-6.jpg",
       "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 16,
+      "type": "image",
+      "src": "/bg_1.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 17,
+      "type": "image",
+      "src": "/bg_2.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 18,
+      "type": "image",
+      "src": "/bg_3.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 19,
+      "type": "image",
+      "src": "/breakfast-1.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 20,
+      "type": "image",
+      "src": "/breakfast-2.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 21,
+      "type": "image",
+      "src": "/breakfast-3.jpg",
+      "alt": "Tráng miệng ngọt ngào"
     }
   ],
   "comments": [

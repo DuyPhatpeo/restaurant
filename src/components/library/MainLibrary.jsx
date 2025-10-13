@@ -1,6 +1,6 @@
 import BannerHero from "@components/ui/BannerHero";
 import React from "react";
-import Library from "./Library";
+import LibraryList from "./LibraryList";
 
 const MainLibrary = () => {
   return (
@@ -14,7 +14,7 @@ const MainLibrary = () => {
           </>
         }
       />
-      <Library />
+      <LibraryList />
     </>
   );
 };
