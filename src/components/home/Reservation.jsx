@@ -1,9 +1,12 @@
-import React from "react";
+// src/components/section/ReservationForm.jsx
+import React, { useEffect } from "react";
 import FormField from "@components/ui/FormField";
 import SectionHeader from "@components/ui/SectionHeader";
 import Button from "@components/ui/Button";
 import useReservationForm from "@hooks/useReservationForm";
 import { BOOKING_STATUS } from "@lib/utils/bookingRules";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 export default function ReservationForm() {
   const {
@@ -49,35 +52,63 @@ export default function ReservationForm() {
     { label: "Reservation Time", name: "time", type: "time" },
   ];
 
-  // Kiểm tra giờ & ngày có cho phép đặt bàn không
   const bookingAllowed = isBookingAllowedNow();
   const isFull = BOOKING_STATUS === "full";
 
+  // ✅ Khởi tạo hiệu ứng AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      offset: 120,
+      once: true,
+      easing: "ease-in-out",
+    });
+  }, []);
+
   return (
-    <section className="reservation-section">
+    <section className="reservation-section" data-aos="fade-up">
       <div className="reservation-wrapper">
-        <div className="reservation-header">
+        <div
+          className="reservation-header"
+          data-aos="zoom-in"
+          data-aos-delay="100"
+        >
           <SectionHeader subtitle="Book a Table" title="Make a Reservation" />
         </div>
 
-        <form className="reservation-form" onSubmit={handleSubmit} noValidate>
-          {fields.map((field) => (
-            <FormField
+        <form
+          className="reservation-form"
+          onSubmit={handleSubmit}
+          noValidate
+          data-aos="fade-up"
+          data-aos-delay="200"
+        >
+          {fields.map((field, index) => (
+            <div
               key={field.name}
-              label={field.label}
-              name={field.name}
-              type={field.type}
-              placeholder={field.placeholder}
-              options={field.options}
-              value={formData[field.name]}
-              onChange={handleChange}
-              required={field.name !== "guests"}
-              error={errors[field.name]}
-              disabled={isFull || !bookingAllowed}
-            />
+              data-aos="fade-up"
+              data-aos-delay={300 + index * 100}
+            >
+              <FormField
+                label={field.label}
+                name={field.name}
+                type={field.type}
+                placeholder={field.placeholder}
+                options={field.options}
+                value={formData[field.name]}
+                onChange={handleChange}
+                required={field.name !== "guests"}
+                error={errors[field.name]}
+                disabled={isFull || !bookingAllowed}
+              />
+            </div>
           ))}
 
-          <div className="reservation-action">
+          <div
+            className="reservation-action"
+            data-aos="fade-up"
+            data-aos-delay="900"
+          >
             <Button
               hover
               type="submit"

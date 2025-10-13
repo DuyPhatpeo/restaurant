@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaBirthdayCake, FaUsers, FaConciergeBell } from "react-icons/fa";
 import SectionHeader from "@components/ui/SectionHeader";
 import ServiceItem from "./ServiceItem";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const services = [
   {
@@ -25,17 +27,28 @@ const services = [
 ];
 
 export default function Services() {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100,
+      easing: "ease-in-out",
+    });
+  }, []);
+
   return (
-    <section className="services-wrapper">
+    <section className="services-wrapper" data-aos="fade-up">
       <SectionHeader subtitle="Services" title="Catering Services" />
+
       <div className="services-grid">
         {services.map((service, index) => (
-          <ServiceItem
-            key={index}
-            icon={service.icon}
-            title={service.title}
-            description={service.description}
-          />
+          <div key={index} data-aos="zoom-in" data-aos-delay={index * 150}>
+            <ServiceItem
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+            />
+          </div>
         ))}
       </div>
     </section>

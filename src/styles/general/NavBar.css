@@ -1,12 +1,18 @@
 /* ================= Navbar ================= */
 .navbar {
+  position: fixed;
+  top: 40px; /* chiều cao top-bar ~40px */
+  left: 0;
   width: 100%;
   background: transparent;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease;
+  z-index: 100;
 }
+
 .navbar.scrolled {
+  top: 0;
   background: var(--color-white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 /* ================= Logo ================= */
@@ -36,7 +42,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.3s ease-in-out;
+  transition: padding 0.3s ease;
+}
+
+.navbar.scrolled .nav-container {
+  padding: 0.75rem 2rem; /* thu nhỏ nhẹ khi scroll */
 }
 
 /* ================= Desktop Menu ================= */
@@ -88,12 +98,13 @@
   visibility: hidden;
   max-height: 0;
   opacity: 0;
-  z-index: 1000;
+  z-index: 99;
   padding: 0;
   transition: all 0.35s ease;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   border-radius: 0 0 12px 12px;
 }
+
 .mobile-menu.open {
   display: flex;
   visibility: visible;

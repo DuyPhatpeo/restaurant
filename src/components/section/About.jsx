@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import about1 from "/about.jpg";
 import about2 from "/about-1.jpg";
 import SectionHeader from "@components/ui/SectionHeader";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 // ================= AnimatedNumber =================
 const AnimatedNumber = ({ value, duration = 2000 }) => {
@@ -40,21 +42,40 @@ const AboutSection = () => {
     { value: 15000, label: "Happy Customers" },
   ];
 
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 200,
+      easing: "ease-in-out",
+    });
+  }, []);
+
   return (
     <section className="about-section">
       <div className="about-section-container">
         {/* Images */}
-        <div className="about-section-images">
+        <div className="about-section-images" data-aos="fade-right">
           <img
             src={about1}
             alt="Chef preparing food"
             className="about-img main"
           />
-          <img src={about2} alt="Cooking" className="about-img secondary" />
+          <img
+            src={about2}
+            alt="Cooking"
+            className="about-img secondary"
+            data-aos="zoom-in"
+            data-aos-delay="200"
+          />
         </div>
 
         {/* Content */}
-        <div className="about-section-content">
+        <div
+          className="about-section-content"
+          data-aos="fade-left"
+          data-aos-delay="300"
+        >
           <div className="section-header">
             <SectionHeader subtitle="About" title="Feliciano Restaurant" />
           </div>
@@ -71,9 +92,18 @@ const AboutSection = () => {
       </div>
 
       {/* Stats */}
-      <div className="about-section-stats">
+      <div
+        className="about-section-stats"
+        data-aos="fade-up"
+        data-aos-delay="400"
+      >
         {statsData.map((stat, index) => (
-          <div key={index} className="stat-item">
+          <div
+            key={index}
+            className="stat-item"
+            data-aos="zoom-in"
+            data-aos-delay={index * 250}
+          >
             <h3 className="stat-number">
               <AnimatedNumber value={stat.value} />
             </h3>
@@ -82,7 +112,7 @@ const AboutSection = () => {
         ))}
 
         {/* Extra description */}
-        <div className="stat-desc">
+        <div className="stat-desc" data-aos="fade-up" data-aos-delay="600">
           <p>
             A small river named Duden flows by their place and supplies it with
             the necessary regelialia.

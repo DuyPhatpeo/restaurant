@@ -1,18 +1,42 @@
 /* ================= MenuItem ================= */
+.menu-item {
+  display: flex;
+  align-items: stretch;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.menu-item.reverse {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: 1200px) {
+  .menu-item {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
 .menu-image {
+  flex: 1;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 5 / 5;
   object-fit: cover;
+  display: block;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .menu-card {
+  flex: 1;
   background: var(--color-white);
   border: 1px solid #eee;
+  border-radius: 12px;
   padding: 30px 20px;
   text-align: left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
 }
 
 .menu-title-row {
@@ -46,14 +70,14 @@
 }
 
 .menu-desc {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-base);
   color: var(--color-text);
   margin: 10px 0 20px;
   line-height: 1.6;
 
   /* Giới hạn 3 dòng */
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
