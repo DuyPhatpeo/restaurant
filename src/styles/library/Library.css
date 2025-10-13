@@ -1,0 +1,144 @@
+/* ===============================
+   Library Section (Grid Masonry Rows)
+=============================== */
+.library-section {
+  background-color: #faf9f7;
+  padding: 4rem 1rem;
+  min-height: 100vh;
+}
+
+/* Masonry layout bằng CSS Grid */
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-rows: masonry; /* cho phép ảnh lệch hàng tự nhiên */
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* Card item */
+.library-item {
+  position: relative;
+  cursor: pointer;
+  background: #f0f0f0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.library-item:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+}
+
+/* Ảnh & video giữ đúng tỉ lệ gốc */
+.library-item img,
+.library-item video {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain; /* không bị crop */
+  background: #fff;
+  transition: transform 0.4s ease;
+}
+
+.library-item:hover img,
+.library-item:hover video {
+  transform: scale(1.05);
+}
+
+/* Overlay khi hover */
+.library-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.library-item:hover .library-overlay {
+  opacity: 1;
+}
+
+.library-overlay svg {
+  color: #fff;
+  width: 44px;
+  height: 44px;
+}
+
+/* ===============================
+   Lightbox Popup
+=============================== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.lightbox-content {
+  max-width: 90%;
+  max-height: 90%;
+  overflow: hidden;
+}
+
+.lightbox-content img,
+.lightbox-content video {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+}
+
+/* Fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   Nút Xem Thêm
+=============================== */
+.library-btn-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* ===============================
+   Responsive
+=============================== */
+@media (max-width: 1024px) {
+  .library-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .library-section {
+    padding: 3rem 1rem;
+  }
+
+  .library-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .library-item {
+    margin-bottom: 1rem;
+  }
+}

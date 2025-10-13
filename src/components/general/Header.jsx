@@ -43,6 +43,7 @@ const Header = () => {
       label: "Stories",
       submenu: [
         { label: "Blog", link: "/blog" },
+        { label: "Library", link: "/library" },
         {
           label: "Events",
           submenu: [

@@ -1,4 +1,71 @@
 {
+  "library": [
+    {
+      "id": 1,
+      "type": "image",
+      "src": "/image_1.jpg",
+      "alt": "Món ăn đặc trưng"
+    },
+    { "id": 2, "type": "image", "src": "/chef-1.jpg", "alt": "Đầu bếp" },
+    { "id": 4, "type": "image", "src": "/chef-3.jpg", "alt": "Đầu bếp" },
+    {
+      "id": 3,
+      "type": "video",
+      "src": "/video_1.mp4",
+      "alt": "Không gian quán"
+    },
+    {
+      "id": 5,
+      "type": "image",
+      "src": "/image_2.jpg",
+      "alt": "Đội ngũ phục vụ"
+    },
+    { "id": 6, "type": "video", "src": "/video_2.mp4", "alt": "Cà phê sáng" },
+    { "id": 7, "type": "image", "src": "/chef-2.jpg", "alt": "Đầu bếp" },
+    {
+      "id": 8,
+      "type": "image",
+      "src": "/image_3.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    { "id": 9, "type": "image", "src": "/chef-4.jpg", "alt": "Đầu bếp" },
+    {
+      "id": 10,
+      "type": "image",
+      "src": "/insta-1.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 11,
+      "type": "image",
+      "src": "/insta-2.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 12,
+      "type": "image",
+      "src": "/insta-3.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 13,
+      "type": "image",
+      "src": "/insta-4.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 14,
+      "type": "image",
+      "src": "/insta-5.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 15,
+      "type": "image",
+      "src": "/insta-6.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    }
+  ],
   "comments": [
     {
       "id": "c0fe",

@@ -9,3 +9,4 @@ import "@styles/base/Menu.css";
 import "@styles/base/Contact.css";
 import "@styles/base/Blog.css";
 import "@styles/base/Sitemap.css";
+import "@styles/base/Library.css";
