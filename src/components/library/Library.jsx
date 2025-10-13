@@ -33,6 +33,16 @@ export default function Library() {
     document.body.style.overflow = selectedMedia ? "hidden" : "";
   }, [selectedMedia]);
 
+  // Đóng lightbox khi nhấn ESC
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSelectedMedia(null);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
   const closeLightbox = (e) => {
     if (e.target.classList.contains("lightbox")) setSelectedMedia(null);
   };
