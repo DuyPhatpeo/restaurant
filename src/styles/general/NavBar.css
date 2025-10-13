@@ -1,7 +1,7 @@
 /* ================= Navbar ================= */
 .navbar {
   position: fixed;
-  top: 40px; /* chiều cao top-bar ~40px */
+  top: 40px; /* desktop, có TopBar ~40px */
   left: 0;
   width: 100%;
   background: transparent;
@@ -9,6 +9,7 @@
   z-index: 100;
 }
 
+/* Navbar khi scroll trên desktop */
 .navbar.scrolled {
   top: 0;
   background: var(--color-white);
@@ -44,9 +45,8 @@
   align-items: center;
   transition: padding 0.3s ease;
 }
-
 .navbar.scrolled .nav-container {
-  padding: 0.75rem 2rem; /* thu nhỏ nhẹ khi scroll */
+  padding: 0.75rem 2rem;
 }
 
 /* ================= Desktop Menu ================= */
@@ -70,9 +70,6 @@
   cursor: pointer;
   color: var(--color-white);
   transition: color 0.3s ease;
-}
-.mobile-toggle.scrolled {
-  color: var(--color-black);
 }
 .mobile-toggle-inner {
   display: flex;
@@ -104,7 +101,6 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   border-radius: 0 0 12px 12px;
 }
-
 .mobile-menu.open {
   display: flex;
   visibility: visible;
@@ -155,8 +151,28 @@
 }
 
 @media (max-width: 768px) {
+  /* Mobile view: Navbar sát top và nền đen */
+  .navbar {
+    top: 0;
+    background: var(--color-black);
+    box-shadow: none;
+  }
+  .navbar.scrolled {
+    background: var(--color-white);
+  }
   .logo {
     font-size: 20px;
+    color: var(--color-white);
+  }
+  .logo.scrolled {
+    color: var(--color-black);
+  }
+  .mobile-toggle {
+    display: block;
+    color: var(--color-white);
+  }
+  .mobile-toggle.scrolled {
+    color: var(--color-black);
   }
 }
 
