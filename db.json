@@ -11,7 +11,7 @@
     {
       "id": 3,
       "type": "video",
-      "src": "/video_1.mp4",
+      "src": "/video_demo.mp4",
       "alt": "Không gian quán"
     },
     {
@@ -20,7 +20,12 @@
       "src": "/image_2.jpg",
       "alt": "Đội ngũ phục vụ"
     },
-    { "id": 6, "type": "video", "src": "/video_2.mp4", "alt": "Cà phê sáng" },
+    {
+      "id": 6,
+      "type": "video",
+      "src": "/video_demo.mp4",
+      "alt": "Cà phê sáng"
+    },
     { "id": 7, "type": "image", "src": "/chef-2.jpg", "alt": "Đầu bếp" },
     {
       "id": 8,
@@ -189,7 +194,7 @@
       "date": "Sept 15, 2019",
       "author": "John Smooth",
       "title": "Healthy ingredients for your daily meals",
-      "content": "<p>Eating healthy doesn't mean boring food. Learn which ingredients boost nutrition while keeping your meals tasty.</p>\n<iframe src=\"https://www.youtube.com/embed/KOStDZ_Lbxc?list=RDKOStDZ_Lbxc\" title=\"YouTube video: Healthy ingredients\" loading=\"lazy\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n<p>Video: Ingredients that boost nutrition</p>\n<video controls playsinline preload=\"metadata\">\n  <source src=\"/videos/intro.mp4\" type=\"video/mp4\">\n</video>\n<p>Intro video from our kitchen</p>"
+      "content": "<p>Eating healthy doesn't mean boring food. Learn which ingredients boost nutrition while keeping your meals tasty.</p>\n<iframe src=\"https://www.youtube.com/embed/KOStDZ_Lbxc?list=RDKOStDZ_Lbxc\" title=\"YouTube video: Healthy ingredients\" loading=\"lazy\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>\n<p>Video: Ingredients that boost nutrition</p>\n<video controls playsinline preload=\"metadata\">\n  <source src=\"/video_demo.mp4\" type=\"video/mp4\">\n</video>\n<p>Intro video from our kitchen</p>"
     },
     {
       "id": "4",
