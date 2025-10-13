@@ -11,6 +11,7 @@ import "aos/dist/aos.css";
 
 export default function Testimonial() {
   const [testimonials, setTestimonials] = useState([]);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,11 +20,10 @@ export default function Testimonial() {
     };
     fetchData();
 
-    // ✅ Khởi tạo AOS
     AOS.init({
-      duration: 1000, // thời gian hiệu ứng
-      once: true, // chỉ chạy 1 lần
-      offset: 100, // bắt đầu khi còn cách viewport 100px
+      duration: 1000,
+      once: true,
+      offset: 100,
       easing: "ease-in-out",
     });
   }, []);
@@ -40,10 +40,11 @@ export default function Testimonial() {
         <Swiper
           modules={[Pagination, Autoplay]}
           pagination={{ clickable: true }}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
           centeredSlides={true}
           spaceBetween={30}
           slidesPerView={3}
+          onSlideChange={(swiper) => setActiveIndex(swiper.realIndex)}
           breakpoints={{
             0: { slidesPerView: 1, centeredSlides: true },
             768: { slidesPerView: 2, centeredSlides: false },
@@ -52,13 +53,12 @@ export default function Testimonial() {
           className="testimonial-swiper"
         >
           {testimonials.map((t, index) => (
-            <SwiperSlide
-              key={t.id}
-              className="testimonial-slide"
-              data-aos="zoom-in"
-              data-aos-delay={index * 150}
-            >
-              <div className="testimonial-card">
+            <SwiperSlide key={t.id} className="testimonial-slide">
+              <div
+                className={`testimonial-card ${
+                  activeIndex === index ? "active" : "inactive"
+                }`}
+              >
                 <div className="testimonial-image">
                   <img src={t.image} alt={t.name} />
                   <div className="quote">

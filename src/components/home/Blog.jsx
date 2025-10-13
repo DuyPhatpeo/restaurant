@@ -9,7 +9,7 @@ const Blog = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // --- Init AOS ---
+  // --- Khởi tạo AOS chỉ 1 lần ---
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -19,13 +19,14 @@ const Blog = () => {
     });
   }, []);
 
-  // --- Fetch blogs ---
+  // --- Lấy dữ liệu blog ---
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const data = await getBlogs();
         setPosts(data || []);
-        setTimeout(() => AOS.refresh(), 200); // Làm mới hiệu ứng sau khi render
+        // Làm mới hiệu ứng sau khi render dữ liệu
+        setTimeout(() => AOS.refresh(), 200);
       } catch (error) {
         console.error("Không thể tải blogs:", error);
       } finally {
@@ -50,14 +51,8 @@ const Blog = () => {
           <p>Chưa có bài viết nào.</p>
         ) : (
           <div className="blog-grid">
-            {posts.slice(0, 3).map((post, index) => (
-              <div
-                key={post.id}
-                data-aos="zoom-in-up"
-                data-aos-delay={index * 150}
-              >
-                <BlogItem post={post} />
-              </div>
+            {posts.slice(0, 3).map((post) => (
+              <BlogItem post={post} />
             ))}
           </div>
         )}

@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { ZoomIn } from "lucide-react";
-import SectionHeader from "@components/ui/SectionHeader";
 import Button from "@components/ui/button";
 import { getLibrary } from "@api/libraryApi";
 
 export default function Library() {
   const [mediaList, setMediaList] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(9); // số lượng hiển thị ban đầu
+  const [visibleCount, setVisibleCount] = useState(9);
   const [selectedMedia, setSelectedMedia] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -50,8 +49,6 @@ export default function Library() {
 
   return (
     <section className="library-section">
-      <SectionHeader subtitle="Library" title="Library of Moments" />
-
       <div className="library-grid">
         {mediaList.slice(0, visibleCount).map((item) => (
           <div
