@@ -105,6 +105,18 @@
       "type": "image",
       "src": "/breakfast-3.jpg",
       "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 22,
+      "type": "image",
+      "src": "/breakfast-4.jpg",
+      "alt": "Tráng miệng ngọt ngào"
+    },
+    {
+      "id": 23,
+      "type": "image",
+      "src": "/breakfast-5.jpg",
+      "alt": "Tráng miệng ngọt ngào"
     }
   ],
   "comments": [

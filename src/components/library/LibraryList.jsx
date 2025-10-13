@@ -67,7 +67,7 @@ export default function LibraryList() {
 
   // --- Load thêm ---
   const handleLoadMore = () => {
-    setVisibleCount((prev) => prev + 6);
+    setVisibleCount((prev) => prev + 10);
   };
 
   if (loading) return <p>Đang tải thư viện...</p>;
