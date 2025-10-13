@@ -13,7 +13,7 @@ const NotFound = () => {
     <>
       <Header />
       <BannerHero
-        title="Menu"
+        title="Not Found"
         bg="/bg_3.jpg"
         breadcrumb={
           <>
