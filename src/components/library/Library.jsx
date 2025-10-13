@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { ZoomIn } from "lucide-react";
+import { ZoomIn, X } from "lucide-react";
 import Button from "@components/ui/button";
 import { getLibrary } from "@api/libraryApi";
 
@@ -28,6 +28,7 @@ export default function Library() {
     fetchData();
   }, []);
 
+  // Ẩn scroll khi mở lightbox
   useEffect(() => {
     document.body.style.overflow = selectedMedia ? "hidden" : "";
   }, [selectedMedia]);
@@ -78,9 +79,19 @@ export default function Library() {
         </div>
       )}
 
+      {/* Lightbox popup */}
       {selectedMedia && (
         <div className="lightbox" onClick={closeLightbox}>
           <div className="lightbox-content">
+            {/* Nút đóng */}
+            <button
+              className="lightbox-close"
+              onClick={() => setSelectedMedia(null)}
+              aria-label="Đóng"
+            >
+              <X />
+            </button>
+
             {selectedMedia.type === "image" ? (
               <img src={selectedMedia.src} alt={selectedMedia.alt} />
             ) : (
