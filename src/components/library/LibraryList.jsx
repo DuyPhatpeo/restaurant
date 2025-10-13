@@ -5,7 +5,7 @@ import Button from "@components/ui/button";
 
 export default function LibraryList() {
   const [items, setItems] = useState([]);
-  const [visibleCount, setVisibleCount] = useState(7);
+  const [visibleCount, setVisibleCount] = useState(10);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const gridRef = useRef();
