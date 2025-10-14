@@ -1,8 +1,6 @@
 import React, { useEffect, useRef } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
-export default function LibraryItem({ item, onClick, index = 0 }) {
+export default function LibraryItem({ item, onClick }) {
   const itemRef = useRef(null);
 
   useEffect(() => {
@@ -30,15 +28,7 @@ export default function LibraryItem({ item, onClick, index = 0 }) {
   }, []);
 
   return (
-    <div
-      ref={itemRef}
-      className="library-item"
-      onClick={onClick}
-      data-aos="fade-up"
-      data-aos-delay={index * 100} // tạo hiệu ứng lần lượt
-      data-aos-duration="700"
-      data-aos-easing="ease-out-cubic"
-    >
+    <div ref={itemRef} className="library-item" onClick={onClick}>
       {item.type === "video" ? (
         <video src={item.src} controls />
       ) : (
