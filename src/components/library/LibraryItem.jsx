@@ -1,8 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { X } from "lucide-react"; // icon đóng, nhẹ và đẹp
 
-export default function LibraryItem({ item, onClick }) {
+export default function LibraryItem({ item }) {
   const itemRef = useRef(null);
+  const [isZoomed, setIsZoomed] = useState(false);
 
+  // ========== Auto grid row span ==========
   useEffect(() => {
     const el = itemRef.current;
     if (!el) return;
@@ -27,13 +30,52 @@ export default function LibraryItem({ item, onClick }) {
     }
   }, []);
 
+  // ========== Zoom control ==========
+  const handleZoom = () => setIsZoomed(true);
+  const handleCloseZoom = () => setIsZoomed(false);
+
+  // Đóng bằng phím Esc
+  useEffect(() => {
+    if (!isZoomed) return;
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") handleCloseZoom();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isZoomed]);
+
   return (
-    <div ref={itemRef} className="library-item" onClick={onClick}>
-      {item.type === "video" ? (
-        <video src={item.src} controls />
-      ) : (
-        <img src={item.src} alt={item.alt || "media"} />
+    <>
+      <div ref={itemRef} className="library-item" onClick={handleZoom}>
+        {item.type === "video" ? (
+          <video src={item.src} controls />
+        ) : (
+          <img src={item.src} alt={item.alt || "media"} />
+        )}
+      </div>
+
+      {isZoomed && (
+        <div className="zoom-overlay" onClick={handleCloseZoom}>
+          {/* Nút đóng */}
+          <button
+            className="zoom-close-btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCloseZoom();
+            }}
+            aria-label="Close zoom view"
+          >
+            <X size={28} />
+          </button>
+
+          {/* Nội dung phóng to */}
+          {item.type === "video" ? (
+            <video src={item.src} controls autoPlay />
+          ) : (
+            <img src={item.src} alt={item.alt || "zoomed media"} />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
