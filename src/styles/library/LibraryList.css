@@ -1,7 +1,7 @@
 /* ================= LibraryList ================= */
 .library-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: 10px;
   gap: 1rem;
   max-width: 1200px;
@@ -18,50 +18,20 @@
 
 /* ================= Responsive ================= */
 
-/* Màn hình lớn (desktop rộng) */
-@media (min-width: 1400px) {
+/* Tablet (từ 768px đến 1399px) */
+@media (max-width: 1399px) and (min-width: 768px) {
   .library-grid {
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.2rem;
-  }
-}
-
-/* Tablet ngang (từ 992px đến 1399px) */
-@media (max-width: 1399px) and (min-width: 992px) {
-  .library-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     padding: 0 15px;
   }
 }
 
-/* Tablet dọc (768px đến 991px) */
-@media (max-width: 991px) and (min-width: 768px) {
-  .library-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 0.9rem;
-    padding: 0 15px;
-  }
-}
-
-/* Mobile lớn (576px đến 767px) */
-@media (max-width: 767px) and (min-width: 576px) {
-  .library-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0.8rem;
-    padding: 0 10px;
-  }
-
-  .button-see-more {
-    margin: 2rem 0 3rem 0;
-  }
-}
-
-/* Mobile nhỏ (<576px) */
-@media (max-width: 575px) {
+/* Mobile (<768px) */
+@media (max-width: 767px) {
   .library-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.7rem;
+    gap: 0.8rem;
     padding: 0 8px;
   }
 
