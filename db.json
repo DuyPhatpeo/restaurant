@@ -66,9 +66,9 @@
     },
     {
       "id": 15,
-      "type": "image",
-      "src": "/insta-6.jpg",
-      "alt": "Tráng miệng ngọt ngào"
+      "type": "video",
+      "src": "/video_demo.mp4",
+      "alt": "Không gian quán"
     },
     {
       "id": 16,
@@ -108,9 +108,9 @@
     },
     {
       "id": 22,
-      "type": "image",
-      "src": "/breakfast-4.jpg",
-      "alt": "Tráng miệng ngọt ngào"
+      "type": "video",
+      "src": "/video_demo.mp4",
+      "alt": "Không gian quán"
     },
     {
       "id": 23,
