@@ -31,8 +31,10 @@
   z-index: 9999;
   animation: fadeOverlay 0.3s ease;
   cursor: zoom-out;
+  overflow: hidden;
 }
 
+/* Ảnh/Video trong overlay */
 .zoom-overlay img,
 .zoom-overlay video {
   max-width: 90%;
@@ -41,6 +43,7 @@
   object-fit: contain;
   animation: zoomIn 0.3s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
 }
 
 /* ================= Close Button ================= */
@@ -84,8 +87,11 @@
 @media (max-width: 576px) {
   .zoom-overlay img,
   .zoom-overlay video {
-    max-width: 100%;
+    max-width: 94%;
     max-height: 80vh;
+    margin-inline: 3%;
+    padding: 6px;
+    border-radius: 12px;
   }
 
   .zoom-close-btn {
