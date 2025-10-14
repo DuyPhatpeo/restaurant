@@ -7,7 +7,7 @@ import "aos/dist/aos.css";
 
 // ================= AnimatedNumber =================
 const AnimatedNumber = ({ value, duration = 2000 }) => {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState("0");
   const [start, setStart] = useState(false);
   const ref = useRef();
 
@@ -19,11 +19,10 @@ const AnimatedNumber = ({ value, duration = 2000 }) => {
           observer.disconnect(); // chỉ chạy 1 lần
         }
       },
-      { threshold: 0.3 } // 30% phần tử xuất hiện
+      { threshold: 0.3 }
     );
 
     if (ref.current) observer.observe(ref.current);
-
     return () => observer.disconnect();
   }, []);
 
@@ -39,18 +38,26 @@ const AnimatedNumber = ({ value, duration = 2000 }) => {
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
       const currentValue = Math.floor(progress * end);
-
       setCount(currentValue.toLocaleString());
 
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      }
+      if (progress < 1) requestAnimationFrame(animate);
     };
 
     requestAnimationFrame(animate);
   }, [start, value, duration]);
 
-  return <span ref={ref}>{count}</span>;
+  return (
+    <span
+      ref={ref}
+      style={{
+        display: "inline-block",
+        minWidth: `${value.toString().length}ch`,
+        textAlign: "center",
+      }}
+    >
+      {start ? count : "0".repeat(value.toString().length)}
+    </span>
+  );
 };
 
 // ================= AboutSection =================
@@ -66,7 +73,7 @@ const AboutSection = () => {
     AOS.init({
       duration: 1000,
       once: true,
-      offset: 200,
+      offset: 150,
       easing: "ease-in-out",
     });
   }, []);
@@ -74,8 +81,8 @@ const AboutSection = () => {
   return (
     <section className="about-section">
       <div className="about-section-container">
-        {/* Images */}
-        <div className="about-section-images" data-aos="fade-right">
+        {/* Images — xuất hiện từ DƯỚI LÊN */}
+        <div className="about-section-images" data-aos="fade-up">
           <img
             src={about1}
             alt="Chef preparing food"
@@ -90,10 +97,10 @@ const AboutSection = () => {
           />
         </div>
 
-        {/* Content */}
+        {/* Content — cũng xuất hiện từ DƯỚI LÊN */}
         <div
           className="about-section-content"
-          data-aos="fade-left"
+          data-aos="fade-up"
           data-aos-delay="300"
         >
           <div className="section-header">
