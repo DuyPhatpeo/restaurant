@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { X } from "lucide-react"; // icon đóng, nhẹ và đẹp
+import { X } from "lucide-react";
 
 export default function LibraryItem({ item }) {
   const itemRef = useRef(null);
@@ -34,14 +34,24 @@ export default function LibraryItem({ item }) {
   const handleZoom = () => setIsZoomed(true);
   const handleCloseZoom = () => setIsZoomed(false);
 
-  // Đóng bằng phím Esc
+  // ========== ESC key + Lock scroll ==========
   useEffect(() => {
-    if (!isZoomed) return;
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") handleCloseZoom();
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    if (isZoomed) {
+      // Khóa scroll nền
+      document.body.style.overflow = "hidden";
+
+      // Lắng nghe phím Esc
+      const handleKeyDown = (e) => {
+        if (e.key === "Escape") handleCloseZoom();
+      };
+      window.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        // Mở lại scroll + gỡ sự kiện
+        document.body.style.overflow = "";
+        window.removeEventListener("keydown", handleKeyDown);
+      };
+    }
   }, [isZoomed]);
 
   return (
