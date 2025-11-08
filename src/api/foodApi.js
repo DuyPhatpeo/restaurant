@@ -32,7 +32,7 @@ export const getFoodsByCategory = async (
   try {
     let q = query(
       collection(db, "foods"),
-      where("categoryId", "==", categoryId) // categoryId kiểu string
+      where("categoryId", "==", categoryId)
     );
     if (sortBy) q = query(q, orderBy(sortBy, direction));
 

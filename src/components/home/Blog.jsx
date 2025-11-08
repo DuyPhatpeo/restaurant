@@ -25,6 +25,7 @@ const Blog = () => {
       try {
         const data = await getBlogs();
         setPosts(data || []);
+
         // Làm mới hiệu ứng sau khi render dữ liệu
         setTimeout(() => AOS.refresh(), 200);
       } catch (error) {
@@ -33,6 +34,7 @@ const Blog = () => {
         setLoading(false);
       }
     };
+
     fetchBlogs();
   }, []);
 
@@ -51,8 +53,11 @@ const Blog = () => {
           <p>Chưa có bài viết nào.</p>
         ) : (
           <div className="blog-grid">
-            {posts.slice(0, 3).map((post) => (
-              <BlogItem post={post} />
+            {posts.slice(0, 3).map((post, index) => (
+              <BlogItem
+                key={post.id || post.slug || index} // ✅ Sửa lỗi key
+                post={post}
+              />
             ))}
           </div>
         )}

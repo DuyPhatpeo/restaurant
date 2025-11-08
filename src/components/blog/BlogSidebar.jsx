@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { getCategories, getFoods } from "@api/foodApi";
-import { getBlogs } from "@api/blogApi";
+import { getCategories } from "@api/categoryApi";
+import { getFoods } from "@api/foodApi";
+import { getBlogs } from "@api/blogApi"; // ✅ import named export đúng
 
 const BlogSidebar = ({ currentBlogId }) => {
   const [categories, setCategories] = useState([]);
@@ -22,13 +23,12 @@ const BlogSidebar = ({ currentBlogId }) => {
         setCategories(catData || []);
         setFoods(foodData || []);
 
-        const filteredBlogs = (blogData || []).filter(
-          (b) => String(b.id) !== String(currentBlogId)
-        );
-
-        setBlogs(filteredBlogs.slice(0, 4));
+        const filteredBlogs = (blogData || [])
+          .filter((b) => String(b.id) !== String(currentBlogId))
+          .slice(0, 4); // hiển thị max 4 bài khác
+        setBlogs(filteredBlogs);
       } catch (error) {
-        console.error("Failed to load sidebar data:", error);
+        console.error("❌ Failed to load sidebar data:", error);
       } finally {
         setLoading(false);
       }
@@ -37,6 +37,7 @@ const BlogSidebar = ({ currentBlogId }) => {
     fetchSidebarData();
   }, [currentBlogId]);
 
+  // Tính số lượng món ăn mỗi category
   const foodCounts = foods.reduce((acc, food) => {
     const catId = food.categoryId || "uncategorized";
     acc[catId] = (acc[catId] || 0) + 1;
@@ -55,7 +56,7 @@ const BlogSidebar = ({ currentBlogId }) => {
             {categories.map((cat) => (
               <li key={cat.id} className="category-item">
                 <Link
-                  to={`/menu`}
+                  to={`/menu?category=${cat.id}`}
                   className={`category-link ${
                     location.search.includes(`category=${cat.id}`)
                       ? "active"
@@ -89,7 +90,7 @@ const BlogSidebar = ({ currentBlogId }) => {
                   />
                   <div className="sidebar-info">
                     <h4>{item.title}</h4>
-                    <p>{item.date}</p>
+                    <p>{item.date || ""}</p>
                   </div>
                 </Link>
               </li>

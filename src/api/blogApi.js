@@ -37,7 +37,8 @@ export const getBlogById = async (id) => {
       console.log("🧾 Blog detail:", blog);
       return blog;
     } else {
-      throw new Error(`Không tìm thấy blog với ID: ${id}`);
+      console.warn(`⚠️ Không tìm thấy blog với ID: ${id}`);
+      return null; // Trả về null thay vì throw, tránh crash React
     }
   } catch (error) {
     console.error(`❌ Lỗi khi lấy chi tiết blog (id=${id}):`, error);
