@@ -1,13 +1,21 @@
-// api/personApi.js
-import api from "@lib/axios";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@lib/firebaseConfig";
 
-// Lấy tất cả testimonial (ở đây mình gọi là persons hoặc customers)
+/**
+ * 🔹 Lấy tất cả testimonials (customers)
+ */
 export const getTestimonials = async () => {
   try {
-    const res = await api.get("/testimonials");
-    return res.data;
+    const querySnapshot = await getDocs(collection(db, "testimonials"));
+    const testimonials = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    console.log("💬 Testimonials loaded:", testimonials);
+    return testimonials;
   } catch (error) {
-    console.error("Lỗi khi lấy testimonials:", error);
-    return [];
+    console.error("❌ Lỗi khi lấy testimonials:", error);
+    return []; // giữ nguyên logic cũ
   }
 };

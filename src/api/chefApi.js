@@ -1,8 +1,33 @@
-// api/personApi.js
-import api from "@lib/axios";
+// src/api/chefApi.js
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@lib/firebaseConfig";
 
-// Lấy tất cả persons
+/**
+ * Lấy danh sách chefs từ Firestore
+ */
 export const getChefs = async () => {
-  const res = await api.get("/chefs");
-  return res.data;
+  try {
+    const querySnapshot = await getDocs(collection(db, "chefs"));
+
+    const chefs = querySnapshot.docs.map((doc) => {
+      const data = doc.data();
+
+      // 🔍 Log ra để kiểm tra dữ liệu raw từ Firestore
+      console.log("🔥 Chef raw data:", data);
+
+      return {
+        id: data.id || doc.id, // dùng id trong doc hoặc Firestore ID
+        name: data.name || "",
+        image: data.image || "",
+        role: data.role || "",
+        social: data.social || {},
+      };
+    });
+
+    console.log("✅ Chefs loaded:", chefs);
+    return chefs;
+  } catch (error) {
+    console.error("❌ Error fetching chefs:", error);
+    throw error;
+  }
 };
