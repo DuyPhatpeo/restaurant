@@ -1,3 +1,4 @@
+// src/pages/BlogDetailPage.jsx
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getBlogById, getBlogs } from "@api/blogApi";
@@ -14,16 +15,16 @@ const BlogDetailPage = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!id) return;
+
     const fetchBlogData = async () => {
       setLoading(true);
       setError("");
-
       try {
         const [data, allBlogs] = await Promise.all([
           getBlogById(id),
           getBlogs(),
         ]);
-
         if (!data) {
           setError("Không tìm thấy bài viết.");
           return;
@@ -49,7 +50,7 @@ const BlogDetailPage = () => {
       }
     };
 
-    if (id) fetchBlogData();
+    fetchBlogData();
   }, [id]);
 
   if (loading) return <Loading />;
@@ -60,19 +61,11 @@ const BlogDetailPage = () => {
     <section className="blog-detail">
       <div className="container">
         <div className="detail-layout">
-          {/* ==== NỘI DUNG CHÍNH ==== */}
           <div className="detail-main">
             <h2 className="detail-title">{blog.title}</h2>
             <p className="meta">
               <span>{blog.date}</span> • <span>{blog.author}</span>
             </p>
-
-            {/* <img
-              src={blog.image}
-              alt={blog.title}
-              className="detail-image"
-              loading="lazy"
-            /> */}
 
             <div
               className="detail-body"
@@ -80,10 +73,11 @@ const BlogDetailPage = () => {
             />
 
             <BlogTags tags={blog.tags} />
-            <BlogComments />
+
+            {/* Pass blogId cho BlogComments */}
+            <BlogComments blogId={id} />
           </div>
 
-          {/* ==== SIDEBAR ==== */}
           <BlogSidebar currentBlogId={id} />
         </div>
       </div>

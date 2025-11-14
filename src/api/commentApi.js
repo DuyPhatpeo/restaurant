@@ -1,3 +1,4 @@
+// src/api/commentApi.js
 import {
   collection,
   getDocs,
@@ -5,6 +6,7 @@ import {
   query,
   where,
   orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 import { db } from "@lib/firebaseConfig";
 
@@ -13,53 +15,72 @@ import { db } from "@lib/firebaseConfig";
  * @param {string} blogId
  */
 export const getCommentsByBlogId = async (blogId) => {
-  if (!blogId) throw new Error("Blog ID is required");
+  if (!blogId) return [];
 
   try {
-    // Query comments theo blogId và order theo datetime giảm dần
+    // Chuyển blogId thành string để consistent
+    const blogIdStr = blogId.toString();
+
+    // Query theo blogId, order datetime giảm dần
     const q = query(
       collection(db, "comments"),
-      where("blogId", "==", blogId),
-      orderBy("datetime", "desc")
+      where("blogId", "==", blogIdStr),
+      orderBy("datetime", "desc") // ⚠ Cần composite index Firestore
     );
 
-    const querySnapshot = await getDocs(q);
-    const comments = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const snap = await getDocs(q);
 
-    console.log(`💬 Comments for blogId=${blogId}:`, comments);
+    const comments = snap.docs.map((doc) => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        ...data,
+        // convert Firestore Timestamp -> Date
+        datetime:
+          data.datetime?.toDate?.() || new Date(data.datetime || Date.now()),
+      };
+    });
+
+    console.log(`💬 Comments for blogId=${blogIdStr}:`, comments);
     return comments;
-  } catch (error) {
-    console.error(`❌ Lỗi khi lấy comment của blogId=${blogId}:`, error);
-    throw error;
+  } catch (err) {
+    console.error(`❌ Lỗi khi lấy comment blogId=${blogId}:`, err);
+    return [];
   }
 };
 
 /**
  * 🔹 Thêm comment mới cho blog
- * @param {Object} commentData { blogId, name, content, datetime? }
+ * @param {Object} commentData { blogId, name, content, email? }
  */
 export const postComment = async (commentData) => {
-  const { blogId, name, content } = commentData;
-  if (!blogId || !name || !content) {
+  const { blogId, name, content, email } = commentData;
+
+  if (!blogId || !name || !content)
     throw new Error("blogId, name và content là bắt buộc");
-  }
 
   try {
-    // Nếu không có datetime, set thời gian hiện tại
+    const blogIdStr = blogId.toString();
     const newComment = {
-      ...commentData,
-      datetime: commentData.datetime || new Date().toISOString(),
+      blogId: blogIdStr,
+      name,
+      content,
+      email: email || "",
+      datetime: serverTimestamp(), // timestamp chuẩn để orderBy
     };
 
     const docRef = await addDoc(collection(db, "comments"), newComment);
+
     console.log("📝 Comment added:", { id: docRef.id, ...newComment });
 
-    return { id: docRef.id, ...newComment };
-  } catch (error) {
-    console.error("❌ Lỗi khi đăng comment:", error);
-    throw error;
+    // Trả về comment với datetime hiện tại (Date) để render ngay
+    return {
+      id: docRef.id,
+      ...newComment,
+      datetime: new Date(),
+    };
+  } catch (err) {
+    console.error("❌ Lỗi khi đăng comment:", err);
+    throw err;
   }
 };

@@ -1,18 +1,20 @@
+// src/components/blog/BlogComments.jsx
 import React from "react";
-import { useParams } from "react-router-dom";
 import FormField from "@components/ui/FormField";
 import Button from "@components/ui/Button";
 import { useBlogComments } from "@hooks/useBlogComments";
 
-const BlogComments = () => {
-  const { id: blogId } = useParams();
-  const { comments, newComment, errors, loading, handleChange, handleSubmit } =
-    useBlogComments(blogId);
+const BlogComments = ({ blogId }) => {
+  const {
+    comments,
+    newComment,
+    errors,
+    loading,
+    submitting,
+    handleChange,
+    handleSubmit,
+  } = useBlogComments(blogId);
 
-  if (loading) return <p>Loading comments...</p>;
-  if (!comments) return <p>Failed to load comments.</p>;
-
-  // Config field giống ReservationForm
   const fields = [
     {
       label: "Name",
@@ -35,6 +37,21 @@ const BlogComments = () => {
     },
   ];
 
+  const formatDate = (dt) => {
+    if (!dt) return "Unknown";
+    if (dt.toDate) dt = dt.toDate();
+    if (typeof dt === "string") dt = new Date(dt);
+    if (isNaN(dt.getTime())) return "Unknown";
+    return dt.toLocaleString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
   return (
     <section className="blog-comments">
       <h3 className="comment-title">Comments ({comments.length})</h3>
@@ -45,20 +62,16 @@ const BlogComments = () => {
         {fields.map((field) => (
           <FormField
             key={field.name}
-            label={field.label}
-            name={field.name}
-            type={field.type}
-            placeholder={field.placeholder}
-            rows={field.rows}
-            value={newComment[field.name]}
+            {...field}
+            value={newComment[field.name] || ""}
             onChange={handleChange}
             required
             error={errors[field.name]}
           />
         ))}
 
-        <Button type="submit" hover disabled={loading}>
-          {loading ? "Posting..." : "Post Comment"}
+        <Button type="submit" hover disabled={submitting}>
+          {submitting ? "Posting..." : "Post Comment"}
         </Button>
       </form>
 
@@ -67,17 +80,7 @@ const BlogComments = () => {
           <li key={cmt.id} className="comment-item">
             <div className="comment-body">
               <h5 className="comment-name">{cmt.name}</h5>
-              <span className="comment-date">
-                {new Date(cmt.datetime).toLocaleString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                  hour12: true,
-                })}
-              </span>
-
+              <span className="comment-date">{formatDate(cmt.datetime)}</span>
               <p className="comment-text">{cmt.content}</p>
             </div>
           </li>

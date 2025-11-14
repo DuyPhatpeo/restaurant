@@ -1,3 +1,4 @@
+// src/hooks/useBlogComments.js
 import { useState, useEffect } from "react";
 import { getCommentsByBlogId, postComment } from "@api/commentApi";
 import { toast } from "react-toastify";
@@ -11,54 +12,32 @@ export const useBlogComments = (blogId) => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
-  // ========= REGEX CONSTANTS =========
   const namePattern = /^[\p{L}\s'-]+$/u;
   const emailPattern = /\S+@\S+\.\S+/;
 
-  // ========= HELPERS =========
-  const getCurrentDateTime = () => {
-    const now = new Date();
-    const pad = (n) => (n < 10 ? "0" + n : n);
-    return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
-      now.getDate()
-    )} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(
-      now.getSeconds()
-    )}`;
-  };
-
   const validate = () => {
     const newErrors = {};
-
-    if (!newComment.name.trim()) {
-      newErrors.name = "Name is required.";
-    } else if (!namePattern.test(newComment.name)) {
-      newErrors.name =
-        "Name can only contain letters and spaces (no special characters).";
-    }
-
-    if (!newComment.email.trim()) {
-      newErrors.email = "Email is required.";
-    } else if (!emailPattern.test(newComment.email)) {
-      newErrors.email = "Invalid email format.";
-    }
-
-    if (!newComment.content.trim()) {
+    if (!newComment.name.trim()) newErrors.name = "Name is required.";
+    else if (!namePattern.test(newComment.name))
+      newErrors.name = "Invalid name.";
+    if (!newComment.email.trim()) newErrors.email = "Email is required.";
+    else if (!emailPattern.test(newComment.email))
+      newErrors.email = "Invalid email.";
+    if (!newComment.content.trim())
       newErrors.content = "Comment cannot be empty.";
-    }
-
     return newErrors;
   };
 
-  // ========= FETCH COMMENTS =========
+  // Load comments
   useEffect(() => {
     if (!blogId) return;
     const fetchComments = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         const data = await getCommentsByBlogId(blogId);
         setComments(Array.isArray(data) ? data : []);
       } catch (err) {
-        console.error("Error loading comments:", err);
+        console.error(err);
         toast.error("Unable to load comments.");
       } finally {
         setLoading(false);
@@ -67,7 +46,6 @@ export const useBlogComments = (blogId) => {
     fetchComments();
   }, [blogId]);
 
-  // ========= HANDLERS =========
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewComment((prev) => ({ ...prev, [name]: value }));
@@ -76,29 +54,24 @@ export const useBlogComments = (blogId) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const validationErrors = validate();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      toast.error("Please fix the errors in the form.");
+      toast.error("Please fix errors.");
       return;
     }
 
-    const payload = {
-      ...newComment,
-      blogId: parseInt(blogId),
-      datetime: getCurrentDateTime(),
-    };
-
+    const payload = { ...newComment, blogId: blogId.toString() };
     setSubmitting(true);
     try {
-      const savedComment = await postComment(payload);
-      setComments((prev) => [savedComment, ...prev]);
+      const saved = await postComment(payload);
+      if (saved.datetime?.toDate) saved.datetime = saved.datetime.toDate();
+      setComments((prev) => [saved, ...prev]);
       setNewComment(initialComment);
-      toast.success("Comment posted successfully!");
+      toast.success("Comment posted!");
     } catch (err) {
-      console.error("Error submitting comment:", err);
-      toast.error("Failed to post comment. Please try again.");
+      console.error(err);
+      toast.error("Failed to post comment.");
     } finally {
       setSubmitting(false);
     }
