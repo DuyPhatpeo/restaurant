@@ -15,7 +15,7 @@ Website nhà hàng hiện đại được xây dựng với React và Vite.
 
 1. Clone project:
 ```bash
-git clone <repository-url>
+git clone [<repository-url>](https://github.com/DuyPhatpeo/restaurant)
 cd restaurant
 ```
 
