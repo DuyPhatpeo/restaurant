@@ -1,12 +1,54 @@
-# React + Vite
+# Restaurant Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Website nhà hàng hiện đại được xây dựng với React và Vite.
 
-Currently, two official plugins are available:
+## Công nghệ sử dụng
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19.1.0
+- Vite 6.3.5
+- React Router DOM
+- Firebase
+- Axios
+- JSON Server
 
-## Expanding the ESLint configuration
+## Cài đặt
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. Clone project:
+```bash
+git clone <repository-url>
+cd restaurant
+```
+
+2. Cài đặt dependencies:
+```bash
+npm install
+```
+
+3. Tạo file `db.json` ở thư mục root:
+```json
+{
+  "blogs": [],
+  "categories": [],
+  "chefs": [],
+  "comments": [],
+  "contacts": [],
+  "foods": [],
+  "library": [],
+  "reservations": [],
+  "testimonials": []
+}
+```
+
+4. Cấu hình Firebase trong `src/utils/firebaseConfig.js`
+
+5. Chạy project:
+```bash
+npm run dev
+npm run api
+```
+
+## Scripts
+
+- `npm run dev` - Chạy dev server
+- `npm run build` - Build production
+- `npm run api` - Chạy JSON Server (port 4000)
